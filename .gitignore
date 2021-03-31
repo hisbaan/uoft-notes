@@ -566,5 +566,7 @@ $RECYCLE.BIN/
 
 # Beginning of personal gitignore
 *_minted*
-*.auctex_auto
-*.tex
+*.auctex-auto
+*.fdb_latexmk
+csc110/*.tex
+csc111/*.tex
