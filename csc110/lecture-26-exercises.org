@@ -1,0 +1,318 @@
+#+SETUPFILE: setup.org
+
+#+TITLE: CSC110 Lecture 26: Abstract Data Types and Stacks
+#+AUTHOR: Hisbaan Noorani
+#+DATE: November 23, 2020
+
+* Exercise 1: Using Stacks
+
+Before we get into implementing stacks, we are going to put ourselves in the role of a stack /user/, and attempt to implement the following top-level function (/not/ method):
+
+<<cb1>>
+#+BEGIN_SRC python
+def size(s: Stack) -> int:
+    """Return the number of items in s.
+
+    >>> s = Stack()
+    >>> size(s)
+    0
+    >>> s.push('hi')
+    >>> s.push('more')
+    >>> s.push('stuff')
+    >>> size(s)
+    3
+    """
+
+
+if __name__ = '__main__':
+    s = Stack()
+
+    for i in range(0, 100):
+        s.push(i)
+
+    # should print out 100.
+    print(str(size(s)) + 'is the size of your stack!')
+#+END_SRC
+
+1. Each of the following four implementations of this function has a problem. For each one, explain what the problem is.
+
+   /Note/: some of these functions may seem to work correctly, but do not exactly follow the given docstring because they mutate the stack =s= as well!
+
+   a. <<cb2>>
+      #+BEGIN_SRC python
+def size(s: Stack) -> int:
+    """Return the number of items in s.
+    """
+    count = 0
+    for _ in s:
+        count = count + 1
+    return count
+      #+END_SRC
+
+      A stack does not have `elements' in the same way a list does so you cannot itterate throught them one like this.
+
+   b. <<cb3>>
+      #+BEGIN_SRC python
+def size(s: Stack) -> int:
+    """Return the number of items in s.
+    """
+    count = 0
+    while not s.is_empty():
+        s.pop()
+        count = count + 1
+    return count
+      #+END_SRC
+
+      This does not return the stack to its original state.
+
+   c. <<cb4>>
+      #+BEGIN_SRC python
+def size(s: Stack) -> int:
+    """Return the number of items in s.
+    """
+    return len(s._items)
+      #+END_SRC
+
+      The =_items= variable is a private instance attribute. You should not use this as an implementation can change, changing the exitence or behaviour of this private instance attribute.
+
+   d. <<cb5>>
+      #+BEGIN_SRC python
+def size(s: Stack) -> int:
+    """Return the number of items in s.
+    """
+    s_copy = s
+    count = 0
+    while not s_copy.is_empty():
+        s_copy.pop()
+        count += 1
+    return count
+      #+END_SRC
+
+      When you write =s_copy = s=, you are coppying the memory address. This means that when you modify =s_copy=, you're modifying =s= as well.
+
+2. Write a correct implementation of the =size= function. You can use the same approach as (b) from the previous question, but use a second, temporary stack to store the items popped off the stack.
+
+   <<cb6>>
+   #+BEGIN_SRC python
+def size(s: Stack) -> int:
+    """Return the number of items in s.
+
+    >>> s = Stack()
+    >>> size(s)
+    0
+    >>> s.push('hi')
+    >>> s.push('more')
+    >>> s.push('stuff')
+    >>> size(s)
+    3
+    """
+    temp_stack = Stack()
+
+    counter = 0
+
+    while not s.is_empty():
+        temp_stack.push(s.pop())
+        counter += 1
+
+    while not temp_stack.is_empty():
+        s.push(temp_stack.pop())
+
+    return counter
+   #+END_SRC
+
+* Exercise 2: Stack implementation and running-time analysis
+
+1. Consider the implementation of the Stack we just saw in lecture:
+
+   <<cb7>>
+   #+BEGIN_SRC python
+class Stack1:
+    """A last-in-first-out (LIFO) stack of items.
+
+    Stores data in first-in, last-out order. When removing an item from the
+    stack, the most recently-added item is the one that is removed.
+
+    >>> s = Stack1()
+    >>> s.is_empty()
+    True
+    >>> s.push('hello')
+    >>> s.is_empty()
+    False
+    >>> s.push('goodbye')
+    >>> s.pop()
+    'goodbye'
+    """
+    # Private Instance Attributes:
+    #   - _items: The items stored in the stack. The end of the list represents
+    #     the top of the stack.
+    _items: list
+
+    def __init__(self) -> None:
+        """Initialize a new empty stack.
+        """
+        self._items = []
+
+    def is_empty(self) -> bool:
+        """Return whether this stack contains no items.
+        """
+        # can also say ~~ not self._items ~~ instead of this.
+        return self._items == []
+
+    def push(self, item: Any) -> None:
+        """Add a new element to the top of this stack.
+        """
+        self._items.append(item)
+
+    def pop(self) -> Any:
+        """Remove and return the element at the top of this stack.
+
+        Preconditions:
+            - not self.is_empty()
+        """
+        return self._items.pop()
+   #+END_SRC
+
+   #+RESULTS:
+
+   Analyse the running times of the =Stack1.push= and =Stack1.pop= operations in terms of \(n\), the size of the stack.
+
+   \(RT_\text{push} \in \Theta(1)\)
+
+   \(RT_\text{pop} \in \Theta(1)\)
+
+2. Our implementation of =Stack1= uses the back of its list attribute to store the top of the stack. In the space below, complete the implementation of =Stack2=, which is very similar to =Stack1=, but now uses the /front/ of its list attribute to store the top of the stack.
+
+   <<cb8>>
+   #+BEGIN_SRC python
+class Stack2:
+    """A last-in-first-out (LIFO) stack of items.
+
+    Stores data in first-in, last-out order. When removing an item from the
+    stack, the most recently-added item is the one that is removed.
+
+    >>> s = Stack2()
+    >>> s.is_empty()
+    True
+    >>> s.push('hello')
+    >>> s.is_empty()
+    False
+    >>> s.push('goodbye')
+    >>> s.pop()
+    'goodbye'
+    """
+    # Private Instance Attributes:
+    #   - _items: The items stored in the stack. The end of the list represents
+    #     the top of the stack.
+    _items: list
+
+    def __init__(self) -> None:
+        """Initialize a new empty stack.
+        """
+        self._items = []
+
+
+    def is_empty(self) -> bool:
+        """Return whether this stack contains no items.
+        """
+        # can also say ~~ not self._items ~~ instead of this.
+        return self._items == []
+
+
+    def push(self, item: Any) -> None:
+        """Add a new element to the top of this stack.
+        """
+        self._items.insert(0, item)
+
+
+    def pop(self) -> Any:
+        """Remove and return the element at the top of this stack.
+
+        Preconditions:
+            - not self.is_empty()
+        """
+        return self._items.pop(0)
+   #+END_SRC
+
+3. Analyse the running time of the =Stack2.push= and =Stack2.pop= methods.
+
+   \(RT_\text{push} \in \Theta(n)\)
+
+   \(RT_\text{pop} \in \Theta(n)\)
+
+4. Based on your answers to Questions 1 and 3, which stack implementation should we use, =Stack1= or =Stack2=?
+
+   We should use =Stack1= as it has a lower running time for the pop method, even though the push method remains the same.
+
+* Additional exercises
+
+Each of the following functions takes at least one stack argument. Analyse the running time of each function /twice/: once assuming it uses =Stack1= as the stack implementation, and again using =Stack2=. (We use the type annotation =Stack= as a placeholder for either =Stack1= or =Stack2=.)
+
+1. <<cb9>>
+   #+BEGIN_SRC python
+def extra1(s: Stack) -> None:
+    s.push(1)
+    s.pop()
+   #+END_SRC
+
+   _Stack1_
+
+   \(RT_{S_1} \in \Theta(n)\)
+
+   _Stack2_
+
+   \(RT_{S_2} \in \Theta()\)
+
+2. <<cb10>>
+   #+BEGIN_SRC python
+def extra2() -> None:
+    s = Stack1()  # Or, s = Stack2()
+
+    for i in range(0, 5):
+        s.push(i)
+   #+END_SRC
+
+   _Stack1_
+
+   \(RT_{S_1} \in \Theta(1)\)
+
+   _Stack2_
+
+   \(RT_{S_2} \in \Theta(n)\)
+
+3. <<cb11>>
+   #+BEGIN_SRC python
+     def extra3(s: Stack, k: int) -> None:
+         """Precondition: k >= 0"""
+         for i in range(0, k):
+             s.push(i)
+   #+END_SRC
+
+   _Stack1_
+
+   \(RT_{S_1} \in \Theta(1)\)
+
+   _Stack2_
+
+   \(RT_{S_2} \in \Theta(n)\)
+
+4. s1 starts as a stack of size n, and s2 starts as an empty stack
+
+   <<cb12>>
+   #+BEGIN_SRC python
+     def extra4(s1: Stack) -> None:
+         s2 = Stack1()  # Or, s2 = Stack2()
+
+         while not s1.is_empty():
+             s2.push(s1.pop())
+
+         while not s2.is_empty():
+             s1.push(s2.pop())
+   #+END_SRC
+
+   _Stack1_
+
+   \(RT_{S_1} \in \Theta(n)\)
+
+   _Stack2_
+
+   \(RT_{S_2} \in \Theta(n^2)\)

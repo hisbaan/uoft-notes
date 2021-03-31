@@ -1,0 +1,31 @@
+#+latex_header: \usepackage{xcolor}
+#+latex_header: \usepackage[utf8]{inputenc}
+#+latex_header: \usepackage[T1]{fontenc}
+#+latex_header: \usepackage{inconsolata}
+#+latex_header: \renewcommand\theFancyVerbLine{\small\arabic{FancyVerbLine}}
+
+# # Monokai
+# #+latex_header: \definecolor{bg}{HTML}{272822}
+# #+latex_header: \setminted{style=monokai,bgcolor=bg,linenos,mathescape}
+
+# # Black and white
+# #+latex_header: \definecolor{bg}{HTML}{EEEEEE}
+# #+latex_header: \setminted{style=bw,bgcolor=bg,linenos,mathescape}
+
+# Github
+#+latex_header: \definecolor{bg}{HTML}{EEEEEE}
+#+latex_header: \setminted{style=github,bgcolor=bg,linenos,mathescape}
+
+#+latex_header: \newcommand{\z}{\mathbb{z}}
+#+latex_header: \newcommand{\r}{\mathbb{r}}
+#+latex_header: \newcommand{\n}{\mathbb{n}}
+#+latex_header: \newcommand{\q}{\mathbb{q}}
+#+latex_header: \newcommand{\bigo}{\mathcal{o}}
+
+#+latex_header: \newcommand{\floor}[1]{\left \lfloor #1 \right \rfloor}
+#+latex_header: \newcommand{\ceil}[1]{\left \lceil #1 \right \rceil}
+#+latex_header: \newcommand{\abs}[1]{\left | #1 \right |}
+#+latex_header: \newcommand{\st}{\text{ s.t. }}
+
+#+latex_header: \renewcommand{\qedsymbol}{\(\blacksquare\)}
+#+latex_header: \renewcommand*{\proofname}{\underline{pf}:}

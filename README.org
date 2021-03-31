@@ -1,0 +1,9 @@
+#+TITLE: CSC110/111 Lecture Notes
+
+This is a repository for the notes that I took while in CSC110 (2020) and CSC111 (2021) at the University of Toronto. My instructor for CSC110 was [[mariobadr.com][Mario Badr]] and my instructor for CSC111 was [[https://www.cs.toronto.edu/~david/][David Liu]].
+
+* Contributing
+
+I wrote these notes in ORG mode. This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configuration, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
+
+In emacs, the key combination for compiling the org file into a LaTeX pdf is ~C-c C-e m e l p~ (or ~SPC m e l p~ with evil mode bindings).

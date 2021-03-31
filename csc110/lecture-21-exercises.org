@@ -1,0 +1,171 @@
+#+SETUPFILE: setup.org
+
+#+LATEX_HEADER_EXTRA:  \usepackage{mdframed}
+
+#+TITLE: CSC110 Lecture 21: Asymptotic Notation for Function Growth
+#+AUTHOR: Hisbaan Noorani
+#+DATE: November 02, 2020
+
+* Exercise 1: Practice with Big-O
+
+*Note*: In Big-O expressions, it will be convenient to just write down the “body” of the functions rather than defining named functions all the time. We'll always use the variable \(n\) to represent the function input, and so when we write “\(n \in \mathcal{O}(n^2)\),” we really mean “the functions defined as \(f(n) = n\) and \(g(n) = n^2\) satisfy \(f \in \mathcal{O}(g)\).”
+
+As a reminder, here is the formal definition of what “\(g\) is Big-O of \(f\)” means:
+
+\[g \in \mathcal{O}(f):~ \exists c, n_0 \in \mathbb{R}^+,~ \forall n \in \mathbb{N},~ n \geq n_0
+\implies g(n) \leq c \cdot f(n)\]
+
+1. Our first step in comparing different types of functions is looking at different powers of \(n\). Consider the following statement, which generalizes the idea that \(n \in \mathcal{O}(n^2)\): \[\forall a,b \in\mathbb{R}^+,~a \leq b \implies n^a \in \mathcal{O}(n^b)\]
+
+   a. Rewrite the above statement, but with the definition of Big-O expanded.
+
+      \(\forall a, b \in \mathbb{R}^+, a \leq b \implies (\exists c, n_0 \in \mathbb{R}^+ \st \forall n \in \mathbb{N}, n \geq n_0 \implies n^a \leq c \cdot n^b)\)
+
+   b. Prove the above statement. *Hint*: you can actually pick \(c\) and \(n_0\) to both be 1, and have the proof work. Even though this is pretty simple, take the time to understand and write down the proof, as a good warm-up.
+
+      #+BEGIN_latex
+      \underline(Pf:)
+
+      Let \(a, b \in \mathbb{R}^+\)
+
+      Assume \(a \leq b\)
+
+      Take \(c = 1\)
+
+      Take \(n_0 = 1\)
+
+      Let \(n \in \mathbb{N}\)
+
+      Assume \(n \geq n_0\)
+
+      Prove \(n^a \leq c \cdot n^b\). Since \(c = 1\), we can simplify this to \(n^a \leq n^b\)
+
+      We want to prove this for every \(n \geq n_0\)
+
+      We know that \(\forall x \in \mathbb{R}^+, a \leq b \implies x^a \leq x^b\).
+
+      If we take this x as n, then we know that \(n^a \leq n^b\) \(\blacksquare\)
+      #+END_latex
+
+2. In this question, we'll investigate what it means to show that a function /isn't/ Big-O of another.
+
+   a. Express the statement \(g \notin \mathcal{O}(f)\) in predicate logic, using the expanded definition of Big-O. (As usual, simplify so that all negations are pushed as far “inside” as possible.)
+
+      \(\forall c, n_0 \in \mathbb{R}^+, \exists n \in \mathbb{N} \st n \geq n_0 \land g(n) > c \cdot f(n)\)
+
+   b. Prove that for all positive real numbers \(a\) and \(b\), if \(a >
+      b\) then \(n^a \notin \mathcal{O}(n^b)\).
+
+      *Hints*:
+
+      - For all positive real numbers \(x\) and \(y\), \(x > y \IFF \log
+        x > \log y\).
+      - In your negated statement from part (a), you should find that you can only pick the value of \(n\). Work backwards from the target inequalities to find what value of \(n\) works.
+
+      \(\forall a, b \in \mathbb{R}^+,~a > b \implies (\forall c, n_0 \in \mathbb{R}^+, \exists n \in \mathbb{N} \st n \geq n_0 \land n^a > c \cdot n^b)\)
+
+      #+BEGIN_latex
+      \underline{Pf:}
+
+      Let \(a, b \in \mathbb{R}^+\)
+
+      Assume \(a > b\)
+
+      Let \(c, n_0 \in \mathbb{R}^+\)
+
+      Take \(n \geq \ceil{n_0 + c^{1/(a-b)}}\)
+
+      Prove \(n \geq n_0\) and \(n^a > c \cdot n^b\)
+
+      Since we took  \(n_0\) + a positive real number, we know that \(n \geq n_0\), and thus we have proved the first part of the statement.
+
+      I won't do it here, but if you plug in the value for \(n\) that we have chosen, it will work out with the second condition. \(\blacksquare\)
+      #+END_latex
+
+* Exercise 2: Omega and Theta
+
+1. Consider the following statement: for all \(a, b \in \mathbb{R}^+\), \(an^2 + b \in \Theta(n^2)\).
+
+   a. Expand this statement using the definition of Theta involving \(c_1\) and \(c_2\).
+
+      \(\forall a, b \in \mathhbb{R}^+, \exists c_1, c_2, n_0 \in \mathbb{R}^+ \st \forall n \in \mathbb{N}^+, n \geq n_0 \implies c_1n^2 \leq an^2 + b \leq c_2n^2\)
+
+   b. You should see two different inequalities that you need to prove: \(c_1 n^2 \leq an^2 + b\) and \(an^2 + b \leq c_2 n^2\).
+
+      Which of these variables are universally-quantified? Which are existentially quantified?
+
+      Universally Quantified \(\left( \forall \right)\): \(a, b, n\)
+
+      Existentially Quantified \(\left( \exists \right)\):  \(c_1, c_2, n_0\)
+
+   c. Choose values for the existentially-quantified variables from (b) to make the two inequalities true (you might need to do some rough calculations). Remember that when choosing values for these variables, you can define them in terms of any variables that appear to the /left/ of them in the statement you wrote in part (a).
+
+      Take \(c_1 = a\)
+
+      Take \(c_2 = a + b\)
+
+      Take \(n_0 = 1\)
+
+   d. Prove your statement from part (a).
+
+      #+BEGIN_latex
+      \underline{Pf:}
+
+      Let \(a, b \in \mathbb{R}^+\)
+
+      Take \(c_1 = a\)
+
+      Take \(c_2 = a + b\)
+
+      Take \(n_0 = 1\)
+
+      Let \(n \in \mathbb{N}\)
+
+      Assume \(n \geq n_0\)
+
+      Prove \(c_1n^2 \leq an^2 + b\) and \(an^2 + b \leq c_2n^2\)
+
+      \begin{enumerate}
+\item[i.] Prove \(c_1n^2 \leq an^2 + b\)
+\begin{flalign} \nonumber
+&\begin{aligned}
+c_1n^2 &\leq an^2 + b \\
+(a)n^2 &\leq an^2 + b && \quad \text{(since \(c_1 = a\))} \\
+0 &\leq b \\
+\end{aligned} &&
+\end{flalign}
+Since b is a positive real number, this is true. \(\blacksquare_1\) \\
+\item[ii.] Prove \(an^2 + b \leq c_2n^2\)
+\begin{flalign} \nonumber
+&\begin{aligned}
+an^2 + b &\leq c_2n^2 \\
+an^2 + b &\leq (a + b)n^2 && \quad \text{(since \(c_2 = a + b\))} \\
+an^2 + b &\leq an^2 + bn^2 \\
+b &\leq bn^2 \\
+\end{aligned} &&
+\end{flalign}
+Since \(n \in \mathbb{N}\), this is true. \(\blacksquare_2\) \\
+      \end{enumerate}
+
+      Since we have shown that both parts of the conclusion of the implication are true, we have proven \(an^2 + b \in \Theta(n^2)\), as needed. \(\blacksquare\)
+      #+END_latex
+
+* Additional Exercises
+
+1. One slight oddness about the definition of Big-O is that it treats all logarithmic functions “the same.” Your task in this question is to investigate this, by proving the following statement:
+
+   \[\forall a,b \in \mathbb{R}^+,~ a > 1 \land b > 1 \implies \log_a n \in \Theta(\log_b n)\]
+
+   We won't ask you to expand the definition of Theta, but if you aren't quite sure, then we highly recommend doing so before attempting even your rough work!
+
+   *Hint*: look up the “change of base rule” for logarithms, if you don't quite remember it.
+
+2. Prove that for all \(a, b \in \mathbb{R}^+\), if \(a < b\) then \(a^n \in
+   \mathcal{O}(b^n)\) and \(a^n \notin \Omega(b^n)\).
+
+3. As we discuss in the Course Notes, /constant functions/ like \(f(n) =
+   100\) will play an important role in our analysis of running time of algorithms. For now let's get comfortable with the notation.
+
+   a. Let \(g: \mathbb{N} \to \mathbb{R}^{\ge 0}\). Show how to express the statement \(g \in \Theta(1)\) by expanding the definition of Theta. (Here \(1\) refers t othe constant function \(f(n) = 1\).)
+
+   b. Prove that \(100 + \frac{77}{n + 1} \in \Theta(1)\).

@@ -1,0 +1,74 @@
+#+setupfile: setup.org
+#+title: CSC111 Lecture 16: Graph Connectivity and Spanning Trees
+#+author: Hisbaan Noorani
+#+date: March 19, 2021
+
+#+latex_header: \usepackage{mdframed}
+#+latex_header: \setlength{\parindent}{0pt}
+#+latex_header: \setlength{\parskip}{0.5em}
+
+* Exercise 1: Proving “Lemma 2”
+
+Here's the lemma we just saw in lecture:
+
+*Lemma 2*: Let \(G = (V, E)\) be a graph. If there exists an edge \(e \in E\) such that \(G - e\) is connected, then that edge \(e\) is in a cycle in \(G\), the original graph.
+
+Prove this lemma. /Hint/: the proof body is actually quite short, and can again be written in English! Take the edge \(e\) from the assumption and label its endpoints \(u\) and \(v\). What can you say about these two vertices in the graph \(G - e\)?
+
+#+begin_mdframed
+#+begin_latex
+\texit{Proof.}
+
+Let \(G = (V, E)\) be a graph, and assume there exists an edge \(e\) such that \(G - e\) is connected. We want to prove \(e\) is in a cycle in \(G\).
+
+Let \(u\) and \(v\) be the endpoints of \(e\). Since we assumed that \(G - e\) is connected, there must be a path between \(u\) and \(v\) in \(G - e\). So then let the path equal \(u, v_1, v_2, v_3, \dots, v\)
+
+Then the sequence \(u, v_1, v_2, v_3, \dots, v, u\) is a cycle in \(G\) that contains \(e\). \(\blacksquare\)
+#+end_latex
+#+end_mdframed
+
+* Exercise 2: Proving “Theorem 2 (number of edges in a tree)”
+
+Here's the theorem we just saw in lecture:
+
+*Theorem 2* (number of edges in a tree). Let \(G = (V, E)\) be a tree with at least one vertex. Then \(|E| = |V| - 1\).
+
+Translation into predicate logic, using a variable \(n\): \[ \forall n \in \Z^+,~ \forall G = (V, E), \big(|V| = n \land \text{$G$ is a tree}\big) \implies |E| = n - 1 \]
+
+The induction predicate \(P(n)\) translates to, “Every tree with \(n\) vertices has \(n - 1\) edges”.
+
+In this exercise, you'll prove this theorem using induction on \(n\), the number of vertices in the tree. We've started the proof structure for you.
+
+--------------
+
+/Proof/.
+
+*Base case*: let \(n = 1\).
+
+Let \(G = (V, E)\) be a graph, and assume \(|V| = 1\)  and \(G\) is a tree. We want to prove that \(|E| = 1 - 1 = 0\)
+
+Since there is only one vertex, there cannot be any edges. So \(|E| = 0\), as needed \(\blacksquare\).
+
+*Induction step*: let \(k \in \Z^+\) and assume that \(P(k)\) holds, i.e., every tree with \(k\) vertices has \(k - 1\) edges. We need to prove that \(P(k + 1)\) is true.
+
+/[NOTE: you may assume that every tree with \(\geq 2\) vertices has at least one vertex of degree 1. Consider removing such a vertex.]/
+
+Let \(G = (V, E)\). Assume \(G\) is a tree, and \(|V| = k + 1\). We want to prove that \(|E| = k\)
+
+Let \(v\) be a vertex with degree 1 (from the NOTE above).
+
+Let \(G' = (V', E')\) be the graph obtained by removing \(v\) from \(G\).
+
+Then \(G'\) has no cycles (because \(G\) had no cycles), and is still connected (as we only removed \(v\) which had degree 1).
+
+This means that \(G'\) is a tree. Also it has k vertices, since we just removed 1 vertex from \(G\). By the induction hypothesis, \(|E'| = k - 1\).
+
+And hten for \(G\) since we removed one edge, we have:
+
+\(|E| = |E'| + 1 = (k - 1) + 1 = k\) \(\blacksquare\)
+
+* Additional exercises
+
+1. Prove that every tree with \(\geq 2\) vertices has at least one vertex of degree 1. (/Hint/: consider a path of maximum length in the tree. Pick an endpoint, and prove that it must have degree 1.)
+2. Prove that every tree with \(\geq 2\) vertices has at least /two/ vertices of degree 1.
+3. Prove or disprove: every tree with \(\geq 2\) vertices has at least /three/ vertices of degree 1.

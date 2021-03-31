@@ -1,0 +1,28 @@
+\documentclass[border=0.2cm]{standalone}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, graphicx, multicol, array}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds}
+
+\definecolor{blurple}{HTML}{CCCCFF}
+\definecolor{mint}{HTML}{CCFFCC}
+
+\begin{document}
+\begin{tikzpicture}[every node/.style={circle, fill=blurple, draw},level 1/.style={sibling distance=40mm},level 2/.style={sibling distance=20mm}, level 3/.style={sibling distance=10mm}]
+  \node{8}
+  child {node {4}
+    child {node {2}
+      child {node {1}}
+      child {node{1}}}
+    child {node {2}
+      child {node {1}}
+      child {node {1}}}}
+  child {node {4}
+    child {node {2}
+      child {node {1}}
+      child {node{1}}}
+    child {node {2}
+      child {node {1}}
+      child {node {1}}}};
+\end{tikzpicture}
+\end{document}

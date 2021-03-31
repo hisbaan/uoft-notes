@@ -1,0 +1,22 @@
+\documentclass[border=0.2cm]{standalone}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, graphicx, multicol, array}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds}
+
+\definecolor{blurple}{HTML}{CCCCFF}
+\definecolor{mint}{HTML}{CCFFCC}
+
+\begin{document}
+\begin{tikzpicture}[every node/.style={circle, fill=blurple, draw}]
+  \node{5}
+  child {node {1}}
+  child {node {4}
+    child {node {1}}
+    child {node {3}
+      child {node {1}}
+      child {node {2}
+        child {node {1}}
+        child {node {1}}}}};
+\end{tikzpicture}
+\end{document}

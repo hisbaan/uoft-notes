@@ -1,0 +1,179 @@
+#+SETUPFILE: setup.org
+
+#+TITLE: Lecture 05 Exercises
+#+AUTHOR: Hisbaan Noorani
+#+DATE: September 22, 2020
+
+* Ex 1: Propositional and Predicate Logic
+1. Consider the following propositional statement:
+
+   \((p \Rightarrow q) \vee r) \Leftrightarrow ( p \Rightarrow (q \wedge r))\)
+
+   Complete the following truth table below to practice evaluating larger propositonal statements
+
+   | p | q | r | \(p \Rightarrow q\) | \((p \Rightarrow q) \wedge r\) | \(q \wedge r\) | \(p \Rightarrow (q \wedge r)\) | \(((p \Rightarrow q) \wedge r) \Leftrightarrow (p \Rightarrow (q \wedge r))\) |
+   |---+---+---+---------------------+--------------------------------+----------------+--------------------------------+-------------------------------------------------------------------------------|
+   | F | F | F | T                   | F                              | F              | T                              | F                                                                             |
+   | F | F | T | T                   | T                              | F              | T                              | T                                                                             |
+   | F | T | F | T                   | F                              | F              | T                              | F                                                                             |
+   | F | T | T | T                   | T                              | T              | T                              | T                                                                             |
+   | T | F | F | F                   | F                              | F              | F                              | T                                                                             |
+   | T | F | T | F                   | F                              | F              | F                              | T                                                                             |
+   | T | T | F | T                   | F                              | F              | F                              | T                                                                             |
+   | T | T | T | T                   | T                              | T              | T                              | T                                                                             |
+
+2. Write a Python function that, given three boolean values p, q, and ,r returns the values of the above propositional statement for those values. We have begun the Function Design Recipe for you.
+
+   #+BEGIN_SRC python
+def propositional_formula(p: bool, q: bool, r: bool) -> bool:
+     """Return the value of ((p ⇒ q) ∧ r) ⇔ (p ⇒ (q ∧ r)).
+
+     >>> propositional_formula(True, False, False)
+     True
+     >>> propositional_formula(False, False, False)
+     False
+     """
+     return (((not p) or q) and r) == ((not p) or (q and r))
+   #+END_SRC
+
+3. Let p be a propositonal variable representing the statement "All cats are cute", and q be a propostional variable representing the statement "All dogs are cute".
+
+   a. Translate the statement \(p \Rightarrow q\) into English.
+
+      If all cats are cute, then all dogs are cute.
+
+   b. What is the hyposthesis of this implication?
+
+      All cats are cute.
+
+   c. What is the conclusion of this implication?
+
+      All dogs are cute.
+
+   d. Write down an English translation of the converse of this implication.
+
+      If all dogs are cute, then all cats are cute.
+
+   e. Write down an English translation of the contrapositive of this implication.
+
+      if all dogs are not cute, then all cats are not cute.
+
+4. Suppose we have a set of computer programs that are each meant to solve the same task. Some of the programs are written in the Python programming language, and some of the programs are written in a programming language that is not Python. Some of the programs correctly solve the task, and others do not.
+
+   Let’s define the following predicates:
+
+   \(Python(x) : x\) is a Python program,            where \(x \in P\)
+
+   \(Correct(x) : x\) solves the task correctly,     where \(x \in P\)
+
+   Translate each statement below from English into predicate logic, or vice versa.
+
+   a. Program ~my_prog~ is correct and is written in Python. (~my_prog~ is an element of P.
+
+      \(Python(\texttt{my\_prog}) \wedge Correct(\texttt{my\_prog})\)
+
+   b. At least on incorrect program is written in Python
+
+      \(\exists x \in P : Python(x) \wedge \neg Correct(x)\)
+
+   c. \(\exists x \in P, Python(x) \wedge Correct(x)\)
+
+      At least one correct program is written in python.
+
+   d. \(\forall x \in P, \neg Python(x) \wedge Correct(x)\)
+
+      Every program that is not written in python is correct.
+
+* Ex 2: Translating statements and filtering collection
+
+1. Using the same set and predicates as the previous question, translate each statement below from English into predicate logic, or vice versa.
+
+   a. No python program is correct.
+
+      \(\forall x \in P, Python \Rightarrow \neg Correct(x)\)
+
+   b. Every incorrect program is written in Python
+
+      \(\forall x \in P, \neg Correct(x) \Rightarrow Python(x)\)
+
+   c. \(\neg (\forall x \in P, Correct(x) \Rightarrow Python(x))\)
+
+      not For all programs in the set, if the program is correct, then it is written in python
+
+   d. \(\forall x \in P, \neg Python(x) \Leftrightarrow Correct(x)\)
+
+      For all programs in the set, a program is correct if and only if it is not written in python.
+
+2. Now let's practice translating these sattement into python expressions. First, our set-up:
+   - Suppose we have a variable ~programs~ which stores a set of values representing Python programs. (Don't worry about the exact data type here).
+   - Suppose we have a vriable ~my_prog~ which is one of these programs.
+   - Suppose we also have Python functions ~is_python~ and ~is_correct~, which each take a "program" value and returns a ~bool~ representing whether that program is a "Python program" and "correct program", respectively.
+
+    Given these Python variables and cuntsoins, wirte expressions to express each of the eight statements from Question 4 i the previsou exerciese and Question 1 in this exercise. We have done the first one for you (the others are similar but will require using and/all and comprehensions).
+
+   
+   - Ex 1: Q4
+
+     a. Program ~my_prog~ is correct and is written in Python.
+
+        #+BEGIN_SRC python
+is_correct(my_prog) and is_python(my_prog)
+        #+END_SRC
+
+     b. At least one incorrect program is written in Python
+
+        #+BEGIN_SRC python
+any(is_correct(x) and not is_python(x) for x in programs)
+        #+END_SRC
+
+     c. \(\exists x \in P, Python(x) \wedge Correct(x)\)
+
+        #+BEGIN_SRC python
+any(is_correct(x) and is_python(x) for x in programs)
+        #+END_SRC
+
+     d. \(\forall x \in P, \neg Python(x) \wedge Correct(x)\)
+
+        #+BEGIN_SRC python
+all(is_correct(x) and not is_python(x) for x in programs)
+        #+END_SRC
+
+   - Ex 2: Q1
+
+     a. No Python program is correct.
+
+        #+BEGIN_SRC python
+all(not is_python(x) or not is_correct(x) for x in programs)
+        #+END_SRC
+
+     b. Every incorrect program is written in Python.
+
+        #+BEGIN_SRC python
+all(is_correct(x) or is_python(x) for x in programs)
+        #+END_SRC
+
+     c. \(\neg (\forall x \in P, Correct(x) \Rightarrow Python(x))\)
+
+        #+BEGIN_SRC python
+not all(not is_correct(x) or is_python(x) for x in programs)
+        #+END_SRC
+
+     d. \(\forall x \in P, \neg Python(x) \Leftrightarrow Correct(x)\)
+
+        #+BEGIN_SRC python
+all(not is_python(x) == is_correct(X) for x in programs)
+        #+END_SRC
+
+* Additional Exercises
+1. So far, we have seen quantifiers only as the leftmost components of our formulas. However, because all predicate statemetns have truth values (i.e., are either True or False), they too can be combined using the standard propositional operators. Let's see some examples of this.
+   a. Using the same predicates as before, translate the following statment into English.
+
+      \((\forall x \in P, Python(x) \Rightarrow Correct(x)) \vee (\forall y \in P, Python(y) \Rightarrow \neg Correct(y)\)
+
+      For every x in p, if a program is written in python, then it is correct or for every y in p, if a program is written in python, it is not correct.
+
+      A program written in python is either correct or incorrect.
+
+   b. Again using the same predicates as before, translate the following statement into predicate logic. "If at least one python program is correct, then all python programs are correct."
+
+      \((\exists x \in P, Python(x) \Rightarrow Correct(x)) \Rightarrow (\forall y \in P, Python(x) \Rightarrow Correct(x))\)

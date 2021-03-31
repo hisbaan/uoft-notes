@@ -1,0 +1,179 @@
+#+SETUPFILE: setup.org
+
+#+TITLE: CSC110 Lecture 15: Proofs
+#+AUTHOR: Hisbaan Noorani
+#+DATE: October 19, 2020
+
+* Ex 1: Practice with proofs
+
+1. Prove the following statement, using the definition of divisibility.
+   \[\forall n, d, a \in \mathbb{Z},~ d \mid n \Rightarrow d \mid an\]
+
+   We can rewrite this as: \(\forall n, d, a \in \mathbb{Z}, (\exists k_{1} \in \mathbb{Z}, n = dk_{1}) \implies (\exists k_{2} \in \mathbb{Z}, an = dk_{2})\) \\
+
+   Let \(n, d, a \in \mathbb{Z}\)
+
+   Take \(k_{1} = \frac{n}{d}\)
+
+   Take \(k_{2} = ak_{1}\) \\
+
+   Assume \(d \mid n\) \\
+
+   Prove \(d \mid an\):
+   #+BEGIN_QUOTE
+        \(an = dk_{2}\)
+
+        \(an = dak_{1}\)
+
+        \(n = dk_{1}\)
+
+        \(n = dk_{1} \iff an = dk_{2}\)
+    #+END_QUOTE
+
+   Therefore we have proven  \(\forall n, d, a \in \mathbb{Z},~ d \mid n \Rightarrow d \mid an\), as needed.
+
+2. Consider this statement: \[\forall n, d, a \in \mathbb{Z},~ d \mid an \Rightarrow d \mid a \lor d \mid n\]
+
+   This statement is /False/, so here you'll disprove it.
+
+   1. First, write the negation of this statement. You might need to review the negation rules in the [[https://www.teach.cs.toronto.edu/~csc110y/fall/notes/03-logic/02-predicate-logic.html#manipulating-negation][Course Notes Section 3.2]]
+
+      \(\exists n, d, a \in \mathbb{Z},~ d \mid an \land d \nmid a \land d \nmid n\)
+
+   2. Prove the negation of the statement. (By proving the statement' negation is True, you'll prove that the original statement i False.) \\
+
+      Let \(n = 3\)
+
+      Let \(d = 12\)
+
+      Let \(a = 4\) \\
+
+      Here we can see that \(d \mid an\) is true by inputting the values of \(d, a, \text{ and } n\):
+
+      \(12 | (3 \cdot 4)\)
+
+      \(12 \mid 12\)
+
+      which we know is true since \(\forall n \in \mathbb{R}, n \mid n\). \\
+
+      We now need to show that \(d \nmid a\)
+
+      We can show this by simply doing the division:
+
+      \(= \frac{a}{d}\)
+
+      \(= \frac{4}{12}\)
+
+      \(= \frac{1}{3}\)
+
+      \(\notin \mathbb{Z}\). Thus \(d \nmid a\) as needed \\
+
+      We now need to show that \(d \nmid n\)
+
+      \(= \frac{n}{d}\)
+
+      \(= \frac{3}{12}\)
+
+      \(= \frac{1}{4}\)
+
+      \(\notin \mathbb{Z}\). Thus \(d \nmid n\) as needed \\
+
+      And therefore, we have proven \(\exists n, d, a \in \mathbb{Z},~ d \mid an \land d \nmid a \land d \nmid n\), as needed which implies that the original statement, \(\forall n, d, a \in \mathbb{Z},~ d \mid an \Rightarrow d \mid a \lor d \mid n\), is true. \(\blacksquare\)
+     
+* Ex 2: Primality testing
+
+In lecture, we saw an algorithm for checking whether a number \(p\) prime that checks all of the possible factors of \(p\) between \(2\) and \(\floor{\sqrt{p}}\), inclusive.
+
+We can prove that this algorithm is correct by proving the follow statement:
+
+\[\forall p \in \mathbb{Z},~ \mathit{Prime}(p) \Leftrightarrow \big(p > 1 \l (\forall d \in \N,~ 2 \leq d \leq \sqrt{p} \Rightarrow d \nmid \big)\]
+
+This is a larger statement than the ones we've looked at so far, so this exercise we've broken down the proof of this statement for you complete.
+
+/Proof/.
+
+Let \(p \in \mathbb{Z}\). We need to prove an if and only if, which we do dividing the proof into two parts.
+
+** Part 1: Proving that \(\mathit{Prime}(p) \Rightarrow \big(p > 1 \l (\forall d \in \N,~ 2 \leq d \leq \sqrt{p} \Rightarrow d \nmid \big)\).
+
+1. Write down what we can *assume* in this part of the proof.
+
+   \(Prime(p): p > 1 \land (\forall d \in \mathbb{N},~ d \mid p \implies d = 1 \lor d = p)\), where \(p \in \mathbb{Z}\)
+
+   We assume this entire predicate.
+
+2. To prove an AND, we need to prove that both parts are true. First, prove that \(p > 1\).
+
+   \(p > 1\), as we have assumed such (as seen above)
+
+3. Now, prove that \(\forall d \in \N,~ 2 \leq d \leq \sqrt{p} \Rightarrow d \nmid p\).
+
+   Assume \(d \in (2, \sqrt{p})\)
+
+   This implies that \(2 \leq d\) which implies \(d > 1\) therfore \(d \neq 1\).
+
+   Since \(p > 1\), \(\sqrt{p} < p\). This implies that \(d < \sqrt{p} < p\) therefore \(d \neq p\)
+
+   We know that since \(p\) is prime \(d\) must be either 1 or \(p\) to divide \(p\). Since \(d \neq 1\) and \(d \neq p\) we have proven \(d \nmid p\) \(\blacksquare\)
+
+** Part 2: Proving that \(p > 1 \land (\forall d \in \N,~ 2 \leq d \leq \sqrt{p} \Rightarrow d \nmid p) \Rightarrow \mathit{Prime}(p)\).
+
+1. Write down what we can *assume* in this part of the proof.
+
+   - \(p > 1\)
+
+   - \(\forall d \in \mathbb{N}, 2 \leq d \leq p \implies d \nmid p\)
+
+2. We need to prove that \(\mathit{Prime}(p)\), which expands into \(p > 1 \land (\forall d \in \N,~ d \mid p \Rightarrow d = 1 \lor d = p)\).
+
+   First, prove that \(p > 1\).
+
+   We have proven \(p > 1\) by assumption.
+
+3. Now for the proof of \(\forall d \in \mathbb{N},~ d \mid p \Rightarrow d = 1 \lor d = p\). Start by writing the appropriate proof header, introducing the variable \(d\) and assumption about \(d\).
+
+   Assume
+
+   \(\forall d_{1} \in \mathbb{N}, d_{1} \mid p\)
+
+   OR
+
+   \(\forall d_1 \in \mathbb{N}, \exists k \in \mathbb{Z}, p = kd_{1}\)
+
+4. Use the *contrapositive* of a part of your original assumption. What can you conclude about \(d\)?
+
+   \(\forall d_{1} \in \mathbb{N} d_{1} \mid p \implies d_{1} < 2 \lor d_{1} > \sqrt{p}\)
+
+   From this contrapositive, we can conlude that \(d_{1} < 2\) or \(d_{1} < \sqrt{p}\)
+
+5. Using the cases from the previous part, prove that \(d = 1 \lor d = p\).
+
+   Case 1: \(d_{1} < 2\).
+
+   #+BEGIN_QUOTE
+        \(d_{1} \in \mathbb{N} \land d_{1} < 2\), then \(d_{1} = 0\) or \(d_{1} = 1\)
+
+        But \(0 \nmid p\), because \(p > 1\), \(d \neq 0\)
+
+        Therefore \(d_{1} = 1\)
+   #+END_QUOTE
+
+   Case 2: \(d_{1} < \sqrt{p}\)
+
+   #+BEGIN_QUOTE
+        \(p = d_{1}k\)
+
+        \(k < \sqrt{p}\), but \(k\) also divides \(p\) which means that \(k < 2\) therefore \(k = 1\)
+
+        \(d_{1} = p\)
+   #+END_QUOTE
+
+   Therefore in both cases, either \(d_{1} = p\) or \(d_{1} = 1\) \(\blacksquare\)
+
+* Additional Exercises
+
+1. Prove the following statement, which extends the first statement in Exercise 1.
+   \[\forall n, m, d, a, b \in \mathbb{Z},~ d \mid n \land d \mid m \Rightarrow d \mid (an + bm)\]
+
+2. /Disprove/ the following statement, which is very similar to the one you proved in Exercise 2.
+   \[\forall p \in \mathbb{Z},~ \mathit{Prime}(p) \Leftrightarrow \big(p > 1 \land (\forall d \in \N,~ 2 \leq d < \sqrt{p} \Rightarrow d \nmid p) \big).\]

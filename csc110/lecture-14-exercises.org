@@ -1,0 +1,239 @@
+#+SETUPFILE: setup.org
+
+#+TITLE: CSC110 Lecture 14: The Python Memory Model
+#+AUTHOR: Hisbaan Noorani
+#+DATE: October 13, 2020
+
+* Exercise 1: Practice with the Python memory model
+
+For each of the following code snippets, fill in the memory model
+diagram on the right to reflect the state of memory after the code is
+executed. In each case, we begin with the state where ~a~ has already
+been assigned the value ~5~. You may not need to use all of the boxes.
+
+#+LATEX: \newpage
+
+1. .
+   #+BEGIN_SRC python
+ a = 5
+ b = 4
+ c = 6
+   #+END_SRC
+
+ # #+ATTR_HTML: :width 100px
+ # #+ATTR_LATEX: :width 100px
+    #+ATTR_LATEX: :width 300px
+    [[file:lecture-14-exercises/worksheet_part1_q1.png]]
+
+ #+LATEX: \newpage
+
+2. .
+    #+BEGIN_SRC python
+ a = 5
+ b = a + 3
+ c = [a, a, a]
+    #+END_SRC
+
+    # #+ATTR_HTML: :width 100px
+    # #+ATTR_LATEX: :width 100px
+    #+ATTR_LATEX: :width 300px
+    [[file:lecture-14-exercises/worksheet_part1_q2.png]]
+
+    #+LATEX: \newpage
+
+3. .
+
+   #+BEGIN_SRC python
+a = 5
+b = [a]
+   #+END_SRC
+
+    # #+ATTR_HTML: :width 100px
+    # #+ATTR_LATEX: :width 100px
+    #+ATTR_LATEX: :width 300px
+   [[file:lecture-14-exercises/worksheet_part1_q3.png]]
+
+   #+LATEX: \newpage
+
+* Exercise 2: Variable reassignment and mutation with the memory model
+
+1. Suppose we have two variables ~a~ and ~b~ that have been assigned
+   ~int~ values:
+
+   # #+ATTR_HTML: :width 100px
+   # #+ATTR_LATEX: :width 100px
+   #+ATTR_LATEX: :width 300px
+   [[file:lecture-14-exercises/worksheet_part2_q1_intro.png]]
+
+   a. Write a snippet of code to swap which values ~a~ and ~b~ refer to.
+      After your statements are executed, ~a~ should refer to the object
+      that ~b~ used to refer to, and ~b~ should refer to the object that
+      ~a~ used to refer to.
+
+      /Use a third “temporary” variable to perform the swap./
+
+      #+BEGIN_SRC python
+a = temp
+a = b
+b = temp
+      #+END_SRC
+
+   b. Complete the following memory model diagram to show the state of
+      memory /after/ your code snippet executes.
+
+      # #+ATTR_HTML: :width 100px
+      # #+ATTR_LATEX: :width 100px
+      #+ATTR_LATEX: :width 300px
+      [[file:lecture-14-exercises/worksheet_part2_q1_swap.png]]
+
+   c. Would the code you wrote in part (a) if ~a~ and ~b~ referred to
+      mutable values like ~list~s instead of ~int~s?
+
+
+
+2. Farmer Mario is the proud owner of 57 chickens, 18 goats, and 21
+   truffle hogs. He is very organized and keeps a log of how many
+   animals of each type he has by the end of each month.
+
+   a. Complete the following memory model diagram to represent a
+      variable =mario_log= to refer to this data:
+
+      # #+ATTR_HTML: :width 100px
+      # #+ATTR_LATEX: :width 100px
+      #+ATTR_LATEX: :width 600px
+      [[file:lecture-14-exercises/worksheet_part2_q2a.png]]
+
+   b. At the end of the month, Mario sells 5 truffle hogs to David.
+      Write a line of code to mutate =mario_log= to reflect this change.
+
+   c. Modify your above diagram to show this change.
+
+* Exercise 3: Aliasing
+
+For each snippet of code below, complete the memory model diagram and
+answer the question below it. (You may need to indicate elements being
+added/removed from a collection data type.)
+
+#+LATEX: \newpage
+
+1. .
+   #+BEGIN_SRC python
+     x = [1, 2, 3]
+     y = x
+     y = y + [4]
+   #+END_SRC
+
+   # #+ATTR_HTML: :width 100px
+   # #+ATTR_LATEX: :width 100px
+   #+ATTR_LATEX: :width 500px
+   [[file:lecture-14-exercises/worksheet_part3_q1.png]]
+
+   After the code above is executed, which of the following expressions
+   evaluate to =True=? Circle those expression(s).
+
+   1. ~x == [1, 2, 3]~ and ~y == [1, 2, 3, 4]~
+   2. ~x == [1, 2, 3, 4]~ and ~y == [1, 2, 3, 4]~
+   3. ~x == [1, 2, 3]~ and ~y == [1, 2, 3]~
+   4. ~x is y~
+
+      #+LATEX: \newpage
+
+2. Consider this code
+
+   #+BEGIN_SRC python
+     x = {1, 2, 3}
+     y = x
+     set.add(y, 4)
+   #+END_SRC
+
+   # #+ATTR_HTML: :width 100px
+   # #+ATTR_LATEX: :width 100px
+   #+ATTR_LATEX: :width 500px
+   [[file:lecture-14-exercises/worksheet_part3_q1.png]]
+
+   After the code above is executed, which of the following expressions
+   evaluate to =True=? Circle those expression(s).
+
+   1. =x == {1, 2, 3} and y == {1, 2, 3, 4}=
+   2. =x == {1, 2, 3, 4} and y == {1, 2, 3, 4}=
+   3. =x == {1, 2, 3} and y == {1, 2, 3}=
+   4. =x is y=
+
+      #+LATEX: \newpage
+
+3. .
+   #+BEGIN_SRC python
+     lst = [[1, 2], [3, 4]]
+     for item in lst:
+         list.append(item, 88)
+   #+END_SRC
+
+   # #+ATTR_HTML: :width 100px
+   # #+ATTR_LATEX: :width 100px
+   #+ATTR_LATEX: :width 500px
+   [[file:lecture-14-exercises/worksheet_part3_q3_q4.png]]
+
+   What is the value of ~lst~ at the end of this code snippet?
+
+   ~lst = [[1, 2, 88], [1]]]~
+
+   #+LATEX: \newpage
+
+4. .
+   #+BEGIN_SRC python
+     lst = [[1, 2], [3, 4, 88]]
+     for item in lst:
+         item = item + [88]
+   #+END_SRC
+
+   # #+ATTR_HTML: :width 100px
+   # #+ATTR_LATEX: :width 100px
+   #+ATTR_LATEX: :width 500px
+   [[file:lecture-14-exercises/worksheet_part3_q3_q4.png]]
+
+   What is the value of =lst= at the end of this code snippet?
+
+* Exercise 4: Functions and the call stack
+
+For each snippet of code below, draw the memory model diagram for the
+state of the program /immediately before/ the function (=f1=/=f2=)
+returns. Then, write what would be displayed in the Python console.
+
+#+LATEX: \newpage
+
+1. .
+   #+BEGIN_SRC python
+     def f1(thing: List[str]) -> None:
+         thing = ['x', 'y'] + thing
+
+
+     # In Python console
+     >>> phone = ['David']
+     >>> f1(phone)
+     >>> phone
+   #+END_SRC
+
+   # #+ATTR_HTML: :width 100px
+   # #+ATTR_LATEX: :width 100px
+   #+ATTR_LATEX: :width 500px
+   [[file:lecture-14-exercises/worksheet_part4_q1_q2.png]]
+
+#+LATEX: \newpage
+
+2. .
+
+   #+BEGIN_SRC python
+      def f2(thing: List[str]) -> None:
+          thing.extend(['x', 'y'])
+
+
+      # In Python console
+      >>> phone = ['David']
+      >>> f2(phone)
+      >>> phone
+   #+END_SRC
+
+   # #+ATTR_HTML: :width 100px
+   # #+ATTR_LATEX: :width 100px
+   #+ATTR_LATEX: :width 500px
+   [[file:lecture-14-exercises/worksheet_part4_q1_q2.png]]

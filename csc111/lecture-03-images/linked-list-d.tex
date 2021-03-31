@@ -1,0 +1,45 @@
+\documentclass[border=0.2cm]{standalone}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath, amsthm, amssymb, graphicx, multicol, array}
+\usepackage{tikz}
+\usetikzlibrary{shapes, backgrounds}
+
+\title{TITLE}
+\author{Hisbaan Noorani}
+\date{DATE}
+
+\begin{document}
+  \begin{tikzpicture}
+    \node[xshift=5pt] at (0,1) {\texttt{\_first}};
+    \draw (0,0) rectangle ++(0.5, 0.5);
+    \filldraw(0.25, 0.25) circle (3pt);
+    \draw[-stealth] (0.25, 0.25) -- (1.75, 0.25);
+
+    \draw(1.75, 0) rectangle ++(1, 0.5) node[pos=0.5] {\texttt{999}};
+    \draw(2.75, 0) rectangle ++(0.5, 0.5);
+    \filldraw(3,0.25) circle (3pt);
+    \draw[-stealth] (3,0.25) -- (4.5, 0.25);
+
+    \draw(4.5, 0) rectangle ++(1, 0.5) node[pos=0.5] {\texttt{111}};
+    \draw(5.5, 0) rectangle ++(0.5, 0.5);
+    \filldraw(5.75, 0.25) circle (3pt);
+    \draw[-stealth] (6, 0.25) -- (7.5, 0.25);
+
+    \draw(4.5 + 3, 0) rectangle ++(1, 0.5) node[pos=0.5] {\texttt{-5}};
+    \draw(5.5 + 3, 0) rectangle ++(0.5, 0.5);
+    \filldraw(5.75 + 3, 0.25) circle (3pt);
+    \draw[-stealth] (6 + 2.75, 0.25) -- (7.5 + 2.75, 0.25);
+
+    \draw(4.5 + 5.75, 0) rectangle ++(1, 0.5) node[pos=0.5] {\texttt{9000}};
+    \draw(5.5 + 5.75, 0) rectangle ++(0.5, 0.5);
+    \filldraw(5.75 + 5.75, 0.25) circle (3pt);
+    \draw[-stealth] (6 + 5.5, 0.25) -- (7.5 + 5.5, 0.25);
+
+    \draw(4.5 + 8.5, 0) rectangle ++(1, 0.5) node[pos=0.5] {\texttt{7}};
+    \draw(5.5 + 8.5, 0) rectangle ++(0.5, 0.5);
+    \filldraw(5.75 + 8.5, 0.25) circle (3pt);
+    \draw[-stealth] (6 + 8.25, 0.25) -- (7.5 + 8.25, 0.25);
+
+    \node at (16.25, 0.25) {\texttt{None}};
+  \end{tikzpicture}
+\end{document}

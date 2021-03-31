@@ -1,0 +1,45 @@
+#+setupfile: setup.org
+#+title: CSC111 Lecture 5: Induction, Recrusion, and Nested Lists
+#+author: Hisbaan Noorani
+#+date: January 25, 20201
+
+*Note*: today's lecture will cover a lot of new material and we likely won't have time for exercises. Instead, we have included two additional exercises for you to complete as homework after class.
+
+* Additional exercises
+
+1. We saw in class that the greatest common divisor function can be defined recursively over the natural numbers as follows:
+
+   \[\gcd(a, b) = \begin{cases} a, & \text{if $b = 0$} \\ \gcd(b, a ~\%~ b), & \text{if $b > 0$} \end{cases}\]
+
+   a. Modify this definition so that it is valid for all integers (including negative numbers).
+
+      What mathematical properties of gcd do you need to hold in order for your definition to be valid?
+
+   b. Implement your new recursive definition in Python. It should no longer need the preconditions \(a \geq 0\) and \(b \geq 0\)
+
+2. In today's lecture, we learned about a formal recursive definition of a /nested list of integers/, and used this to define a function that calculates the sum of a nested list. In this exercise, you'll practice this technique with a new function: computing the number of integers in a nested list.
+
+   Let \(\text{num\_ints}\) be a function that takes a nested list and returns the number of integers in that list.
+
+   a. What is \(\text{num\_ints}(7)\)? \(\text{num\_ints}(111)\)? \(\text{num\_ints}(x)\), for an arbitrary \(x \in \Z\)?
+
+   b. Suppose we have three nested lists \(a_0, a_1, a_2\), and we know the following:
+      - \(\text{num\_ints}(a_0) = 10\)
+      - \(\text{num\_ints}(a_1) = 1\)
+      - \(\text{num\_ints}(a_2) = 3\)
+
+      What is \(\text{num\_ints}([a_0, a_1, a_2])\)?
+
+   c. Let \(k \in \N\), and let \(x = [a_0, a_1, \dots, a_{k - 1}]\) be a nested list (where each of the \(a_i\) is also a nested list).
+
+      Write a formula relating \(\text{num\_ints}(x)\) to the values \(\text{num\_ints}(a_0)\), \(\text{num\_ints}(a_1)\), ..., \(\text{num\_ints}(a_{k-1})\).
+
+   d. Write a recursive definition for the \(\text{num\_ints}\) function:
+
+      \[\text{num\_ints}(x) = \begin{cases} \dots \\ \dots \end{cases}\]
+
+      How does this recursive definition compare with the one for \(sum\_nested\) from lecture?
+
+   e. Finally, implement a recursive Python function =num_ints= that takes a nested list of integers and returns the number of integers in that list.
+
+      How does this definition compare with the one for =sum_nested= from lecture?

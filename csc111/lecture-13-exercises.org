@@ -1,0 +1,84 @@
+#+setupfile: setup.org
+#+title: CSC111 Lecture 13: Introduction to Graphs
+#+author: Hisbaan Noorani
+#+date: March 1, 2021
+
+* Exercise 1: Graph terminology review
+
+One of the tricky things about learning graphs is that there's a lot of terminology to understand. This exercise will give you the opportunity to practice using this terminology on a concrete example.
+
+#+latex: \noindent
+Consider the graph below:
+
+#+attr_latex: :height 200px
+[[./lecture-13-images/graph5.png]]
+
+1. How many vertices does this graph have?
+
+   There are 7 vertices: \(V = \{A, B, C, D, E, F, G\}\).
+
+2. How many edges does this graph have?
+
+   There are 11 edges: \(E = \{\{A, B\}, \{A, C\}, \{A, D\}, \{B, D\}, \{B, E\}, \{B, G\}, \{C, E\}, \{C, F\}, \{C, G\}, \\ \{D, G\}, \{F, G\}\}\).
+
+3. List all the vertices that are adjacent to vertex G.
+
+   \(\{B, C, D, F\}\).
+
+4. Find a /path/ that goes through all vertices of the graph. (Remember that a path cannot have any duplicate vertices.)
+
+   One such path is \(A, D, G, F, C, E, B\).
+
+* Exercise 2: A property of vertex degrees
+
+Recall that the *degree* of a vertex \(v\), denoted \(d(v)\), is its number of neighbours.
+
+Answer the following questions about this definition.
+
+1. Let \(G = (V, E)\) be the graph from Exercise 1. Complete the table below showing the /degree/ of each vertex. We've done the first row for you.
+
+   | Vertex | Degree |
+   |--------+--------|
+   | A      |      3 |
+   | B      |      4 |
+   | C      |      4 |
+   | D      |      3 |
+   | E      |      2 |
+   | F      |      2 |
+   | G      |      4 |
+
+2. What is the /sum of the degrees/ of all the vertices in the above table?
+
+   \(3 + 4 + 4 + 3 + 2 + 2 + 4 = 22\)
+
+3. Compare your answer to Question 2 and the /number of edges/ of this graph (Question 2 in Exercise 1). What do you notice?
+
+   The sum of the degrees of all the vertices in the graph is equal to double the number of edges in the graph. \(\displaystyle{} \sum_{v \in V} d(v) = 2 \cdot |E|\).
+
+4. Prove the following graph property: for all graphs \(G = (V, E)\), \(\displaystyle{\sum_{v \in V} d(v) = 2 \cdot |E|}\). Your proof body can consist of a short explanation written in English.
+
+   /Note/: \(\displaystyle{\sum_{v \in V}}\) means “sum over all vertices \(v\) in \(V\)”.
+
+   #+begin_latex
+   WTS \(\displaystyle{} \forall G = (V, E), \sum_{v \in V} d(v) = 2 \cdot |E|\)
+
+   \underline{Proof:}
+
+   Let \(G = (V, E)\) be an arbitrary graph
+
+   For a vertex \(v\), \(d(v)\), is the number of edges that "touch" (incident) that vertex.
+
+   We know that each edge touches exactly 2 vertices. This means each edge will be counted by exactly two of the \(d(v)\) expressions in the summation. 1 egde will represent 2 total degrees. 4 edges will represent 8 total degrees.
+
+   Thus we know that the sum of the \(d(v)\) (over all \(v \in V\)) is equal to double the number of edges. \(\blacksquare\)
+   #+end_latex
+
+* Additional exercises
+
+1. Let \(G = (V, E)\) be a graph, and assume that for all \(v \in V\), \(d(v) \leq 5\). Find and prove a good upper bound (exact, not asymptotic) on the total number of edges, \(|E|\), in terms of the number of vertices, \(|V|\).
+
+   Formally, you can think of this as proving the following statement (after filling in the blank):
+
+   \[\forall G = (V, E),~ \big(\forall v \in V,~ d(v) \leq 5\big) \Rightarrow |E| \leq \rule{2cm}{0.4pt}\]
+
+   *See the lecture slide starting titled "Graphs and induction" for the proof*

@@ -1,0 +1,135 @@
+#+setupfile: setup.org
+#+title: CSC111 Lecture 11: Introduction to Abstract Syntax Trees
+#+author: Hisbaan Noorani
+#+date: February 22, 2021
+
+* Exercise 1: Representing assignment statements
+
+In lecture, we introduced the following class to represent assignment statements in abstract syntax trees.
+
+<<cb1>>
+#+begin_src python
+class Assign(statement):
+    """An assignment statement (with a single target).
+
+    Instance Attributes:
+      - target: the variable name on the left-hand side of the equals sign
+      - value: the expression on the right-hand side of the equals sign
+    """
+    target: str
+    value: Expr
+
+    def __init__(self, target: str, value: Expr) -> None:
+        """Initialize a new Assign node."""
+        self.target = target
+        self.value = value
+#+end_src
+
+First, make sure you understand this class by answering the following questions.
+
+1. Draw an abstract syntax tree diagram that represents the following Python statement.
+
+   <<cb2>>
+   #+begin_src python
+x = 10 + 3
+   #+end_src
+
+   #+attr_latex: :height 250px
+   [[./lecture-11-images/assign1.png]]
+
+2. Write an AST expression using =Assign= (and other AST types) to represent the following diagram.
+
+   #+attr_latex: :height 300px
+   [[./lecture-11-images/assign2.png]]
+
+   #+begin_src python
+Assign('y', BinOp(Num(10), '+', BinOp(Num(100), '*', Num(99)))
+   #+end_src
+
+3. Finally, implement the =Assign.evaluate= method. This method should /mutate/ its =env= argument, and shouldn't return anything.
+
+   <<cb3>>
+   #+begin_src python
+class Assign(statement):
+    def evaluate(self, env: dict[str, Any]) -> None:
+        """Evaluate this statement.
+
+        This does the following: evaluate the right-hand side expression,
+        and then update <env> to store a binding between this statement's
+        target and the corresponding value.
+
+        >>> stmt = Assign('x', BinOp(Num(10), '+', Num(3)))
+        >>> env = {}
+        >>> stmt.evaluate(env)
+        >>> env['x']
+        13
+        """
+        env[self.target] = self.value.evaluate()
+   #+end_src
+
+* Additional exercises
+
+1. Let's create a variation of the =Assign= class to support /parallel assignment/. Read through the following class.
+
+   <<cb4>>
+   #+begin_src python
+class ParallelAssign(Statement):
+    """A parallel assignment statement.
+
+    Instance Attributes:
+        - targets: the variable names being assigned to---the left-hand side of the =
+        - values: the expressions being assigned---the right-hand side of the =
+    """
+    targets: list[str]
+    values: list[Expr]
+
+    def __init__(self, targets: list[str], values: list[Expr]) -> None:
+        """Initialize a new ParallelAssign node."""
+        self.targets = targets
+        self.values = values
+   #+end_src
+
+   #+RESULTS:
+
+   To make sure you understand this class, answer the following questions.
+
+   1. Draw the abstract syntax tree diagram that represents the following Python statement.
+
+      <<cb5>>
+      #+begin_src python
+ParallelAssign(['x', 'y'],
+               [BinOp(Num(10), '+', Num(3)), Num(-4.5)])
+      #+end_src
+
+      # #+attr_latex: :height 300px
+      # [[./lecture-11-images/parallel1.png]]
+
+   2. Write an AST expression using =Assign= (and other AST types) to represent the following diagram.
+
+      #+attr_latex: :height 250px
+      [[./lecture-11-images/parallel2.png]]
+
+   3. Now, implement the =ParallelAssign.evaluate= method.
+
+      <<cb6>>
+      #+begin_src python
+class ParallelAssign:
+    def evaluate(self, env: dict[str, Any]) -> None:
+        """Evaluate this statement.
+
+        This does the following: evaluate each expression on the right-hand side
+        and then bind each target to its corresponding expression.
+
+        Raise a ValueError if the lengths of self.targets and self.values are
+        not equal.
+
+        >>> stmt = ParallelAssign(['x', 'y'],
+        ...                       [BinOp(Num(10), '+', Num(3)), Num(-4.5)])
+        >>> env = {}
+        >>> stmt.evaluate(env)
+        >>> env['x']
+        13
+        >>> env['y']
+        -4.5
+        """
+      #+end_src
