@@ -22,16 +22,16 @@ Imagine that you are a part of a deeply interconnected society of big cats owner
 * Ex 2: Data Types in Python
 1. In the table below, write down the python type for each python literal. The first row is done for you.
 
-   | Data Type  | Python Literal              |
-   |------------+-----------------------------|
-   | int        | 12345                       |
-   | float      | 12345.0                     |
-   | bool       | True                        |
-   | str        | 'You are doing great :)'    |
-   | set        | {'David', 'Mario'}          |
-   | list       | [1, 2, 3, 4, 5]             |
-   | tupple     | ('wow', 'roud', 'brackets') |
-   | dictionary | {'cool'}                    |
+   | Data Type | Python Literal              |
+   |-----------+-----------------------------|
+   | =int=       | =12345=                       |
+   | =float=     | =12345.0=                     |
+   | =bool=      | =True=                        |
+   | =str=       | ='You are doing great :)'=    |
+   | =set=       | ={'David', 'Mario'}=          |
+   | =list=      | =[1, 2, 3, 4, 5]=             |
+   | =tupple=    | =('wow', 'roud', 'brackets')= |
+   | =dict=      | ={'cool'}=                    |
 
 2. What is the limitation of the ~float~ datatype, and why does this limitation exist?
 
@@ -41,22 +41,22 @@ Imagine that you are a part of a deeply interconnected society of big cats owner
 
    | Python Expression | Value        | Type of Value |
    |-------------------+--------------+---------------|
-   | 9 / 3             | 3.0          | float         |
-   | 9 // 3            | 3            | int           |
-   | 2 + 2.0           | 4.0          | float         |
-   | 3 int {1, 2}      | False        | bool          |
-   | 'x' + 'y'         | 'xy'         | str           |
-   | not False         | True         | bool          |
-   | \[1, 2] + [2, 3]  | [1, 2, 2, 3] | list          |
-   | \['hi', 'bye'][0] | 'hi'         | str           |
+   | =9 / 3=             | =3.0=          | =float=         |
+   | =9 // 3=            | =3=            | =int=           |
+   | =2 + 2.0=           | =4.0=          | =float=         |
+   | =3 int {1, 2}=      | =False=        | =bool=          |
+   | ='x' + 'y'=         | ='xy'=         | =str=           |
+   | =not False=         | =True=         | =bool=          |
+   | =[1, 2] + [2, 3]=   | =[1, 2, 2, 3]= | =list=          |
+   | =['hi', 'bye'][0]=  | ='hi'=         | =str=           |
 
 4. In the table below, add parenteses to indicate the order that operations are evaluated (the last one is not obvious)
 
    | Python Expression   | Expression with ()       | Type of result |
    |---------------------+--------------------------+----------------|
-   | 3 + 5 * 2           | 3 + (5 * 2)              | int            |
-   | 4 + 8 / 2 ** 2 / -2 | 4 + ((8 / (2 ** 2)) / 2) | int            |
-   | -2 + 15 % 7         | -2 + (15 % 7)            | int            |
+   | =3 + 5 * 2=           | =3 + (5 * 2)=              | =int=            |
+   | =4 + 8 / 2 ** 2 / -2= | =4 + ((8 / (2 ** 2)) / 2)= | =int=            |
+   | =-2 + 15 % 7=         | =-2 + (15 % 7)=            | =int=            |
 
 * Ex 3: Variables
 1. Consider this code
@@ -70,16 +70,16 @@ Imagine that you are a part of a deeply interconnected society of big cats owner
 
    | Variable |  Value |
    |----------+--------|
-   | x        |      4 |
-   | y        |      6 |
-   | z        | {6: 4} |
+   | =x=        |      =4= |
+   | =y=        |      =6= |
+   | =z=        | ={6: 4}= |
 
 2. Determine whether the assignemnt statements below have been properly expressed. If it is, move onto the next statement. If it is not, explain why it is incorrect and correct the statemet.
 
    a. ~5 = x~
 
       Variable names cannot begin with a number
-      should be: x = 5
+      should be: =x = 5=
 
    b. ~x = 5.0~
 
@@ -87,14 +87,14 @@ Imagine that you are a part of a deeply interconnected society of big cats owner
 
    c. ~x = hello!~
 
-      If hello! is a string, it must be surrounded by ''
-      If hello! is a variable name, it cannot contain !
-      should be either x = 'hello!' or x = hello
+      If =hello!= is a string, it must be surrounded by =''=
+      If =hello!= is a variable name, it cannot contain =!=
+      should be either =x = 'hello!'= or =x = hello=
 
    d. ~x = true~
 
-      True should be capitalized if it is a boolean or surrounded  by '' if it is a string
-      should be either x = True or x = 'true'
+      True should be capitalized if it is a boolean or surrounded  by =''= if it is a string
+      should be either =x = True= or =x = 'true'=
 
    e. ~x = set()~
 
@@ -106,26 +106,26 @@ Imagine that you are a part of a deeply interconnected society of big cats owner
 
    g. ~x = {1: 'two', 'three'}~
 
-      dict incomplete
-      should be x = {1: 'two', 2: 'three'}
+      =dict= incomplete
+      should be =x = {1: 'two', 2: 'three'}=
 
 * Ex 4: comprehensions and range
 1. What range of numbers do the following python range expressions represent?
    a. ~range(0, 5)~
 
-      0, 1, 2, 3, 4
+      =0, 1, 2, 3, 4=
 
    b. ~range(5, 10)~
 
-      5, 6, 7, 8, 9
+      =5, 6, 7, 8, 9=
 
    c. ~range (5, 5)~
 
-      []
+      =[]=
 
 2. What is one similarity between a set literal and a set comprehension? What is one difference?
 
-    Similarity - They both use curly braces {} to define them.
+    Similarity - They both use curly braces (={}=) to define them.
 
     Difference - Set literals are fixed, set comprehension can vary based on variables.
 
@@ -161,13 +161,13 @@ Imagine that you are a part of a deeply interconnected society of big cats owner
 {v: v ** 2 for v in range(51)}
       #+END_SRC
 
-   b. A mappint from input to ouput of the functoin f(x) = x/(x-1) for integer inputs greater than 1 and lesst than 2000
+   b. A mapping from input to ouput of the function \(f(x) = \frac{x}{x-1}\) for integer inputs greater than 1 and lesst than 2000
 
       #+BEGIN_SRC python
 {v: (v)/(v-1) for v in range (2,2000)}
       #+END_SRC
 
-   c. A mapping from a number to a list containing that many elements of the string 'Hello' for the first 40 natural numbers
+   c. A mapping from a number to a list containing that many elements of the string ='Hello'= for the first 40 natural numbers
 
       #+BEGIN_SRC python
 {v: {'Hello' for x in range v} for v in range(51)}
