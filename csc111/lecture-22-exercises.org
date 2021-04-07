@@ -35,9 +35,9 @@ Here is the definition of the partitions of \(\cI_{n}\) from lecture.
 
 - For each \(n \in \N\) and each \(i \in \{0, 1, \dots, n-1\}\), let \(S_{n, i}\) denote the set of all binary lists of length \(n\) where the first =0= occurs in index \(i\). More precisely, every list =lst= in \(S_{n, i}\) satisfies the following two properties:
 
-  1. =lst[i] == 0=
+  1. ~lst[i] == 0~
 
-  2. For all \(j \in \{0, 1, \dots, i - 1\}\), =lst[j] == 1=
+  2. For all \(j \in \{0, 1, \dots, i - 1\}\), ~lst[j] == 1~
 
 - For each \(n \in \N\), let \(S_{n, n}\) denote the set of binary lists of length \(n\) that do not contain a =0= at all.
 
