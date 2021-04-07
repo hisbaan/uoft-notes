@@ -4,6 +4,23 @@ This is a repository for the notes that I took while in CSC110 (2020) and CSC111
 
 * Contributing
 
+** Editing
+
 I wrote these notes in ORG mode. This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configuration, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
 
 In emacs, the key combination for compiling the org file into a LaTeX pdf is ~C-c C-e m e l p~ (or ~SPC m e l p~ with evil mode bindings).
+
+** Rebuilding concatenated pdfs
+
+I have written a quick shell script to rebuild ~csc110.pdf~ and ~csc111.pdf~ based on any changes in their respective directories. To run this shell script,
+
+#+begin_src sh
+cd path/to/csc110-111-lecture-notes
+./update-full.sh
+#+end_src
+
+Or alternatively,
+
+#+begin_src sh
+path/to/csc110-111-lecture-notes/update-full.sh
+#+end_src
