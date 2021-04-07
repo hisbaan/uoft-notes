@@ -217,6 +217,37 @@ class ForRange:
 1. Let's add some /type-checking/ to the methods we implemented in this exercise.
 
    1. Modify the =If.evaluate= method to raise a =TypeError= if its condition doesn't evaluate to a boolean. (This is technically stricter than real Python.)
+
+      #+begin_src python
+class If:
+    def evaluate(self, env: Dict[str, Any]) -> None:
+        """Evaluate this statement.
+
+        Preconditions:
+            - self.test evaluates to a boolean
+
+        >>> stmt = If(Bool(True),
+        ...           [Assign('x', Num(1))],
+        ...           [Assign('y', Num(0))])
+        ...
+        >>> env = {}
+        >>> stmt.evaluate(env)
+        >>> env
+        {'x': 1}
+        """
+        test_val = self.test.evaluate(env)
+
+        if not isinstance(test_val, bool):
+            raise TypeError
+
+        if test_val:
+            for statement in self.body:
+                statment.evaluate(env)
+        else:
+            for statement in self.orelse:
+                statment.evaluate(env)
+      #+end_src
+
    2. Modify the =ForRange.evaluate= method to raise a =TypeError= if its start or stop expressions don't evaluate to an integer.
 
 2. Modify the =If= class to support an arbitrary number of =elif= branches. You may add additional instance attributes.
