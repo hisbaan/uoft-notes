@@ -568,5 +568,7 @@ $RECYCLE.BIN/
 *_minted*
 *.auctex-auto
 *.fdb_latexmk
-csc110/*.tex
-csc111/*.tex
+
+# Ignore TeX generated from org
+csc110/src/*.tex
+csc111/src/*.tex

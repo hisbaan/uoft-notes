@@ -1,26 +1,38 @@
-#+TITLE: CSC110/111 Lecture Notes
+#+TITLE: UofT Notes
 
-This is a repository for the notes that I took while in CSC110 (2020) and CSC111 (2021) at the University of Toronto. My instructor for CSC110 was [[mariobadr.com][Mario Badr]] and my instructor for CSC111 was [[https://www.cs.toronto.edu/~david/][David Liu]].
+This is a repository for the notes that I took while at the University of toronto. The following is a list of the courses covered in this repository.
+
+| Course | Instructor         | Time  | Note File         |
+|--------+--------------------+-------+-------------------|
+| CSC110 | [[http://mariobadr.com][Mario Badr]]         | 2020F | [[csc110/csc110.pdf]] |
+| CSC111 | [[https://www.cs.toronto.edu/~david/][David Liu]]          | 2021S | [[csc111/csc111.pdf]] |
+| MAT137 | [[https://www.gatheringus.com/memorial/alfonso-gracia-saz/7329?locale=en&c=937][Alfonso Gracia-Saz]] | 2020Y | [[mat137/mat137.pdf]] |
 
 * Contributing
 
 ** Editing
 
-I wrote these notes in ORG mode. This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configuration, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
+*** ORG Mode
+
+Some of the PDF files are written in ORG mode (~.org~). This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configuration, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
 
 In emacs, the key combination for compiling the org file into a LaTeX pdf is ~C-c C-e m e l p~ (or ~SPC m e l p~ with evil mode bindings).
 
+*** LaTeX
+
+Some other PDF files are written in LaTeX. For compilation, I use LuaLaTeX through LaTeXmk. To generate the pdf for a file called ~example.tex~, run ~latexmk -lualatex -shell-escape example.tex~. This will generate ~example.pdf~.
+
 ** Rebuilding concatenated pdfs
 
-I have written a quick shell script to rebuild ~csc110.pdf~ and ~csc111.pdf~ based on any changes in their respective directories. To run this shell script,
+I have written a quick shell script to rebuild the main compiled PDFs based on any changes in their respective directories. This will not build the individual PDFs from their source files so ensure to do that beforehand. To run this shell script,
 
 #+begin_src sh
-cd path/to/csc110-111-lecture-notes
+cd path/to/uoft-notes
 ./update-full.sh
 #+end_src
 
 Or alternatively,
 
 #+begin_src sh
-path/to/csc110-111-lecture-notes/update-full.sh
+path/to/uoft-notes/update-full.sh
 #+end_src
