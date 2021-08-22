@@ -14,25 +14,38 @@ This is a repository for the notes that I took while at the University of toront
 
 *** ORG Mode
 
-Some of the PDF files are written in ORG mode (~.org~). This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configuration, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
+Some of the PDF files are written in ORG mode (~.ORG~). This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configuration, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
 
-In emacs, the key combination for compiling the org file into a LaTeX pdf is ~C-c C-e m e l p~ (or ~SPC m e l p~ with evil mode bindings).
+In emacs, the key combination for compiling the ORG file into a LaTeX pdf is ~C-c C-e m e l p~ (or ~SPC m e l p~ with evil mode bindings).
 
 *** LaTeX
 
-Some other PDF files are written in LaTeX. For compilation, I use LuaLaTeX through LaTeXmk. To generate the pdf for a file called ~example.tex~, run ~latexmk -lualatex -shell-escape example.tex~. This will generate ~example.pdf~.
+Some other PDF files are written in LaTeX. For compilation, I use LuaLaTeX through LaTeXmk. To generate the PDF for a file called ~example.tex~, run ~latexmk -lualatex -shell-escape example.tex~. This will generate ~example.pdf~.
 
-** Rebuilding concatenated pdfs
+** Compiling PDFs
 
-I have written a quick shell script to rebuild the main compiled PDFs based on any changes in their respective directories. This will not build the individual PDFs from their source files so ensure to do that beforehand. To run this shell script,
+*** CSC110
+
+Navigate to the ~uoft-notes/csc110/src~ directory then build every PDF from the ORG source file using GNU Emacs. After this, go to the ~uoft-notes/csc110~ directory and run the following commands.
 
 #+begin_src sh
-cd path/to/uoft-notes
-./update-full.sh
+rm csc110.pdf
+pdftk src/*.pdf cat output csc110.pdf
 #+end_src
 
-Or alternatively,
+*** CSC111
+
+Navigate to the ~uoft-notes/csc111/src~ directory then build every PDF from the ORG source file using GNU Emacs. After this, go to the ~uoft-notes/csc111~ directory and run the following commands.
 
 #+begin_src sh
-path/to/uoft-notes/update-full.sh
+rm csc111.pdf
+pdftk src/*.pdf cat output csc111.pdf
+#+end_src
+
+*** MAT137
+
+Navigate to the ~uoft-notes/mat137~ directory and run the following command.
+
+#+begin_src sh
+latexmk -lualatex -shell-escape mat137.tex
 #+end_src
