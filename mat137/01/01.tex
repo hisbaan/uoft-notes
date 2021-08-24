@@ -1,0 +1,149 @@
+\section*{Unit 1}
+
+\setcounter{section}{1}
+
+\subsection{Sets and notation}
+
+A set is a ``collection of things'' (often numbers), called elements.
+\begin{flalign} \nonumber
+  &\begin{aligned}
+    A &= \cbr{\text{even integers}} \\
+    B &= \cbr{4, 5, 6} \\
+    C &= \cbr{2, 4} \\
+    D &= \underbrace{\cbr{4, 5}}_{\text{list of elements}}
+  \end{aligned} &&
+\end{flalign}
+
+Set notation:
+
+\begin{tabular}{c l l}
+  Symbol        & Notation                  & Example                       \\
+  \toprule
+  \(\in\)       & ``is an element of''      & \(4 \in B\)                   \\
+  \(\notin\)    & ``is not an element of''  & \(2 \notin B\)                \\
+  \(\subseteq\) & ``is a subset of''        & \(D \subseteq B\)             \\
+  \(\cup\)      & ``union of sets''         & \(C \cup D = \cbr{2, 4, 5}\)  \\
+  \(\cap\)      & ``intersection of sets''  & \(C \cap D = \cbr{4}\)        \\
+  \(\emptyset\) & ``empty set''             & \(\emptyset = \cbr{}\)        \\
+\end{tabular} \\
+
+Some important sets:
+
+\begin{tabular}{l l}
+  Naturals:     & \(\N = \cbr{0, 1, 2, 3, \dots}\)                          \\
+  Integers:     & \(\Z = \cbr{\dots, -3, -2, -1, 0, 1, 2, 3, \dots}\)       \\
+  Rationals:    & \(\Q = \cbr{\text{quotients of integers (fractions)}}\)   \\
+  Reals:        & \(\R = \cbr{\text{numbers with a decimal expansion}}\)    \\
+\end{tabular}
+
+\subsection{Set-building notation}
+
+\begin{enumerate}
+  \item[1.]
+        \(A = \overbracket{\cbr{ x \in \Z : x^{2} < 6 }}^{\text{description of the set}}\)
+
+        \(A = \cbr{ x \in \Z \mid x^{2} < 6 }\)
+
+        The part before the \(:\) or \(\mid\) is the group that we take elements from and the part after the \(:\) or \(\mid\) are extra constraints.
+
+        This means that \(A = \cbr{-2, -1, 0, 1, 2}\). While we can describe \(A\) more easily here, there are times when we cannot be explicit, but we can still use set-building notation to describe the set.
+
+  \item[2.]
+        \(A = \cbr{-2, -1, 0, 1, 2}\)
+
+        \(B = \cbr{2x \mid x \in A}\)
+
+        In this example, again, the \(\mid\) means ``such that'' but on the left, we describe what elements in \(B\) look like and on the right,  we exmplain the notation that we used on the left.
+
+        The sentence can be read as ``\(B\) is the set of elements of the form \(2x\) such that \(x\) is an element of \(A\).'' In other words, \(B\) consists of any element that is \(2\) times an element in \(A\). This means that \(B = \cbr{-4, -2, 0, 2, 4}\)
+\end{enumerate}
+
+\underline{Intervals}:
+
+Let \(a, b \in \R\)
+\begin{flalign} \nonumber
+  &\begin{aligned}
+    \quad   &1.~\sbr{a, b}      &&= \cbr{x \in \R \mid a \leq x \leq b} \\
+            &2.~\br{a, b}       &&= \cbr{x \in \R \mid a < x < b} \\
+            &3.~[a, b)          &&= \cbr{x \in \R \mid a \leq x < b} \\
+            &4.~\br{a, \infty}  &&= \cbr{x \in \R \mid a < x} \\
+            &5.~(-\infty, b]    &&= \cbr{x \in \R \mid x \leq b} \\
+  \end{aligned} &&
+\end{flalign}
+
+\subsection{Quantifiers}
+
+\(\forall =\) ``for all/every''
+
+\(\exists =\) ``there exists/is'' {\color{cyan}(at least one)}
+
+\begin{enumerate}
+  \item[Ex: 1.] For all
+        \begin{flalign} \nonumber
+          &\begin{aligned}
+            \forall x \in \R, &~x^{2} \geq 0 && \quad {\color{red} \text{True}} \\
+            \forall x \in \R, &~x^{2} > \pi && \quad {\color{red} \text{False (\(x = 1\))}} \\
+          \end{aligned} &&
+        \end{flalign}
+  \item[2.] There Exists
+        \begin{flalign} \nonumber
+          &\begin{aligned}
+            \exists x \in \R \text{ such that } &~x^{2} = 5 && \quad {\color{red} \text{True (\(x = - \sqrt{5}\))}} \\
+            \exists x \in \R \text{ such that } &~x^{2} = -1 && \quad {\color{red} \text{False}} \\
+          \end{aligned} &&
+        \end{flalign}
+  \item[3.] Other
+        \begin{flalign} \nonumber
+          &\begin{aligned}
+            x^{2} = 5 && \quad {\color{red} \text{meaningless}}
+          \end{aligned} &&
+        \end{flalign}
+\end{enumerate}
+
+\subsection{Double quantifiers}
+
+\begin{enumerate}
+  \item[1.] \(\forall x \in \Z, \exists y \in \Z \st x < y\)
+
+        We are allowed to use a different \(y\) for each \(x\).
+
+        For each \(x\) that we choose, there is a \(y\) such that the statement \(x < y\) is true.
+
+        ``Every integer is smaller than some other one''
+
+        This statement is true.
+
+  \item[2.] \(\exists y \in \Z, \forall x \in \Z \st x < y\)
+
+        We are only allowed to use a single \(y\).
+
+        There exists a \(y\) for all possible \(x\) such that the statement \(x < y\) is true.
+
+        ``There is an integer, \(y\), greater than all integers.''
+
+        This statement is false.
+\end{enumerate}
+
+The order quantifiers are listed in matters a lot.
+
+\subsection{Simple proofs with quantifiers}
+
+\subsection{Quantifiers and the empty set}
+
+\subsection{Conditional statements}
+
+\subsection{How to nogate a conditional statement}
+
+\subsection{A bad proof}
+
+\subsection{How to write a rigorous, mathematical definition}
+
+\subsection{Proofs: an example}
+
+\subsection{Proofs: a non-example}
+
+\subsection{Proofs: a theorem}
+
+\subsection{Proof by induction}
+
+\subsection{One Theorem. Two Proofs.}

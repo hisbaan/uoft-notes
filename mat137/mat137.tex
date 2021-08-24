@@ -1,13 +1,6 @@
 \documentclass[12pt]{article}
 \usepackage[margin=1in]{geometry}
-\usepackage{amsmath, amsthm, amssymb, graphicx, multicol, array, mathtools}
-
-% \DeclarePairedDelimiter\autobracket{(}{)}
-% \newcommand{\br}[1]{\autobracket*{#1}}
-% \DeclarePairedDelimiter\autosquarebracket{[}{]}
-% \newcommand{\sbr}[1]{\autosquarebracket*{#1}}
-% \DeclarePairedDelimiter\autocurlybracket{\{}{\}}
-% \newcommand{\cbr}[1]{\autocurlybracket*{#1}}
+\usepackage{amsmath, amsthm, amssymb, graphicx, multicol, array, mathtools, booktabs, xcolor}
 
 \newcommand{\br}[1]{\left(#1\right)}
 \newcommand{\sbr}[1]{\left[#1\right]}
@@ -20,9 +13,14 @@
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\DS}{\displaystyle}
 
+\newenvironment{example}{\underline{Ex}:}{}
+
 \renewcommand{\qedsymbol}{\ensuremath{\blacksquare}}
 \renewcommand*{\proofname}{\underline{Pf}:}
 \pagestyle{empty}
+
+\usepackage{tikz}
+\usetikzlibrary{arrows}
 
 \title{MAT137 Notes}
 \author{Hisbaan Noorani}
@@ -31,6 +29,9 @@
 \begin{document}
 
 \maketitle{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
 
 \include{01/01.tex}
 \include{02/02.tex}
