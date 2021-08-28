@@ -128,6 +128,45 @@ The order quantifiers are listed in matters a lot.
 
 \subsection{Simple proofs with quantifiers}
 
+\underline{Theorem 1}:
+
+Let \(A = \cbr{2, 3, 4}\). \(\forall x \in A, x > 0\).
+
+\begin{proof} \(\)
+
+  \(2 > 0~\checkmark\)
+
+  \(3 > 0~\checkmark\)
+
+  \(4 > 0~\checkmark\) \(\qedhere\)
+\end{proof}
+
+\underline{Theorem 2}:
+
+\(\forall x \in \Z, x > 0\)
+
+\begin{proof} \(\)
+
+  This theorem is false. To say that it is false is to say that its negation (opposite) is true. Therefore, to say that the theorem is false, we need to prove the following.
+
+  \(\exists x \in \Z \st x \leq 0\)
+
+  Take \(x = -1\). Since \(-1 \in \Z\) and \(-1 \leq 0\), we have proved that \emph{Theorem 2} is false. \(\qedhere\)
+\end{proof}
+
+\underline{Theorem 3}:
+
+\(\forall x \in \Z, \exists y \in \Z \st x < y\)
+
+\begin{proof} \(\)
+
+  Let \(x \in \Z\)
+
+  Take \(y = x + 1\)
+
+  Since \(x \in \Z\), we know that \(x + 1 \in \Z\) and thus \(y \in \Z\). Since \(y = x + 1\) and \(x < x + 1\), we know that \(x < y\) as needed. \(\qedhere\)
+\end{proof}
+
 \subsection{Quantifiers and the empty set}
 
 \subsection{Conditional statements}
