@@ -252,7 +252,7 @@ The negation of this statement would the permutation that is not one of the thre
 
 ``\underline{Theorem}'': \(\DS \sqrt{xy} \leq \frac{x + y}{2}\)
 
-``\underline{Pf}'':
+``\underline{\emph{Pf}}'':
 
 \begin{flalign} \nonumber
   &\begin{aligned}
@@ -295,12 +295,200 @@ It is important to note that the previous bad ``proof'' was not entirely useless
 
 \subsection{How to write a rigorous, mathematical definition}
 
+\underline{Goal}: Define ``increasing function''
+
+It is important to note that the definition of increasing is \emph{not} \(f' > 0\). A counter example for this is a function that is increasing but has a corner. The derivative does not exist for the point where the corner is, but the function is still increasing.
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      ticks=none,
+      axis lines=middle,
+      axis equal,
+      xlabel=\(x\),
+      ylabel=\(y\),
+      xmin=-1,
+      xmax=5,
+      ymin=-1,
+      yticklabels={,,},
+      xticklabels={,,}
+      ]
+      \draw[dashed,thick,color=red] (axis cs: 1, 1.5) -- (axis cs: 1, 0) node[below] (endofplotsquare) {\(x_{1}\)};
+      \draw[dashed,thick,color=red] (axis cs: 2, 2.121320) -- (axis cs: 2, 0) node[below] (endofplotsquare) {\(x_{2}\)};
+
+      \draw[dashed,thick,color=red] (axis cs: 1, 1.5) -- (axis cs: 0, 1.5) node[left] (endofplotsquare) {\(f(x_{1})\)};
+      \draw[dashed,thick,color=red] (axis cs: 2, 2.121320) -- (axis cs: 0, 2.121320) node[left] (endofplotsquare){\(f(x_{2})\)};
+      \addplot [
+      thick,
+      color=black,
+      domain=0:4,
+      samples=1000,
+      label=\(y = f(x)\)
+      ]
+      {1.5 * sqrt(x)} node[pos=1,above] (endofplotsquare){\(y = f(x)\)};
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+We can notice that \(x_{1} < x_{2}\) and \(f(x_{1}) < f(x_{2})\).
+
+\begin{mdframed}
+  \underline{Definition}:
+
+  A function \(f\) is increasing on an interval \(I\) when \(\forall x_{1}, x_{2} \in I x_{1} < x_{2} \implies f(x_{1}) < f(x_{2})\).
+\end{mdframed}
+
 \subsection{Proofs: an example}
+
+Prove \(f(x) = 3x + 7\) is increasing on \(\R\) directly from the definition.
+
+WTS \(\forall x_{1}, x_{2} \in \R, x_{1} < x_{2} \implies f(x_{1}) < f(x_{2})\)
+
+\begin{proof} \(\)
+
+  Let \(x_{1}, x_{2} \in \R\).
+
+  Assume \(x_{1} < x_{2}\) as per the implication.
+
+  We can manipulate this as follows:
+  \begin{align*}
+    x_{1} &< x_{2} \\
+    3x_{1} &< 3x_{2} \\
+    3x_{1} + 7 &< 3x_{2} + 7 \\
+    f(x_{1}) &< f(x_{2})
+  \end{align*}
+  And thus we have shown that when \(x_{1} < x_{2}\), \(f(x_{1}) < f(x_{2})\), as needed. \qedhere
+\end{proof}
 
 \subsection{Proofs: a non-example}
 
+Prove \(g(x) = \cos(x)\) is \underline{not} increasing on \([0, \pi]\) directly from the definition.
+
+``\(g\) isn't increasing on \(I\)'' is to negate ``\(g\) is increasing on \(I\)''
+
+\begin{align*}
+  &~\neg\sbr{\forall x_{1} x_{2} \in I, x_{1} < x_{2} \implies g(x_{1}) < g(x_{2})} \\
+  =&~\exists x_{1}, x_{2} \in I \st \neg\sbr{x_{1} < x_{2} \implies g(x_{1}) < g(x_{2})} \\
+  =&~\exists x_{1}, x_{2} \in I \st x_{1} < x_{2} \tand g(x_{1}) \geq g(x_{2}) \\
+\end{align*}
+
+And thus, WTS \(\exists x_{1}, x_{2} \in I \st x_{1} < x_{2} \tand g(x_{1}) \geq g(x_{2})\).
+
+\begin{proof} \(\)
+
+  Take \(\begin{cases} x_{1} = 0 \\ x_{2} = \frac{\pi}{2} \end{cases}\)
+
+  We can verify that \(0 < \frac{\pi}{2}\) and that \(g(0) = 1 \geq 0 = g(\frac{\pi}{2})\), as needed. \qedhere
+\end{proof}
+
 \subsection{Proofs: a theorem}
+
+Prove that the sum of increasing functions is increasing.
+
+First, we will try and rewrite this as a formal theorem.
+
+\begin{mdframed}
+  \underline{Theorem}:
+
+  Let \(f, g\) be functions on an interval \(I\).
+
+  Let \(h = f + g\).
+
+  IF \(f, g\) increasing on \(I\), THEN \(h\) increasing on \(I\).
+\end{mdframed}
+
+WTS \(\forall x_{1}, x_{2} \in I, x_{1} < x_{2} \implies h(x_{1}) < h(x_{2})\).
+
+\begin{proof} \(\)
+
+  Let \(x_{1}, x_{2} \in I\). Assume \(x_{1} < x_{2}\). WTS \(h(x_{1}) < h(x_{2})\).
+
+  Since \(f\) increasing on \(I\), we can conclude that \(f(x_{1}) < f(x_{2})\)
+
+  Since \(g\) increasing on \(I\), we can conclude that \(g(x_{1}) < g(x_{2})\)
+
+  Since \(h = f + g\) we can add both inequalities:
+  \begin{align*}
+    f(x_{1}) + g(x_{1}) &< f(x_{2}) + g(x_{2}) \\
+    h(x_{1}) &< h(x_{2})
+  \end{align*}
+  And thus we have shown that \(h(x_{1}) < h(x_{2})\), as needed. \qedhere
+\end{proof}
 
 \subsection{Proof by induction}
 
+Prove that \(\forall n \geq 4, n! > 2^{n}\).
+
+\begin{mdframed}
+
+  \underline{Proof by Induction}:
+
+  \begin{enumerate}
+    \item \underline{Base Case}: Prove \(S_{4}\)
+    \item \underline{Induction Step}: Prove \(\forall n \geq 4, S_{n} \implies S_{n + 1} \begin{cases} S_{4} \implies S_{5} \\ S_{5} \implies S_{6} \\ S_{6} \implies S_{7} \\ \qquad \cdots \end{cases}\)
+  \end{enumerate}
+
+  Putting these together, we can conclude that \(S_{4}, S_{5}, S_{6}, S_{7}, \dots\) are all true.
+\end{mdframed}
+
+\begin{proof} (by induction on \(n\)) \(\)
+
+  \begin{itemize}
+
+    \item \underline{Base Case (\(n = 4\))}:
+
+          WTS \(4! > 2^4\).
+
+          \(4! = 24\) and \(2^{4} = 16\). \(\checkmark\)
+
+    \item  \underline{Induction Step}:
+
+          Let \(n \geq 4\). Assume \(n! > 2^{n}\). WTS \(\br{n + 1}! > 2^{n + 1}\).
+
+          We know that \((n + 1)! = (n + 1) n! \)  and \(2 \cdot 2^{n} = 2^{n + 1}\).
+
+          Since we know that \(n! > 2^{n}\), we can multiply this inequality by \(n + 1\) leaving us with the inequality \(\br{n + 1} n! > \br{n + 1} \cdot 2^{n}\).
+
+          Since \(n \geq 4\), \(n + 1 \geq 5 > 2\). Because of this, we can say that \(\br{n + 1} n! > \br{n + 1} \cdot 2^{n} > 2 \cdot 2^{n}\), as needed.
+  \end{itemize}
+  And thus we have shown that \(\forall n \geq 4, n! > 2^{n}\), as needed. \qedhere
+
+\end{proof}
+
 \subsection{One Theorem. Two Proofs.}
+
+\underline{Theorem}: \(\forall n \geq 1, 1 + 2 + 3 + \cdots + n = \frac{n \br{n + 1}}{2}\).
+
+\begin{proof} \(\)
+
+  Let \(n \geq 1\)
+
+  Call \(S_{n} = 1 + 2 + 3 + \cdots + n\).
+
+  \(S_{n}\) can also be written as \(n + \br{n - 1} + \br{n - 2} + \cdots + 1\).
+
+  If we add both versions, we will get
+  \begin{align*}
+    2S_{n} &= \br{n + 1} + \br{n + 1} + \br{n + 1} + \cdots + \br{n + 1} \\
+    2S_{n} &= n \br{n + 1} \\
+    S_{n} &= \frac{n \br{n + 1}}{2} \qedhere
+  \end{align*}
+\end{proof}
+
+\begin{proof} (by induction on \(n\)) \(\)
+  \begin{itemize}
+    \item \underline{Base Case (n = 1)}: WTS \(1 = \frac{1 \br{1 + 1}}{2}\). \(\checkmark\)
+
+    \item \underline{Induction Step}:
+
+          Assume \(\DS 1 + 2 + 3 + \cdots + n = \frac{n \br{n + 1}}{2}\).
+
+          WTS \(\DS 1 + 2 + 3 + \cdots + \br{n + 1} = \frac{\br{n + 1} \br{n + 2}}{2}\).
+
+          Notice that \(1 + 2 + \cdots + \br{n + 1} = \sbr{1 + 2 + \cdots + n} + \br{n + 1}\).
+
+          By the induction hypothesis, this is equal to \(\DS \sbr{\frac{n \br{n + 1}}{2}} + \br{n + 1} = \frac{n \br{n + 1} + 2 \br{n + 1}}{2} = \frac{\br{n + 1} \br{n + 2}}{2}\), as needed.
+  \end{itemize}
+
+  And thus we have shown that \(\DS \forall n \geq 1, 1 + 2 + 3 + \cdots + n = \frac{n \br{n + 1}}{2}\), as needed.
+\end{proof}
