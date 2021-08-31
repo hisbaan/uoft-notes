@@ -169,11 +169,129 @@ Let \(A = \cbr{2, 3, 4}\). \(\forall x \in A, x > 0\).
 
 \subsection{Quantifiers and the empty set}
 
+True or False?
+\begin{flalign} \nonumber
+  &\begin{aligned}
+&\quad 1.~\forall x \in \emptyset, x > 0 && \text{\color{red} True}\\
+&\quad 2.~\exists x \in \emptyset \st x > 0 && \text{\color{red} False}\\
+  \end{aligned} &&
+\end{flalign}
+For the following, we will abbreviate \(x > 0\) as *
+\begin{itemize}
+  \item To prove (1) is true, I need to verify \underline{all} elements in \(\emptyset\) satisfy *. {\color{red}\(\checkmark\)}
+  \item To prove (1) is false, I need to find \underline{one} element in \(\emptyset\) doesn't satisfy *. {\color{red}\(\times\)}
+\end{itemize}
+
+Since there are no elements in \(\emptyset\), we can show that all of the elements in \(\emptyset\) satsify almost any rule. Because of this, generally, any statment which starts with \(\forall x \in \emptyset\) will be true.
+
 \subsection{Conditional statements}
 
-\subsection{How to nogate a conditional statement}
+A conditionial statment is something that has the word ``If''. The following three statements are all different ways of saying the same thing.
+\begin{itemize}
+  \item If \(P\), then \(Q\)
+  \item \(P \implies Q\)
+  \item \(P\) implies \(Q\)
+\end{itemize}
+
+When this statement is true, whenever \(P\) is true, \(Q\) must be true as well. Whenever \(P\) is false, we don't care. Thus to prove an implication that is not known to be true, assume \(P\) is true and prove \(Q\).
+
+\underline{Example 1}:
+
+Let \(x \in \R\).
+
+\begin{tabular}{l c c c }
+              & \(x > 10\)        & \(\implies\)  & \(x > 6\) \\
+  \(x = 12\)  & {\color{green}T}  &               & {\color{green}T}  \\
+  \(x = 8\)   & {\color{red}F}    &               & {\color{green}T}  \\
+  \(x = 12\)  & {\color{red}F}    &               & {\color{red}F}    \\
+\end{tabular}
+
+Whenever \(P\) is true, \(Q\) is true as well. Whenever \(P\) is false, we can't say anything about \(Q\), it may be true or false.
+
+\underline{Example 2}:
+
+Let \(A \subseteq \R\). Assume we know \(x \in A \implies x > 0\). What can we conlcude in the following scenarios?
+
+\begin{itemize}
+  \item \(x \notin A\) \qquad {\color{red}No conclusion.}
+  \item \(x > 0\) \qquad {\color{red}No conclusion.}
+  \item \(x \leq 0\) \qquad {\color{red}We can conclude \(x \notin A\)}
+\end{itemize}
+
+\(P \implies Q\) and \(\neg Q \implies \neg P\) both mean the same.
+
+\underline{Example 3}:
+
+Let \(n \in \Z\)
+\begin{itemize}
+  \item \(n\) is even \(\impliedby n\) is a multiple of 4
+  \item \(n\) is even \(\iff\) \(n + 1\) is odd
+\end{itemize}
+
+The \(\iff\) symbol is called ``if and only if'', commonly abbreviated to ``iff''. It is an implication in both directions. \(P \iff Q \) means \(P\) is true if and only if \(Q\) is true. They must both be true or both be false.
+
+\underline{Example 4}:
+
+True or False? \(0 > 1 \implies 103574289 \text{ is prime}\).
+
+We know that the hypothesis of the implication is false, but we do not know whether the conclusion is true or false. But for the whole implication, we do not need to know whether the number is prime or not. The entire statement must be true as an implication is only false when the hypothesis is true and the conclusion is false. This is called a vacous truth.
+
+\subsection{How to negate a conditional statement}
+
+Let \(A \subseteq \R\). If \(x \in A\), then \(x > 0\).
+
+This can be rewritten as \(x \in A \implies x > 0\).
+
+Let us break down what this statement means.
+
+\(\forall x \in A \begin{cases} x \in A \tand x > 0 \\ x \notin A \tand x > 0 \\ x \notin A \tand x \leq 0 \end{cases}\)
+
+The negation of this statement would the permutation that is not one of the three above cases. This means that it would be \(\exists x \in \R \st x \in A \tand x \leq 0\).
 
 \subsection{A bad proof}
+
+``\underline{Theorem}'': \(\DS \sqrt{xy} \leq \frac{x + y}{2}\)
+
+``\underline{Pf}'':
+
+\begin{flalign} \nonumber
+  &\begin{aligned}
+    xy &\leq \br{\frac{x + y}{2}}^{2} && {\color{red}\text{I start by assuming what I want to prove. This is very wrong}} \\
+    xy &\leq \frac{x^{2} + 2xy + y^{2}}{4}\\
+    4xy &\leq x^{2} + 2xy + y^{2} \\
+    0 &\leq x^{2} - 2xy + y^{2} \\
+    0 &\leq \br{x - y}^{2} \\
+  \end{aligned} &&
+\end{flalign}
+
+Because of the incorrect structure of the proof, I did not realize here that both \(x\) and \(y\) must be positive for the inital statement to be true. The goal of a proof is to determine and show whether a statement is true or not, not to make a statement true by any means necessary. Finally, this proof contains no words, only algebra. For some proofs this is okay, but most proofs should contain an explination of why you are doing things.
+
+Let's fix this proof.
+
+\underline{Theorem}:
+
+Let \(x, y \geq 0\). Then \(\DS \sqrt{xy} \leq \frac{x + y}{2}\).
+
+\begin{proof} \(\)
+
+  Since a square is always non-negative, we know that \(0 \leq \br{x - y}^{2}\). We can manipulate this as follows.
+
+  \begin{flalign} \nonumber
+    &\begin{aligned}
+      0 &\leq \br{x - y}^{2} \\
+      0 &\leq x^{2} - 2xy + y^{2} \\
+      0 &\leq x^{2} + 2xy - 4xy + y^{2} \\
+      4xy &\leq x^{2} + 2xy + y^{2} \\
+      xy &\leq \frac{x^{2} + 2xy + y^{2}}{4} \\
+      \sqrt{xy} &\leq \sqrt{\frac{x^{2} + 2xy + y^{2}}{4}} && \text{(We can only take the squre root because both sides are non-negative)} \\
+      \sqrt{xy} &\leq \frac{\sqrt{\br{x + y}^{2}}}{2} \\
+      \sqrt{xy} &\leq \abs{\frac{x + y}{2}} \\
+      \sqrt{xy} &\leq \frac{x + y}{2} \qedhere && \text{(Since \(x, y \geq 0\))}
+    \end{aligned} &&
+  \end{flalign}
+\end{proof}
+
+It is important to note that the previous bad ``proof'' was not entirely useless. It is good rough work to help us come up with ideas on how to prove a theorem. For example, the last line in the bad ``proof'' is the first line in the good proof.
 
 \subsection{How to write a rigorous, mathematical definition}
 
