@@ -148,12 +148,259 @@ For every \(x, y \in \R\),
 Any time you see one of these inequalities, you can move back and forth between these terms.
 
 \subsection{The formal definition of limit}
+
+We have the rough idea:
+\[\lim_{x \to a} f(x) = L\]
+If \(x\) is close to \(a\) (but \(x \neq a\)), then \(f(x)\) is close to \(L\).
+
+\begin{itemize}
+  \item ``\(x\) is close to \(a\)''
+
+        \(\abs{x - a}\) is ``small'', \quad \(\abs{x - a} < \delta\)
+
+  \item ``\(x\) is close to \(a\) (but \(x \neq a\))''
+
+        \(0 < \abs{x - a} < \delta\)
+
+  \item ``If \(x\) is close to \(a\) (but \(x \neq a\)), then \(f(x)\) is close to \(L\)''
+
+        \(0 < \abs{x - a} < \delta \implies \abs{f(x) - L} < \varepsilon\)
+\end{itemize}
+
+\begin{mdframed}
+
+  \underline{Definition of Limit}
+
+  Let \(a, L \in \R\). Let \(f\) be a function defined, at least, on an interval centered at \(a\), excapt maybe at \(a\).
+
+  We say that \(\DS \lim_{x \to a} f(x) = L\) when \(\forall \varepsilon > 0, \exists \delta > 0 \st 0 < \abs{x - a} < \delta \implies \abs{f(x) - L} < \varepsilon\).
+
+\end{mdframed}
+
 \subsection{Limits at infinity}
+
+\(\DS f(x) = \frac{x + 1}{x} = 1 + \frac{1}{x}\)
+
+As \(\DS x \to \infty, \frac{1}{x} \approx 0, f(x) = 1 + \frac{1}{x} \approx 1\).
+
+\(\DS \lim_{x \to \infty} f(x) = 1\)
+
+% TODO add graph y = f(x) and y = L where f(x) = x + 1 / x and L = 1
+
+\(\lim_{x \to \infty} f(x) = L\)
+
+To describe this with inequalities, we can convert the concepts as follows.
+\begin{align*}
+x \text{ large } &\implies f(x) \text{ close to } L \\
+x > {\color{red}M} &\implies \abs{f(x) - L} < {\color{red}\varepsilon}
+\end{align*}
+
+We can write this more formally, quantifying the variables \(M\) and \(\varepsilon\) as
+
+\begin{mdframed}
+  \underline{Definition of Limit at Infinity}
+
+  Let \(L \in \R\). Let \(f\) be a function defined, at least, on an interval of the form \((p, \infty)\) for some \(p \in \R\).
+
+  We say that \(\DS \lim_{x \to \infty} f(x) = L\) when:
+
+  \[\forall \varepsilon > 0, \exists M \in \R \st x > M \implies \abs{f(x) - L} < \varepsilon\]
+\end{mdframed}
+
 \subsection{Prove a function has a limit from the definition --- Example 1}
+
+Prove directly from the formal definiton of limit that \(\DS \lim_{x \to 3} (2x + 1) = 7\)
+
+We want to show:
+\[\forall \varepsilon > 0, \exists \delta > 0 \st 0 < \abs{x - 3} < \delta \implies \abs{\br{2x + 1} - 7} < \varepsilon\]
+
+\begin{enumerate}
+  \item Let \(\varepsilon > 0\)
+  \item Take \(\delta = \)? \(\delta\) can be a function of \(\varepsilon\).
+  \item Let \(x \in \R\), assume \(0 < \abs{x - 3} < \delta\)
+  \item Prove that \(\abs{\br{2x + 1} - 7} < \varepsilon\)
+\end{enumerate}
+
+\begin{proof} \(\)
+
+  Let \(\varepsilon > 0\). Take \(\delta = \frac{\varepsilon}{2}\). Let \(x \in \R\).
+
+  Assume that \(0 < \abs{x - 3} < \delta\).
+
+  Then
+  \[\abs{\br{2x + 1} - 7} = \abs{2x + 6} = 2 \abs{x - 3} < 2 \delta = \varepsilon\]
+  And thus I have proven that \(\abs{\br{2x + 1} - 7} < \varepsilon\), as needed. \qedhere
+\end{proof}
+
 \subsection{Prove a function has a limit from the definition --- Example 2}
+
+Prove directly from the definition of limit, that \(\DS \lim_{x \to 4} \br{x^{2} + 1} = 17\).
+
+WTS \(\forall \varepsilon > 0, \exists \delta > 0 \st 0 < \abs{x - 4} < \delta \implies \abs{\br{x^{2} + 1} - 17} < \varepsilon\).
+
+\underline{Rough Work}:
+\begin{align*}
+  &\abs{\br{x^{2} + 1} - 17} \\
+  =&\abs{x^{2} - 16} \\
+  =&\abs{\br{x + 4} \br{x - 4}} \\
+  =&\abs{x + 4} \abs{x - 4} \\
+  <&\abs{x + 4} \cdot \delta
+\end{align*}
+We are not allowed to take \(\delta\) based on \(x\). Taking \(\delta = \frac{\varepsilon}{\abs{x + 4}}\) is a bad idea.
+
+If we can make \(\abs{x + 4} < C\) for some number \(C\), then and \(\delta < \frac{\varepsilon}{C}\) will work.
+
+If we choose \(\delta \leq 1\), then \(\abs{x + 4} < 1 \implies 3 < x < 5 \implies 7 < x + 4 < 9 \implies \abs{x + 4} < 9\)
+
+So I need \(\delta \leq 1 \tand \delta \leq \frac{3}{9}\) at the same time. {\color{red}Take \(\delta = \min\cbr{1, \frac{\varepsilon}{9}}\)}
+
+\begin{proof} \(\)
+
+  Let \(\varepsilon > 0\). Take \(\delta = \min\cbr{1, \frac{\varepsilon}{9}}\). Let \(x \in \R\).
+
+  Assume \(0 < \abs{x - 4} < \delta\). This implies
+  \begin{itemize}
+    \item \(\abs{x - 4} < \frac{\varepsilon}{9}\)
+    \item \(\abs{x - 4} < 1\). Hence \(3 < x < 5\), and \(7 < x + 4 < 9\).
+  \end{itemize}
+
+  Thus: \(\DS \abs{\br{x^{2} + 1} - 17} = \abs{x^{2} - 16} = \abs{x - 4} \abs{x + 4} < \frac{\varepsilon}{9} \cdot 9 = \varepsilon\).
+
+  We have proven \(\abs{\br{x^{2} + 1} - 17} < \varepsilon\), as needed. \qedhere
+\end{proof}
+
 \subsection{How to prove a limit DNE from the definition}
+
+Let \(h(x) = \cos\br{\pi x}\). Prove, from the definition of limit that \(\DS \lim_{x \to \infty} h(x)\) does not exist.
+
+% TODO add graph
+
+\(\lim_{x \to \infty} h(x) = L\) means: \(\forall \varepsilon > 0, \exists M \in \R \st \br{\forall x \in \R,} x > M \implies \abs{h(x) - L} < \varepsilon\).
+
+\(\lim_{x \to \infty} h(x) \neq L\) means: \(\exists \varepsilon > 0\st \forall M \in \R, \exists x \in \R \st x > M \tand \abs{h(x) - L} < \varepsilon\).
+
+\(\lim_{x \to \infty} h(x) \dne\) means: \(\forall L \in \R, \exists \varepsilon > 0 \st \forall M \in \R, \exists x \in \R \st x > M \tand \abs{h(x) - L} \geq \varepsilon\).
+
+We want to show that \(\DS \lim_{x \to \infty} h(x) \dne\). This means we want to show \[\forall L \in \R, \exists \varepsilon > 0 \st \forall M \in \R, \exists x \in \R \st x > M \tand \abs{h(x) - L} \geq \varepsilon\]
+
+\underline{Structure}
+\begin{enumerate}
+  \item Let \(L \in \R\)
+  \item Take \(\varepsilon =~???\)
+  \item Let \(M \in \R\)
+  \item Take \(x =~???\)
+        \item Verify that \(x > M\), and \(\abs{h(x) - L} \geq \varepsilon\)
+\end{enumerate}
+
+% TODO add graph from https://youtu.be/VOEzUbNTCSk?t=383
+
+Pick \(\varepsilon \geq 1\). Then \(1\) or \(-1\) \(\notin (L - \varepsilon, L + \varepsilon)\)
+
+Pick \(x \in \Z\). Then \(h(x) = 1 \tor -1\)
+
+\begin{proof} \(\)
+
+  Let \(L \in \R\). Take \(\varepsilon = \frac{1}{2}\). Let \(M \in \R\).
+
+  At least one of the following must be true:
+
+  \begin{itemize}
+    \item Case A:\quad \(1 \notin (L - \varepsilon, L + \varepsilon)\)
+
+          I choose any \(x \in \Z\), even, satisfying \(x > M\).
+
+          Then \(h(x) = 1\)
+
+    \item Case B:\quad \(-1 \notin (L - \varepsilon, L + \varepsilon)\)
+
+          I choose any \(x \in \Z\), odd, satisfying \(x > M\).
+
+          Then \(h(x) = - 1\)
+  \end{itemize}
+  Either way, it satisfies \(x > M\) and \(\abs{h(x) - L} \geq \varepsilon\), as needed. \qedhere
+\end{proof}
+
 \subsection{Limit laws}
+
+I want to prove rigorously that, for every polynomial \(P\) and every \(a \in \R\):
+\[\lim_{x \to a} P(x) = P(a)\]
+
+To do this, we need to prove some basic limit that can be used to construct all other limits of polynomials.
+\[\lim_{x \to a} x = a \tand \lim_{x \to a} c = c\]
+
+Then we must prove the Limit Laws
+
+Assume \(\DS \lim_{x \to a} f(x) = L\) and \(\DS \lim_{x \to a} g(x) = M\).
+
+Then:
+\begin{itemize}
+  \item \(\DS \lim_{x \to a} \sbr{f(x) + g(x)} = L + M\)
+  \item \(\DS \lim_{x \to a} \sbr{f(x) \cdot g(x)} = L \cdot M\)
+  \item \(\DS \lim_{x \to a} \sbr{\frac{f(x)}{g(x)}} = \frac{L}{M} \quad (\text{assuming } M \neq 0)\)
+\end{itemize}
+
+Then, we can use these. For example, prove that \(\DS \lim_{x \to 2} \br{x^{4} - 3x} = 10\)
+
+\begin{proof} \(\)
+  \begin{align*}
+    &~\lim_{x \to 2} \br{x^{4} - 3x} \\
+    =&~\br{\lim_{x \to 2} x^{4}} + \br{\lim_{x \to 2} -3x} && \text{(Limit Law for sum)} \\
+    =&~\br{\lim_{x \to 2} x}^{4} + \br{\lim_{x \to 2} -3} \br{\lim_{x \to 2} x} && \text{(Limit Law for product)}  \\
+    =&~\br{2}^{4} + \br{-3} \br{2} && \text{(Basic Limits)} \\
+    =&~10
+  \end{align*}
+\end{proof}
+
+The same process will work for every polynomial! One thing to note is that the limit laws only apply if the initial limit exists.
+
 \subsection{Proof of the limit law for sums}
+
+\begin{mdframed}
+  \underline{Theorem}
+
+  Let \(a, L, M \in \R\). Let \(f\) and \(g\) be functions defined at least on an interval cenetered at \(a\), except maybe at \(a\).
+
+  IF \(\DS \lim_{x \to a} f(x) = L\) and \(\DS \lim_{x \to a} g(x) = M\) THEN \(\DS \lim_{x \to a} \sbr{f(x) + g(x)} = L + M\)
+\end{mdframed}
+
+Call \(h = f + g\).
+
+WTS \(\forall \varepsilon > 0, \exists \delta > 0 \st 0 < \abs{x - a} < \delta \implies \abs{h(x) - {L + M}} < \varepsilon\).
+
+We need \(0 < \abs{x - a} < \delta \implies \abs{h(x) - {L + M}} < \varepsilon\)
+\[\abs{h(x) - \br{L + M}} \leq \abs{f(x) - L} + \abs{g(x) - M}\]
+Make \(\DS \abs{f(x) - L} < \frac{\varepsilon}{2}\). We can do this because we \emph{know} \(\DS \lim_{x \to a} f(x) = L\).
+
+For the value \(\DS \frac{\varepsilon}{2}, \exists \delta_{1} > 0 \st 0 < \abs{x - a} < \delta_{1} \implies \abs{f(x) - L} < \frac{\varepsilon}{2}\).
+
+We can do the same thing for \(g\) resulting in the number \(\delta_{2}\).
+
+Thus we have concluded that:
+\[\exists \delta_{1} > 0 \st 0 < \abs{x - a} < \delta_{1} \implies \abs{f(x) - L} < \frac{\varepsilon}{2}\]
+\[\exists \delta_{2} > 0 \st 0 < \abs{x - a} < \delta_{2} \implies \abs{g(x) - M} < \frac{\varepsilon}{2}\]
+Take \(\delta = \min\cbr{\delta_{1}, \delta_{2}}\).
+
+\begin{proof} \(\)
+
+  Let \(\varepsilon > 0\).
+
+  I use \(\frac{\varepsilon}{2}\) in the definition of \(\DS \lim_{x \to a} f(x) = L\). \[\exists \delta_{1} > 0 \st 0 < \abs{x - a} < \delta_{1} \implies \abs{f(x) - L} < \frac{\varepsilon}{2}\]
+
+  I use \(\frac{\varepsilon}{2}\) in the definition of \(\DS \lim_{x \to a} g(x) = M\). \[\exists \delta_{2} > 0 \st 0 < \abs{x - a} < \delta_{2} \implies \abs{g(x) - M} < \frac{\varepsilon}{2}\]
+
+  Take \(\delta = \min\cbr{\delta_{1}, \delta_{2}}\).
+
+  Let \(x \in \R\). Assume \(0 < \abs{x - a} < \delta\). This implies:
+  \begin{itemize}
+    \item \(0 < \abs{x - a} < \delta_{1}\). Thus \(\abs{f(x) - L} < \varepsilon/2\)
+    \item \(0 < \abs{x - a} < \delta_{2}\). Thus \(\abs{g(x) - M} < \varepsilon/2\)
+  \end{itemize}
+
+  Then \(\abs{h(x) - \br{L + M}} = \abs{\sbr{f(x) - L} + \sbr{g(x) - M}} \leq \abs{f(x) - L} + \abs{g(x) - M} < \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon\)
+
+  And thus we have shown that \(\abs{h(x) - \br{L + M}} < \varepsilon\), as needed. \qedhere
+\end{proof}
+
 \subsection{The Squeeze Theorem}
 \subsection{The definition of continuity}
 \subsection{The main continuity theorem}
