@@ -402,9 +402,260 @@ Take \(\delta = \min\cbr{\delta_{1}, \delta_{2}}\).
 \end{proof}
 
 \subsection{The Squeeze Theorem}
+
+\underline{Exercise}
+
+Compute \(\DS \lim_{x \to 0} x^{2} \sin \frac{1}{x}\).
+
+\underline{An {\color{red}Incorrect} Solution}
+
+\[\lim_{x \to 0} \sbr{x^{2} \sin \frac{1}{x}} = \sbr{\lim_{x \to 0} x^{2}} \cdot \sbr{\lim_{x \to 0} \sin \frac{1}{x}} = 0 \cdot \sbr{\lim_{x \to 0} \sin \frac{1}{x}} = 0\]
+
+This is incorrect as we can only use limit laws when the limits exist. In this calculation, we have used the limit law for products. The function \(\sin \frac{1}{x}\) does not have a limit at \(0\) as it oscilates infinitely near \(0\).
+
+\underline{Correct Solution}
+
+For every \(x \neq 0\):
+
+\begin{align*}
+-1 &\leq \sin \frac{1}{x} \leq 1 \\
+-x^{2} &\leq x^{2} \sin \frac{1}{x} \leq x^{2} \\
+-x^{2} &\leq x^{2} \sin \frac{1}{x} \leq x^{2} \\
+\end{align*}
+
+% TODO add graph y = x^2, y = - x^2, y = x^2 sin 1/x
+\begin{center}
+  \begin{tikzpicture}
+    \begin{axis}[
+      ticks=none,
+      axis lines=middle,
+      axis equal,
+      xlabel=\(x\),
+      ylabel=\(y\),
+      xmin=-0.25,
+      xmax=0.25,
+      ymin=-0.125,
+      ymax=0.125,
+      yticklabels={,,},
+      xticklabels={,,}
+      ]
+      % \draw[dashed,thick,color=red] (axis cs: 1, 1.5) -- (axis cs: 1, 0) node[below] (endofplotsquare) {\(x_{1}\)};
+      \addplot [
+      thick,
+      color=red,
+      domain=-4:4,
+      samples=1000
+      ]
+      {x^2};
+      \addplot [
+      thick,
+      color=green,
+      domain=-4:4,
+      samples=1000
+      ]
+      {-x^2};
+      \addplot [
+      thick,
+      color=blue,
+      domain=-4:4,
+      samples=5000
+      ]
+      {x^2 * sin(deg(1/(x)))};
+    \end{axis}
+  \end{tikzpicture}
+\end{center}
+
+\begin{mdframed}
+  \underline{The Squeeze Theorem}
+
+  Let \(a, L \in \R\). Let \(f, g, \tand h\) be functions defined near \(a\), except possibly at \(a\).
+
+  If
+  \begin{itemize}
+    \item \(\DS \exists p > 0 \st 0 < \abs{x - a} < p \implies h(x) \leq g(x) \leq f(x)\)
+    \item \(\DS \lim_{x \to a} f(x) = L\)
+    \item \(\DS \lim_{x \to a} h(x) = L\)
+  \end{itemize}
+  Then \(\DS \lim_{x \to a} g(x) = L\)
+\end{mdframed}
+
+Since we know that for every \(x \neq 0,~x^{2} \sin \frac{1}{x}\) is ``squeezed'' by \(-x^{2} \tand x^{2}\), we know that \(\DS \lim_{x \to 0} -x^{2} = \lim_{x \to 0} x^{2} = \lim_{x \to 0} \sbr{x^{2} \sin \frac{1}{x}} = 0\).
+
+\subsection{Proof of the Squeeze Theorem}
+
+WTS \(\forall \varepsilon, \exists \delta > 0 \st 0 < \abs{x - a} < \delta \implies \abs{g(x) - L} < \varepsilon\)
+
+\underline{Rough Work}
+
+\(\abs{g(x) - L} < \varepsilon\) is equivalent to \(L - \varepsilon < g(x) < L + \varepsilon\).
+
+We \emph{know} \(0 < \abs{x - a} < p \implies h(x) \leq g(x) \leq f(x)\).
+
+We \emph{know} \(\DS \lim_{x \to a} f(x) = L\). \[\exists \delta_{1} > 0 \st 0 < \abs{x - a} < \delta_{1} \implies L - \varepsilon < f(x) < L + \varepsilon\]
+
+We \emph{know} \(\DS \lim_{x \to a} h(x) = L\). \[\exists \delta_{2} > 0 \st 0 < \abs{x - a} < \delta_{2} \implies L - \varepsilon < h(x) < L + \varepsilon\]
+
+If we combine the inequalities that we know, \(h(x) \leq g(x) \leq f(x)\),  \(f(x) < L + \varepsilon\), \(L - \varepsilon < h(x)\), we can conclude what we need.
+
+Take \(\delta = \min\cbr{\delta_{1}, \delta_{2}, p}\).
+
+\begin{proof} \(\)
+
+  Let \(\varepsilon > 0\).
+
+  Use same \(\varepsilon\) in the definition of \(\DS \lim_{x \to a} f(x) = L\). \(\DS \exists \delta_{1} > 0 \st 0 < \abs{x - a} < \delta_{1} \implies \abs{f(x) - L} < \varepsilon \implies f(x) < L + \varepsilon\)
+
+  Use same \(\varepsilon\) in the definition of \(\DS \lim_{x \to a} h(x) = L\). \(\DS \exists \delta_{2} > 0 \st 0 < \abs{x - a} < \delta_{2} \implies \abs{h(x) - L} < \varepsilon \implies L - \varepsilon < h(x)\)
+
+  Take \(\delta = \min\cbr{\delta_{1}, \delta_{2}, p}\).
+
+  Let \(x \in \R\). Assume \(0 < \abs{x - a} < \delta\). This implies:
+  \begin{itemize}
+    \item \makebox[4cm][l]{\(0 < \abs{x - a} < \delta_{2}\)} Thus \(L - \varepsilon < h(x)\)
+    \item \makebox[4cm][l]{\(0 < \abs{x - a} < p\)} Thus \(h(x) \leq g(x) \leq f(x)\)
+    \item \makebox[4cm][l]{\(0 < \abs{x - a} < \delta_{1}\)} Thus \(f(x) < L + \varepsilon\)
+  \end{itemize}
+
+  Therefore \(L - \varepsilon < g(x) < L + \varepsilon\). Equivalently, we have proven that \(\abs{g(x) - L} < \varepsilon\), as needed. \qedhere
+\end{proof}
+
 \subsection{The definition of continuity}
+
+``A function is continuous when its graph can be drawn without lifting the pen from the paper.''
+
+\begin{mdframed}
+
+  \underline{Definition of Continuity}
+
+  Let \(a \in \R\). Let \(f\) be a function defined, at least, on an interval centered at \(a\).
+
+  We say that \(f\) is continuous when \(\DS \lim_{x \to a} f(x) = f(a)\).
+\end{mdframed}
+
+This means:
+\begin{enumerate}
+  \item The limit exists
+  \item \(f(a)\) is defined
+  \item \(\DS \lim_{x \to a} f(x) = f(a)\)
+\end{enumerate}
+
+\begin{mdframed}
+
+  \underline{An equivalent definition (Epsilon Delta Definition of Continuity)}
+
+  Let \(a \in \R\). Let \(f\) be a function defined, at least, on an interval centered at \(a\).
+
+  We say that \(f\) is continuous at \(a\) when
+
+  \[\forall \varepsilon > 0, \exists \delta \st \abs{x - a} < \delta \implies \abs{f(x) - f(a)} < \varepsilon\]
+
+\end{mdframed}
+
+Continuous at a point: \(f\) continuous at \(c\) means \(\DS \lim_{x \to c} f(x) = f(c)\)
+
+Continuous on an open interval: \(f\) continuous on the interval \((a, b)\) means \(\forall c \in (a, b),~f\) is continuous at \(c\)
+
+Continuous on a closed interval: \(f\) continuous on the interval \([a, b]\) means
+\begin{enumerate}
+  \item \(\DS \lim_{x \to a^{+}} f(x) = f(a)\)
+  \item \(\forall c \in (a, b),~f\) is continuous at \(c\)
+  \item \(\DS \lim_{x \to b^{-}} f(x) = f(b)\)
+\end{enumerate}
+
 \subsection{The main continuity theorem}
+
+\begin{mdframed}
+
+  \underline{The Main Continuity Theorem}
+
+  Any function we can construct with sum, product, quotient, and composition of polynomials, roots, trigonometric functions, exponentials, logarithms, and absolute values is continuous (on its domain).
+\end{mdframed}
+
+Example: \[\lim_{x \to 1} \frac{x^{2} - \sin x}{e^{x} + \ln\br{\sqrt{x} + 3}} = \frac{1 - \sin 1}{e + \ln 4}\]
+
 \subsection{Limits and composition of functions}
+
+We do not have a ``Limit Law'' for compositions. Just knowing that two functions have limits does not guarantee that the composition of the two functions has a limit.
+
+\underline{False Theorem}
+
+If \(\DS \lim_{x \to a} f(x) = L \tand \lim_{y \to L} g(y) = M\)
+
+\(\cancel{\text{Then \(\DS \lim_{x \to a} g(f(x)) = M?\)}}\)
+
+\begin{mdframed}
+
+  \underline{Theorem 1}
+
+  If \(f\) continuous at \(a\), and \(g\) continuous at \(f(a)\)
+
+  Then \(g \circ f\) continuous at \(a\).
+
+\end{mdframed}
+
+% A counter example for the false theorem is as follows.
+
+% \(f(x) = \begin{cases} x \sin \frac{\pi}{x} & \text{ if } x \neq 0 \\ 0 & \text{ if } x = 0 \end{cases}\)
+
+% \(g(y) = \begin{cases} 2 & \text{ if } y = 0 \\ 1 & \text{ if } y \neq 0 \end{cases}\)
+
+% \(g(f(x)) = \begin{cases} 2 & \text{ if } x \dots \\ 1 & \text{ if } x \dots \end{cases}\)
+
+To get to the core of the probelm, we can look at what the theorems are really saying.
+
+\begin{itemize}
+  \item \(\DS \lim_{x \to a} f(x) = L\) means:
+
+        \(\cbr{x \text{ close to } a, x \neq a} \implies f(x) \text{ close to } L\).
+
+  \item \(f\) continuous at \(a\) means:
+
+        \(x \text{ close to } a \implies f(x) \text{ close to } f(a)\).
+\end{itemize}
+
+Let us look at \emph{Theorem 1}.
+
+The first hypothesis means \(x \text{ close to } a \implies f(x) \text{ close to } f(a)\).
+
+The second hypothesis means \(y \text{ close to } f(a) \implies g(y) \text{ close to } g(f(a))\).
+
+We can concatenate the two implications to form \(x \text{ close to } a \implies g(f(x)) \text{ close to } g(f(a))\).
+
+By contrast, let us try and do the same thing with the \emph{False Theorem}.
+
+The first hypothesis means \(x \text{ close to } a \text{ but } x \neq a \implies f(x) \text{ close to } L\).
+
+The second hypothesis means \(y \text{ close to } L \text{ but } y \neq L \implies g(y) \text{ close to } M\).
+
+We cannot concatenate these two implications as the ``then'' part in the first does not match the ``if'' part in the second. This is why the theorem is false.
+
+But we can fix the theorem!
+
+\begin{mdframed}
+  \underline{Theorem 2}
+
+  If
+  \begin{itemize}
+    \item \(\DS \lim_{x \to a} f(x) = L\)
+    \item \(\DS f(x) \neq L\) for \(x\) on an interval centered at \(a\), excepy maybe at \(a\).
+    \item \(\DS \lim_{y \to L} g(y) = M\)
+  \end{itemize}
+
+  Then \(\DS \lim_{x \to a} g(f(x)) = M\)
+\end{mdframed}
+
+\begin{mdframed}
+  \underline{Theorem 3}
+
+  If
+  \begin{itemize}
+    \item \(\DS \lim_{x \to a} f(x) = L\)
+    \item \(g\) is continuous at \(L\)
+  \end{itemize}
+
+  Then \(\DS \lim_{x \to a} g(f(x)) = g(L)\)
+\end{mdframed}
+
 \subsection{Discontinuties (and how to remove them)}
 \subsection{A geometric proof for a trigonometric limit}
 \subsection{Review of basic techniques for computing limits}
