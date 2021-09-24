@@ -30,7 +30,7 @@ Sometimes you will see the following:
 \dots as equivalent to
 \[\forall k \in \N, k < n \implies P(k)\]
 
-* More dominos
+* More dominoes
 
 \[\br{\forall n \in \N, \sbr{\bigwedge^{k = n - 1}_{k = 0} P(k)} \implies P(n)} \implies \forall n \in \N, P(n)\]
 
@@ -39,16 +39,16 @@ If all the previous cases always imply the current case then all cases are true.
 * Complete induction outline
 
 - *Inductive step*: introduce \(n\) and state inductive hypothesis \(H(n)\)
-  + *Derive conclusion \(C(n)\)*: show that \(C(n)\) follows from \(H(n)\), indicating hwere you use \(H(n)\) and why that is valid.
-- *Verify base case(s)*: verify that the claim is true for any cases not covered in the inductie step
+  + *Derive conclusion \(C(n)\)*: show that \(C(n)\) follows from \(H(n)\), indicating where you use \(H(n)\) and why that is valid.
+- *Verify base case(s)*: verify that the claim is true for any cases not covered in the inductive step
 
-This is the same outline as simple induction but we modify the inductive hypothesis, \(H(n)\) so that it assuems the main claim for every natural number from the starting point up to \(n - 1\), and the conclusion, \(C(n)\) is now the main claim for \(n\).
+This is the same outline as simple induction but we modify the inductive hypothesis, \(H(n)\) so that it assumes the main claim for every natural number from the starting point up to \(n - 1\), and the conclusion, \(C(n)\) is now the main claim for \(n\).
 
 * Watch the base cases, part 1
 
 \[f(n) = \begin{cases} 1 & n \leq 1 \\ \sbr{f(\floor{\sqrt{n}})}^2 + 2 f(\floor{\sqrt{n}}) & n > 1 \end{cases}\]
 
-Check a few cases, and makea conjecture:
+Check a few cases, and make a conjecture:
 #+begin_latex
 \begin{align*}
     f(0) &= 1 \\
@@ -61,11 +61,11 @@ Check a few cases, and makea conjecture:
 \end{align*}
 #+end_latex
 
-All of these things are divisible by 3. The square of something that is divisible by 3 is still divisible by 3 and the double of something that is divisibly by 3 is still divisibly by 3.
+All of these things are divisible by 3. The square of something that is divisible by 3 is still divisible by 3 and the double of something that is divisible by 3 is still divisible by 3.
 
-* For all natural numebrs \(n > 1, f(n)\) is a multiple of 3?
+* For all natural numbers \(n > 1, f(n)\) is a multiple of 3?
 
-For natual numbers \(n\) define \(P(n): f(n)\) is a multiple of 3.
+For natural numbers \(n\) define \(P(n): f(n)\) is a multiple of 3.
 
 I will prove, using complete induction, that \(\forall n > 1, P(n)\).
 
@@ -96,7 +96,7 @@ I will prove, using complete induction, that \(\forall n > 1, P(n)\).
 
 #+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
 
-Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no paris of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
+Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no pairs of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
 
 #+begin_latex
 \begin{align*}

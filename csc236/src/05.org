@@ -77,7 +77,7 @@ Define \(\mathcal{E}\): The smallest set such that
 
 1. \(x, y, z \in \mathcal{E}\)
 2. \(e_{1}, e_{2} \in \mathcal{E} \implies (e_{1} + e_{2}), (e_{1} - e_{2}), (e_{1} \times e_{2}), (e_{1} \div e_{2}) \in \mathcal{E}\)
-Form some expressions in \(\mathcal{E}\). Count the number of variables (sumbols from \(\{x, y, z\}\)) and the number of operators symbols from \(\{+, -, \times, \div\}\). Make a conjecture
+Form some expressions in \(\mathcal{E}\). Count the number of variables (symbols from \(\{x, y, z\}\)) and the number of operators symbols from \(\{+, -, \times, \div\}\). Make a conjecture
 
 \((x + y), (x \times y) \in \mathcal{E}\)
 

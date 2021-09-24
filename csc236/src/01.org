@@ -39,18 +39,18 @@
 
   try annotating blank slides.
 
-- collabourate with respect
+- collaborate with respect
 
-  You need computerscience friends who are respectful and constructively critical.
+  You need computer science friends who are respectful and constructively critical.
 
 * Assume that you already know
 
-- Chapter 0 material from /Introduction to THeory of Computation/.
+- Chapter 0 material from /Introduction to Theory of Computation/.
 - CSC110/111 material, especially proofs and big-\(\bigo\).
 
 * By December you'll know
 
-- undersatnd and use several flavours of induction.
+- understand and use several flavours of induction.
 
   some of these flavours will taste new
 
@@ -64,7 +64,7 @@
 
 \[\sbr{P(0) \land \br{\forall n \in \N, P(n) \implies P(n + 1)}} \implies \forall n \in \N, P(n)\]
 
-If the inital case works, and each case that works implies its successor works, then all cases work
+If the initial case works, and each case that works implies its successor works, then all cases work
 
 * Simple induction outline
 
@@ -95,7 +95,7 @@ Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered
 \begin{enumerate}
 \item[\(i\).] Induction on \(n\)
 
-    Let \(n\) be an arbitary, fixed, natural number. (Let \(n \in \N\)).
+    Let \(n\) be an arbitrary, fixed, natural number. (Let \(n \in \N\)).
 
     Assume \(P(n)\), that is a \(2^n \times 2^n\) grid, with one square removed can be tiled with "chairs."
 
