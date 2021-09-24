@@ -1,0 +1,39 @@
+#+latex_header: \usepackage{xcolor}
+#+latex_header: \usepackage[utf8]{inputenc}
+#+latex_header: \usepackage[T1]{fontenc}
+#+latex_header: \usepackage{inconsolata}
+#+latex_header: \renewcommand\theFancyVerbLine{\small\arabic{FancyVerbLine}}
+
+#+latex_header: \setlength{\parskip}{0.5em}
+#+latex_header: \setlength{\parindent}{0}
+
+# # Monokai
+# #+latex_header: \definecolor{bg}{HTML}{272822}
+# #+latex_header: \setminted{style=monokai,bgcolor=bg,linenos,mathescape}
+
+# # Black and white
+# #+latex_header: \definecolor{bg}{HTML}{EEEEEE}
+# #+latex_header: \setminted{style=bw,bgcolor=bg,linenos,mathescape}
+
+# Github
+#+latex_header: \definecolor{bg}{HTML}{EEEEEE}
+#+latex_header: \setminted{style=github,bgcolor=bg,linenos,mathescape}
+
+#+latex_header: \newcommand{\Z}{\mathbb{Z}}
+#+latex_header: \newcommand{\R}{\mathbb{R}}
+#+latex_header: \newcommand{\N}{\mathbb{N}}
+#+latex_header: \newcommand{\Q}{\mathbb{Q}}
+#+latex_header: \newcommand{\C}{\mathbb{C}}
+#+latex_header: \newcommand{\bigo}{\mathcal{O}}
+
+#+latex_header: \newcommand{\floor}[1]{\left \lfloor #1 \right \rfloor}
+#+latex_header: \newcommand{\ceil}[1]{\left \lceil #1 \right \rceil}
+#+latex_header: \newcommand{\abs}[1]{\left | #1 \right |}
+#+latex_header: \newcommand{\st}{\text{ s.t. }}
+
+#+latex_header: \newcommand{\br}[1]{\left(#1\right)}
+#+latex_header: \newcommand{\sbr}[1]{\left[#1\right]}
+#+latex_header: \newcommand{\cbr}[1]{\left\{#1\right\}}
+
+#+latex_header: \renewcommand{\qedsymbol}{\(\blacksquare\)}
+#+latex_header: \renewcommand*{\proofname}{\underline{pf}:}

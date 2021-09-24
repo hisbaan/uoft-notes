@@ -1,0 +1,112 @@
+#+TITLE: CSC236 Lecture 03: Complete Induction
+#+date: September 17, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* Complete Induction
+
+- Every natural number greater than 1 has a prime factorization
+  #+begin_latex
+  \begin{align*}
+    2 &= 2 \\
+    3 &= 3 \\
+    4 &= 2 \times 2 \\
+    5 &= 5 \\
+    6 &= 2 \times 3 \\
+    7 &= 7 \\
+    8 &= 2 \times 2 \times 2 \\
+    9 &= 3 \times 3 \\
+    10 &= 2 \times 5
+\end{align*}
+  #+end_latex
+- How does the factorization of 8 help with the factorization of 9?
+
+  The fact that 8 can be expressed as a product of primes has nothing to do with 9 being a product of primes.
+
+* Notational Convenience
+
+Sometimes you will see the following:
+\[\bigwedge^{k = n - 1}_{k = 0} P(k)\]
+\dots as equivalent to
+\[\forall k \in \N, k < n \implies P(k)\]
+
+* More dominos
+
+\[\br{\forall n \in \N, \sbr{\bigwedge^{k = n - 1}_{k = 0} P(k)} \implies P(n)} \implies \forall n \in \N, P(n)\]
+
+If all the previous cases always imply the current case then all cases are true.
+
+* Complete induction outline
+
+- *Inductive step*: introduce \(n\) and state inductive hypothesis \(H(n)\)
+  + *Derive conclusion \(C(n)\)*: show that \(C(n)\) follows from \(H(n)\), indicating hwere you use \(H(n)\) and why that is valid.
+- *Verify base case(s)*: verify that the claim is true for any cases not covered in the inductie step
+
+This is the same outline as simple induction but we modify the inductive hypothesis, \(H(n)\) so that it assuems the main claim for every natural number from the starting point up to \(n - 1\), and the conclusion, \(C(n)\) is now the main claim for \(n\).
+
+* Watch the base cases, part 1
+
+\[f(n) = \begin{cases} 1 & n \leq 1 \\ \sbr{f(\floor{\sqrt{n}})}^2 + 2 f(\floor{\sqrt{n}}) & n > 1 \end{cases}\]
+
+Check a few cases, and makea conjecture:
+#+begin_latex
+\begin{align*}
+    f(0) &= 1 \\
+    f(1) &= 1 \\
+    f(2) &= 3 \\
+    f(3) &= 3 \\
+    f(4) &= 15 \\
+    f(5 \dots 15) &= 15 \\
+    f(16) &= 255
+\end{align*}
+#+end_latex
+
+All of these things are divisible by 3. The square of something that is divisible by 3 is still divisible by 3 and the double of something that is divisibly by 3 is still divisibly by 3.
+
+* For all natural numebrs \(n > 1, f(n)\) is a multiple of 3?
+
+For natual numbers \(n\) define \(P(n): f(n)\) is a multiple of 3.
+
+I will prove, using complete induction, that \(\forall n > 1, P(n)\).
+
+#+begin_latex
+\begin{enumerate}
+  \item[\(i\).] Induction on \(n\)
+
+        Let \(n \in N\). Assume \(n > 1\). Also assume that \(P(k)\) is true for all natural numbers \(k\) less than \(n\), and greater than 1.
+
+        Notice that the floor of the square root of \(n\) is greater than 1. Also, the square root of \(n\) is less than \(n\) (since \(n > 1 \implies n^{2} > n \implies n > \sqrt{n}\)).
+
+        Thus by the induction hypothesis, I have \(P(\floor{\sqrt(n)})\), this number is a multiple of 3.
+
+        Let \(k \in \N \st \floor{\sqrt{n}} = 3k\), so \(f(n) = \br{3k}^{2} + 2 \br{3k} = 3 \br{3k^{2} + 2k}\), a multiple of \(3\).
+
+        So \(P(n)\) follows in both possible cases.
+
+  \item[\(ii\).] Base Cases
+
+        \(P(2)\) claims that \(f(2) = 3\)  is a multiple of 3, which is true.
+
+        \(P(3)\) claims that \(f(3) = 3\) is a multiple of 3, which is true. % we have do to this because the floor of the square root of three is not 2, it is 1
+
+\end{enumerate}
+#+end_latex
+
+* Zero pair free binary strings, zpfbs...
+
+#+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
+
+Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no paris of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
+
+#+begin_latex
+\begin{align*}
+    \z{0} &= 1 \\
+    \z{1} &= 2 \\
+    \z{2} &= 3 \\
+    \z{3} &= 5 \\
+    \z{4} &= 8 \\
+    \z{5} &= 13 \\
+    &\cdots \\
+    \z{n} &= \z{n - 1} + \z{n - 2} \\
+\end{align*}
+#+end_latex

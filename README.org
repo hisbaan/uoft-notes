@@ -7,6 +7,8 @@ This is a repository for the notes that I took while at the University of toront
 | CSC110 | [[http://mariobadr.com][Mario Badr]]         | 2020F | [[csc110/csc110.pdf]] |
 | CSC111 | [[https://www.cs.toronto.edu/~david/][David Liu]]          | 2021S | [[csc111/csc111.pdf]] |
 | MAT137 | [[https://www.gatheringus.com/memorial/alfonso-gracia-saz/7329?locale=en&c=937][Alfonso Gracia-Saz]] | 2020Y | [[mat137/mat137.pdf]] |
+| CSC236 | [[https://cs.toronto.edu/~heap][Daniel Heap]]        | 2021S | [[csc236/csc236.pdf]] |
+
 
 * Contributing
 
@@ -48,4 +50,13 @@ Navigate to the ~uoft-notes/mat137~ directory and run the following command.
 
 #+begin_src sh
 latexmk -lualatex -shell-escape mat137.tex
+#+end_src
+
+*** CSC236
+
+Navigate to the ~uoft-notes/csc236/src~ directory then build every PDF from the ORG source file using GNU Emacs. After this, go to the ~uoft-notes/csc236~ directory and run the following commands.
+
+#+begin_src sh
+rm csc236.pdf
+pdftk src/*.pdf cat output csc236.pdf
 #+end_src

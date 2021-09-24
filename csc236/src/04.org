@@ -1,0 +1,55 @@
+#+TITLE: CSC236 Lecture 04: Complete Induction 2
+#+date: September 20, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* Zero Pair-Free Binary Strings
+
+#+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
+
+Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no paris of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
+
+#+begin_latex
+\begin{align*}
+    \z{0} &= 1 \\
+    \z{1} &= 2 \\
+    \z{2} &= 3 \\
+    \z{3} &= 5 \\
+    \z{4} &= 8 \\
+    \z{5} &= 13 \\
+    &\cdots \\
+    \z{n} &= \z{n - 1} + \z{n - 2}
+\end{align*}
+#+end_latex
+\[f(n) = \begin{cases} 1, & n = 0 \\ 2, & n = 1 \\ f(n - 1) + f(n + 2), & n > 1 \\  \end{cases}\]
+\(\forall n \in \N\), defined predicate \(P(n)\) as: \(f(n) = \z{n}\)
+
+Prove by complete induction that for all natural numbers \(n\), \(P(n)\).
+
+Let \(n \in \N\). Assume that \(P\) is true for \(0, \dots, n - 1\). I will show that \(P(n)\) follows.
+
+For the case \(n \geq 2\): Partition the zero-pair-free binary strings of length \(n\) into those that end in 1 and those that end in 0. Those that end in 1 are simply those of length \(n - 1\). with a 1 appended, and by \(P(n - 1)\) (since \(n - 1 < n\) and \(n - 1 \geq 0\), \(n \geq 1\)), there are \(f(n - 1)\) of these. Those that end in 0 must actually end in 10 (otherwise they are a zero-pair), and by \(P(n - 2)\) (since \(n - 2 \leq n\) and \(n - 2 \geq 0\), \(n \geq 2\)), there are \(f(n - 2)\) of these. Altogether there are \(f(n - 1) + f(n - 2)\) zero-pair-free binary strings of length \(n\) when \(n \geq 2\), which is \(P(n)\).
+
+For the base case \(n = 0\): There is one binary string (the empty one) of length 0, and it is zero-pair-free, and \(f(0) = 1\) and \(P(0)\) is true.
+
+For the base case \(n = 1\): There are two binary strings of length 1, and neither have pairs of zeros, and \(f(1) = 2\) so \(P(1)\) is true.
+
+Thus in all possible cases, \(P(n)\) follows.
+
+* Every natural number greater than 1 has a prime factorization
+
+Each natural number \(n\), let predicate \(P(n)\) be: \(n\) can be expressed as a product of primes.
+
+#+begin_mdframed
+Prime factorization: represent as product of 1 or more primes.
+#+end_mdframed
+
+Prove by complete induction that for all natural numbers \(n\), \(P(n)\).
+
+Let \(n \in \N \st n > 1\). Assume \(P\) is true for \(2, \dots, n - 1\). I will show that \(P(n)\) follows.
+
+Case \(n\) is composite: By definition, \(n\) has a natural number factor \(f_{1}\) such that \(1 < f_{1} < n\). By \(P(f_{1})\) (since \(1 < f_{1} < n\)) we know \(f_{1}\) can be expressed as a product of primes. Let \(f_{2} = \frac{n}{f_{1}}\), since \(f_{1} > 1\), we know that \(\frac{n}{f_{1}} < n\), and also since \(f_{1} < n\), we know that \(\frac{n}{f_{1}} > \frac{f_{1}}{f_{1}} = 1\). Since \(f_{1} > 1\), then \(f_{1} = \frac{n}{f_{2}} > 1\), so \(n > f_{2}\). So, by \(P(f_{2})\), we know that \(f_{2}\) can be expressed as a product of primes. Therefore since \(f_{1}\) and \(f_{2}\) are both products of primes, \(n = f_{1} \times f_{2}\) is a product of primes and \(P(n)\) follows.
+
+Case \(n\) is prime: Then \(n\) is its own primes factorization, and \(P(n)\) follows.
+
+In all possible cases, \(P(n)\) follows.
