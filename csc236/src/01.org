@@ -1,5 +1,5 @@
-#+title: CSC236 Lecture 01: Theory of Computation
-#+date: September 10, 2021
+#+title: CSC236 Week 01: Introduction and Basic Induction
+#+date: September 9 -- 15, 2021
 #+author: Hisbaan Noorani
 #+setupfile: setup.org
 
@@ -108,3 +108,62 @@ Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered
     A \(2^{0} \times 2^{0}\) grid, with one square removed, is just empty space! This can be tiled with 0 charis. So \(P(0)\) is true.
 \end{enumerate}
 #+end_src
+
+* \(3^{n} \geq n^{3}\)?
+
+** Scratch Work
+scratch work: check for a few values of \(n\):
+
+\(3^0 = 1 \geq 0 = 0^3\) \(\checkmark\)
+
+\(3^1 = 1 \geq 1 = 1^3\) \(\checkmark\)
+
+\(3^2 = 9 \geq 8 = 2^3\) \(\checkmark\)
+
+\(3^3 = 27 \geq 27 = 3^3\) \(\checkmark\)
+
+\(3^4 = 81 \geq 64 = 4^3\) \(\checkmark\)
+
+\(3^{-1} = \frac{1}{3} \geq -1 = -1^3\) \(\checkmark\)
+
+\(3^{2.5} = < 2.5^3 = 4^3\) \(\times\)
+
+** Simple Induction
+
+#+begin_proof
+
+  \begin{enumerate}
+    \item[\(i\).] Induction on \(n\)
+
+          Let \(n \in \N\). Assume \(H(n)~:~3^{n} \geq n^{3}\). I will prove \(H(n + 1)\) follows, that is \(3^{n + 1} \geq \br{n + 1}^{3}\).
+
+          \begin{align*}
+            &~3^{n + 1} \\
+            =&~ 3 \cdot 3^{n} \\
+            \geq&~ 3 \cdot n^{3} \\
+            =&~ n^{3} + n^{3} + n^{3} \\
+            \geq&~ n^{3} + 3n^{2} + 9n && \text{(since \(n \geq 3\))} \\
+            \geq&~ n^{3} + 3n^{2} + 3n + 6n \\
+            =&~ n^{3} + 3n^{2} + 3n + 1 && \text{(since \(6n \geq 1\))} \\
+            =&~ \br{n + 1}^{3}  \\
+          \end{align*}
+
+          And thus we have shown that, starting at \(n = 3\), \(H(n) \implies H(n + 1)\).
+
+    \item[\(ii\).] Base Case
+
+          \begin{flalign} \nonumber
+            &\begin{aligned}
+              3^{3} &\geq 3^{3} \text{ so } P(3) \text{ holds.} \\
+              3^{2} &\geq 2^{3} \text{ so } P(2) \text{ holds.} \\
+              3^{1} &\geq 1^{3} \text{ so } P(1) \text{ holds.} \\
+              3^{0} &\geq 0^{3} \text{ so } P(0) \text{ holds.} \\
+            \end{aligned} &&
+          \end{flalign}
+  \end{enumerate}
+
+  And thus, we have shown \(\forall n \in \N, 3^{n} \geq n^{3}\), as needed. \qedhere
+
+#+end_proof
+
+# decompose rather than construct. Take a bigger thing and then break it down, don't build up a smaller on because then you know that there will always be a bigger thing. You don't have to guess at the existence of the bigger thing you're making. Except in structural induction (later)

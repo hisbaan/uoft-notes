@@ -1,63 +1,144 @@
-#+TITLE: CSC236 Lecture 02: Basic Induction
-#+date: September 13, 2021
+#+TITLE: CSC236 Week 02: Complete Induction
+#+date: September 16 -- 22, 2021
 #+author: Hisbaan Noorani
 #+setupfile: setup.org
 
-* \(3^{n} \geq n^{3}\)?
+* Complete Induction
 
-** Scratch Work
-scratch work: check for a few values of \(n\):
+- Every natural number greater than 1 has a prime factorization
+  #+begin_latex
+  \begin{align*}
+    2 &= 2 \\
+    3 &= 3 \\
+    4 &= 2 \times 2 \\
+    5 &= 5 \\
+    6 &= 2 \times 3 \\
+    7 &= 7 \\
+    8 &= 2 \times 2 \times 2 \\
+    9 &= 3 \times 3 \\
+    10 &= 2 \times 5
+\end{align*}
+  #+end_latex
+- How does the factorization of 8 help with the factorization of 9?
 
-\(3^0 = 1 \geq 0 = 0^3\) \(\checkmark\)
+  The fact that 8 can be expressed as a product of primes has nothing to do with 9 being a product of primes.
 
-\(3^1 = 1 \geq 1 = 1^3\) \(\checkmark\)
+* Notational Convenience
 
-\(3^2 = 9 \geq 8 = 2^3\) \(\checkmark\)
+Sometimes you will see the following:
+\[\bigwedge^{k = n - 1}_{k = 0} P(k)\]
+\dots as equivalent to
+\[\forall k \in \N, k < n \implies P(k)\]
 
-\(3^3 = 27 \geq 27 = 3^3\) \(\checkmark\)
+* More dominoes
 
-\(3^4 = 81 \geq 64 = 4^3\) \(\checkmark\)
+\[\br{\forall n \in \N, \sbr{\bigwedge^{k = n - 1}_{k = 0} P(k)} \implies P(n)} \implies \forall n \in \N, P(n)\]
 
-\(3^{-1} = \frac{1}{3} \geq -1 = -1^3\) \(\checkmark\)
+If all the previous cases always imply the current case then all cases are true.
 
-\(3^{2.5} = < 2.5^3 = 4^3\) \(\times\)
+* Complete induction outline
 
-** Simple Induction
+- *Inductive step*: introduce \(n\) and state inductive hypothesis \(H(n)\)
+  + *Derive conclusion \(C(n)\)*: show that \(C(n)\) follows from \(H(n)\), indicating where you use \(H(n)\) and why that is valid.
+- *Verify base case(s)*: verify that the claim is true for any cases not covered in the inductive step
 
-#+begin_proof
+This is the same outline as simple induction but we modify the inductive hypothesis, \(H(n)\) so that it assumes the main claim for every natural number from the starting point up to \(n - 1\), and the conclusion, \(C(n)\) is now the main claim for \(n\).
 
-  \begin{enumerate}
-    \item[\(i\).] Induction on \(n\)
+* Watch the base cases, part 1
 
-          Let \(n \in \N\). Assume \(H(n)~:~3^{n} \geq n^{3}\). I will prove \(H(n + 1)\) follows, that is \(3^{n + 1} \geq \br{n + 1}^{3}\).
+\[f(n) = \begin{cases} 1 & n \leq 1 \\ \sbr{f(\floor{\sqrt{n}})}^2 + 2 f(\floor{\sqrt{n}}) & n > 1 \end{cases}\]
 
-          \begin{align*}
-            &~3^{n + 1} \\
-            =&~ 3 \cdot 3^{n} \\
-            \geq&~ 3 \cdot n^{3} \\
-            =&~ n^{3} + n^{3} + n^{3} \\
-            \geq&~ n^{3} + 3n^{2} + 9n && \text{(since \(n \geq 3\))} \\
-            \geq&~ n^{3} + 3n^{2} + 3n + 6n \\
-            =&~ n^{3} + 3n^{2} + 3n + 1 && \text{(since \(6n \geq 1\))} \\
-            =&~ \br{n + 1}^{3}  \\
-          \end{align*}
+Check a few cases, and make a conjecture:
+#+begin_latex
+\begin{align*}
+    f(0) &= 1 \\
+    f(1) &= 1 \\
+    f(2) &= 3 \\
+    f(3) &= 3 \\
+    f(4) &= 15 \\
+    f(5 \dots 15) &= 15 \\
+    f(16) &= 255
+\end{align*}
+#+end_latex
 
-          And thus we have shown that, starting at \(n = 3\), \(H(n) \implies H(n + 1)\).
+All of these things are divisible by 3. The square of something that is divisible by 3 is still divisible by 3 and the double of something that is divisible by 3 is still divisible by 3.
 
-    \item[\(ii\).] Base Case
+* For all natural numbers \(n > 1, f(n)\) is a multiple of 3?
 
-          \begin{flalign} \nonumber
-            &\begin{aligned}
-              3^{3} &\geq 3^{3} \text{ so } P(3) \text{ holds.} \\
-              3^{2} &\geq 2^{3} \text{ so } P(2) \text{ holds.} \\
-              3^{1} &\geq 1^{3} \text{ so } P(1) \text{ holds.} \\
-              3^{0} &\geq 0^{3} \text{ so } P(0) \text{ holds.} \\
-            \end{aligned} &&
-          \end{flalign}
-  \end{enumerate}
+For natural numbers \(n\) define \(P(n): f(n)\) is a multiple of 3.
 
-  And thus, we have shown \(\forall n \in \N, 3^{n} \geq n^{3}\), as needed. \qedhere
+I will prove, using complete induction, that \(\forall n > 1, P(n)\).
 
-#+end_proof
+#+begin_latex
+\begin{enumerate}
+  \item[\(i\).] Induction on \(n\)
 
-# decompose rather than construct. Take a bigger thing and then break it down, don't build up a smaller on because then you know that there will always be a bigger thing. You don't have to guess at the existence of the bigger thing you're making. Except in structural induction (later)
+        Let \(n \in N\). Assume \(n > 1\). Also assume that \(P(k)\) is true for all natural numbers \(k\) less than \(n\), and greater than 1.
+
+        Notice that the floor of the square root of \(n\) is greater than 1. Also, the square root of \(n\) is less than \(n\) (since \(n > 1 \implies n^{2} > n \implies n > \sqrt{n}\)).
+
+        Thus by the induction hypothesis, I have \(P(\floor{\sqrt(n)})\), this number is a multiple of 3.
+
+        Let \(k \in \N \st \floor{\sqrt{n}} = 3k\), so \(f(n) = \br{3k}^{2} + 2 \br{3k} = 3 \br{3k^{2} + 2k}\), a multiple of \(3\).
+
+        So \(P(n)\) follows in both possible cases.
+
+  \item[\(ii\).] Base Cases
+
+        \(P(2)\) claims that \(f(2) = 3\)  is a multiple of 3, which is true.
+
+        \(P(3)\) claims that \(f(3) = 3\) is a multiple of 3, which is true. % we have do to this because the floor of the square root of three is not 2, it is 1
+
+\end{enumerate}
+#+end_latex
+
+* Zero Pair-Free Binary Strings
+
+#+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
+
+Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no paris of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
+
+#+begin_latex
+\begin{align*}
+    \z{0} &= 1 \\
+    \z{1} &= 2 \\
+    \z{2} &= 3 \\
+    \z{3} &= 5 \\
+    \z{4} &= 8 \\
+    \z{5} &= 13 \\
+    &\cdots \\
+    \z{n} &= \z{n - 1} + \z{n - 2}
+\end{align*}
+#+end_latex
+\[f(n) = \begin{cases} 1, & n = 0 \\ 2, & n = 1 \\ f(n - 1) + f(n + 2), & n > 1 \\  \end{cases}\]
+\(\forall n \in \N\), defined predicate \(P(n)\) as: \(f(n) = \z{n}\)
+
+Prove by complete induction that for all natural numbers \(n\), \(P(n)\).
+
+Let \(n \in \N\). Assume that \(P\) is true for \(0, \dots, n - 1\). I will show that \(P(n)\) follows.
+
+For the case \(n \geq 2\): Partition the zero-pair-free binary strings of length \(n\) into those that end in 1 and those that end in 0. Those that end in 1 are simply those of length \(n - 1\). with a 1 appended, and by \(P(n - 1)\) (since \(n - 1 < n\) and \(n - 1 \geq 0\), \(n \geq 1\)), there are \(f(n - 1)\) of these. Those that end in 0 must actually end in 10 (otherwise they are a zero-pair), and by \(P(n - 2)\) (since \(n - 2 \leq n\) and \(n - 2 \geq 0\), \(n \geq 2\)), there are \(f(n - 2)\) of these. Altogether there are \(f(n - 1) + f(n - 2)\) zero-pair-free binary strings of length \(n\) when \(n \geq 2\), which is \(P(n)\).
+
+For the base case \(n = 0\): There is one binary string (the empty one) of length 0, and it is zero-pair-free, and \(f(0) = 1\) and \(P(0)\) is true.
+
+For the base case \(n = 1\): There are two binary strings of length 1, and neither have pairs of zeros, and \(f(1) = 2\) so \(P(1)\) is true.
+
+Thus in all possible cases, \(P(n)\) follows.
+
+* Every natural number greater than 1 has a prime factorization
+
+Each natural number \(n\), let predicate \(P(n)\) be: \(n\) can be expressed as a product of primes.
+
+#+begin_mdframed
+Prime factorization: represent as product of 1 or more primes.
+#+end_mdframed
+
+Prove by complete induction that for all natural numbers \(n\), \(P(n)\).
+
+Let \(n \in \N \st n > 1\). Assume \(P\) is true for \(2, \dots, n - 1\). I will show that \(P(n)\) follows.
+
+Case \(n\) is composite: By definition, \(n\) has a natural number factor \(f_{1}\) such that \(1 < f_{1} < n\). By \(P(f_{1})\) (since \(1 < f_{1} < n\)) we know \(f_{1}\) can be expressed as a product of primes. Let \(f_{2} = \frac{n}{f_{1}}\), since \(f_{1} > 1\), we know that \(\frac{n}{f_{1}} < n\), and also since \(f_{1} < n\), we know that \(\frac{n}{f_{1}} > \frac{f_{1}}{f_{1}} = 1\). Since \(f_{1} > 1\), then \(f_{1} = \frac{n}{f_{2}} > 1\), so \(n > f_{2}\). So, by \(P(f_{2})\), we know that \(f_{2}\) can be expressed as a product of primes. Therefore since \(f_{1}\) and \(f_{2}\) are both products of primes, \(n = f_{1} \times f_{2}\) is a product of primes and \(P(n)\) follows.
+
+Case \(n\) is prime: Then \(n\) is its own primes factorization, and \(P(n)\) follows.
+
+In all possible cases, \(P(n)\) follows.

@@ -1,112 +1,153 @@
-#+TITLE: CSC236 Lecture 03: Complete Induction
-#+date: September 17, 2021
+#+TITLE: CSC236 Week 03: Recurrences, Structural Induction
+#+date: September 23 -- 29, 2021
 #+author: Hisbaan Noorani
 #+setupfile: setup.org
 
-* Complete Induction
+* Recursively defined function
 
-- Every natural number greater than 1 has a prime factorization
-  #+begin_latex
-  \begin{align*}
-    2 &= 2 \\
-    3 &= 3 \\
-    4 &= 2 \times 2 \\
-    5 &= 5 \\
-    6 &= 2 \times 3 \\
-    7 &= 7 \\
-    8 &= 2 \times 2 \times 2 \\
-    9 &= 3 \times 3 \\
-    10 &= 2 \times 5
-\end{align*}
-  #+end_latex
-- How does the factorization of 8 help with the factorization of 9?
-
-  The fact that 8 can be expressed as a product of primes has nothing to do with 9 being a product of primes.
-
-* Notational Convenience
-
-Sometimes you will see the following:
-\[\bigwedge^{k = n - 1}_{k = 0} P(k)\]
-\dots as equivalent to
-\[\forall k \in \N, k < n \implies P(k)\]
-
-* More dominoes
-
-\[\br{\forall n \in \N, \sbr{\bigwedge^{k = n - 1}_{k = 0} P(k)} \implies P(n)} \implies \forall n \in \N, P(n)\]
-
-If all the previous cases always imply the current case then all cases are true.
-
-* Complete induction outline
-
-- *Inductive step*: introduce \(n\) and state inductive hypothesis \(H(n)\)
-  + *Derive conclusion \(C(n)\)*: show that \(C(n)\) follows from \(H(n)\), indicating where you use \(H(n)\) and why that is valid.
-- *Verify base case(s)*: verify that the claim is true for any cases not covered in the inductive step
-
-This is the same outline as simple induction but we modify the inductive hypothesis, \(H(n)\) so that it assumes the main claim for every natural number from the starting point up to \(n - 1\), and the conclusion, \(C(n)\) is now the main claim for \(n\).
-
-* Watch the base cases, part 1
-
-\[f(n) = \begin{cases} 1 & n \leq 1 \\ \sbr{f(\floor{\sqrt{n}})}^2 + 2 f(\floor{\sqrt{n}}) & n > 1 \end{cases}\]
-
-Check a few cases, and make a conjecture:
-#+begin_latex
+Recall:
+\[f(n) = \begin{cases} 1 & n = 0 \\ 2 & n = 1 \\ f(n - 1) + f(n - 2) & n > 1 \end{cases}\]
+For comparison, let
+\[
+  r_{1} = \frac{1 + \sqrt{5}}{2},~
+  r_{2} = \frac{1 - \sqrt{5}}{2},~
+  a = \frac{\sqrt{5} + 3}{2 \sqrt{5}},~
+  b = \frac{\sqrt{5} - 3}{2 \sqrt{5}}
+\]
+\dots and define
+\[f'(n) = ar_{1}^{n} + br_{2}^{n}\]
+Compare the first few values of \(f(n)\) to the first few values of \(f'(n)\)
 \begin{align*}
-    f(0) &= 1 \\
-    f(1) &= 1 \\
-    f(2) &= 3 \\
-    f(3) &= 3 \\
-    f(4) &= 15 \\
-    f(5 \dots 15) &= 15 \\
-    f(16) &= 255
+    f(0) = 1 &,\quad f'(0) = 1 \\
+    f(1) = 2 &,\quad f'(1) = 2  \\
+    f(2) = 5 &,\quad f'(2) = 5  \\
+    f(3) = 8 &,\quad f'(3) = 8 \\
+    f(4) = 13 &,\quad f'(4) = 13
 \end{align*}
-#+end_latex
 
-All of these things are divisible by 3. The square of something that is divisible by 3 is still divisible by 3 and the double of something that is divisible by 3 is still divisible by 3.
+* Prove that \(\forall n \in \N, f(n) = f'(n)\)
 
-* For all natural numbers \(n > 1, f(n)\) is a multiple of 3?
+\(\forall n \in \N\), define \(P(n)\) by \(f(n) = f'(n)\).
 
-For natural numbers \(n\) define \(P(n): f(n)\) is a multiple of 3.
-
-I will prove, using complete induction, that \(\forall n > 1, P(n)\).
+Prove by complete induction that \(\forall n \in \N, P(n)\). It helps to verify \(1 + r_{1} = r_{1}^2\) and \(1 + r_{2} = r_{2}^{2}\).
 
 #+begin_latex
-\begin{enumerate}
-  \item[\(i\).] Induction on \(n\)
+Let \(n \in \N\). Assume the induction hypothesis, \(\forall k \in \N \st k < n\) has \(f(k) = f'(k)\).
 
-        Let \(n \in N\). Assume \(n > 1\). Also assume that \(P(k)\) is true for all natural numbers \(k\) less than \(n\), and greater than 1.
+\begin{itemize}
+  \item
+        Case \(n > 1\):
+        \begin{align*}
+          f(n) &= f(n - 1) + f(n - 2) && \text{(by definition)} \\
+               &= ar_{1}^{n - 1} + br_{2}^{n - 1} + ar_{1}^{n - 2} + ar_{2}^{n - 2}&&\text{(by IH, since \(0 \leq n - 2, n - 1 < n\))} \\
+               &= a \br{r_{1}^{n - 2} + r_{1}^{n - 1}} + b \br{r_{2}^{n - 2} + r_{2}^{n - 1}} \\
+               &= a \br{r_{1}^{n - 2}} \br{1 + r_{1}} + b \br{r_{2}^{n - 2}} \br{1 + r_{2}} \\
+               &= a \br{r_{1}^{n - 2}} \br{r_{1}^{2}} + b \br{r_{2}^{n - 2}} \br{r_{2}^{2}} \\
+               &= ar_{1}^{n} + br_{2}^{n} \\
+               &= f'(n)
+        \end{align*}
+        And thus \(\forall n > 1, P(n)\) holds.
+  \item
+        Case \(n = 0\):
+        \(f(0) = 1 = f'(0)\), by evaluating \(f'(0)\) so \(P(0)\) holds.
+  \item
+        Case \(n = 1\):
+        \(f(1) = 2 = f'(1)\), by evaluating \(f'(1)\) so \(P(1)\) holds.
+\end{itemize}
 
-        Notice that the floor of the square root of \(n\) is greater than 1. Also, the square root of \(n\) is less than \(n\) (since \(n > 1 \implies n^{2} > n \implies n > \sqrt{n}\)).
-
-        Thus by the induction hypothesis, I have \(P(\floor{\sqrt(n)})\), this number is a multiple of 3.
-
-        Let \(k \in \N \st \floor{\sqrt{n}} = 3k\), so \(f(n) = \br{3k}^{2} + 2 \br{3k} = 3 \br{3k^{2} + 2k}\), a multiple of \(3\).
-
-        So \(P(n)\) follows in both possible cases.
-
-  \item[\(ii\).] Base Cases
-
-        \(P(2)\) claims that \(f(2) = 3\)  is a multiple of 3, which is true.
-
-        \(P(3)\) claims that \(f(3) = 3\) is a multiple of 3, which is true. % we have do to this because the floor of the square root of three is not 2, it is 1
-
-\end{enumerate}
+Thus, in all possible cases, \(P(n)\) holds. \(\blacksquare\)
 #+end_latex
+* Define sets inductively
 
-* Zero pair free binary strings, zpfbs...
+One way to define the natural numbers:
+- \(\N\): The smallest set such that
+  1. \(0 \in \N\)
+  2. \(n \in \N \implies n + 1 \in \N\)
+By *smallest* we mean \(\N\) has no proper subsets that satisfy these two conditions. If we leave out *smallest*, what other sets satisfy the definition? \(\Q, \R, \C, \Z, \text{ etc.}\)
 
-#+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
+* What can you do with it?
 
-Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no pairs of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
+The definition on the previous page defined the simplest natural number (0) and the rule to produce new natural numbers from old (add 1). Proof using Mathematical Induction work by showing that 0 has some property, and then that the rule to produce natural numbers preserves the property, that is
+1. show that \(P(0)\) is true for basis, 0.
+2. Prove that \(\forall n \in \N, P(n) \implies P(n + 1)\).
 
-#+begin_latex
+* Other structurally-defined sets
+
+#+latex_header: \newcommand{\cE}{\mathcal{E}}
+#+latex_header: \newcommand{\vr}[1]{\mathrm{vr}\br{#1}}
+#+latex_header: \newcommand{\op}[1]{\mathrm{op}\br{#1}}
+
+Define \(\cE\): The smallest set such that
+
+1. \(x, y, z \in \cE\)
+2. \(e_{1}, e_{2} \in \cE \implies (e_{1} + e_{2}), (e_{1} - e_{2}), (e_{1} \times e_{2}), (e_{1} \div e_{2}) \in \cE\)
+Form some expressions in \(\cE\). Count the number of variables (symbols from \(\{x, y, z\}\)) and the number of operators symbols from \(\{+, -, \times, \div\}\). Make a conjecture
+
+\((x + y), (x \times y) \in \cE\)
+
+\(((x + y) \times (x \times y)) \in \cE\)
+
+Let \(\vr{e}\) count the number of variables in \(e\) and let \(\op{e}\) count the number of operators in \(e\).
+\[\forall e \in \cE, \vr{e} = \op{e} + 1\]
+
+* Structural induction
+
+To prove that a property is true for all \(e \in \cE\), parallel the recursive set definition:
+
+- *Verify the base case(s)*: Show that the property is true for the simplest members, \(\{x, y, z\}\), that is show \(P(x), P(y), \tand P(z)\).
+
+- *Inductive step*: Let \(e_{1}\) and \(e_{2}\) be arbitrary elements of \(\cE\). Assume \(H(\cbr{e_{1}, e_{2})}\): \(P(e_{1})\) and \(P(e_{2})\), that is \(e_{1}\) and \(e_{2}\) have the property.
+
+  + *Show that \(C(\cbr{e_{1}, e_{2}})\) follows:*
+
+    All possible combinations of \(e_{1}\) and \(e_{2}\) have the property, that is \(P((e_{1} + e_{2})), P((e\)
+
+
+* Structural induction proofs
+
+** Prove \(\forall e \in \cE, \vr{e} = \op{e} + 1\)
+
+For every \(e \in \cE\), define \(P(e)\) as \(\vr{e} = \op{e} + 1\)
+
+WTS \(\forall e \in \cE, P(e)\)
+
+Verify the basis: Let \(t \in \cbr{x, y, z}\). The \(\vr{t} = 1 = 0 + 1 = \op{t} + 1\), so \(P(t)\) holds for every element of the basis.
+
+Let \(e_{1}, e_{2} \in \cE\), and assume \(P(e_{1})\) and \(P(e_{2})\). Want to prove that \(P(\br{e_{1} \odot e_{2}})\) where \(\odot \in \cbr{+, -, \times, \div}\), that is \(\vr{\cbr{e_{1} \odot e_{2}}} = \op{\cbr{e_{1} \odot e_{2}}} + 1\).
 \begin{align*}
-    \z{0} &= 1 \\
-    \z{1} &= 2 \\
-    \z{2} &= 3 \\
-    \z{3} &= 5 \\
-    \z{4} &= 8 \\
-    \z{5} &= 13 \\
-    &\cdots \\
-    \z{n} &= \z{n - 1} + \z{n - 2} \\
+  \vr{\br{e_{1} \odot e_{2}}} &= \vr{e_{1}} + \vr{e_{2}} \\
+                          &= \op{e_{1}} + 1 + \op{e_{2}} + 1 && \text{(by \(P(e_{1})\) and \(P(e_{2})\))} \\
+                          &= \sbr{\op{e_{1}} + 1 \op{e_{2}}} + 1 \\
+                          &= \op{e_{1} \odot e_{2}} + 1
 \end{align*}
-#+end_latex
+So \(P((e_{1} \odot e_{2}))\) follows.
+
+** Prove \(\forall e \in \cE, \vr{e} \leq 2^{h(3)}\)
+
+Define the heights, \(h(x) = h(y) = h(z) = 0\), and \(h(\br{e_{1} \odot e_{2}})\) as \(1 + \max\br{h(e_{1}), h(e_{2})}\) if \(e_{1}, e_{2} \in \cE\) and \(\odot \in \cbr{+, -, \times, \div}\). What's the connection between the unmber of variables and the height?
+
+\begin{align*}
+  h(x) = 0 &, \vr{x} = 1 \\
+  h(\br{x + y}) = 1 &, \vr{\br{x + y}} = 2 \\
+  h(\br{\br{x + y} - z}) = 2 &, \vr{\br{\br{x + y} - z}} \\
+  h(\br{\br{x + y} - \br{z \times x}}) = 2 &, \vr{\br{\br{x + y} - \br{z \times x}}} = 4
+% TODO add the last example from the annotated slided later
+\end{align*}
+For every \(e \in \cE\) define \(P(e)\) as \(\vr{e} \leq 2^{h(e)}\).
+
+WTS \(\forall e \in \cE, P(e)\)
+
+Let \(a \in \cbr{x, y, z}\). Then \(a\) has one variable (itself), and no operators so \(\vr{a} = 1 = 2^{0} = 2^{h(a)}\) since \(h\) of any single vairable is 0. So \(P(a)\) holds for \(a \in \cbr{x, y, z}\) (the basis).
+
+
+% ``holy cow! I wrote the wrong proof'' - Danny heap
+
+Let \(e_{1}, e_{2} \in \cE\). Assume \(P(e_{1}), P(e_{2})\) i.e. \(\vr{e_{1}} \leq 2^{h(e_{1})}\) and \(\vr{e_{2}} \leq 2^{h(e_{2})}\). We will show that \(P(e_{1} \odot e_{2})\) is true, where \(\odot \in \cbr{+, -, \times, \div}\).
+\begin{align*}
+  \vr{e_{1} \odot e_{2}} &= \vr{e_{1}} + \vr{e_{2}} \\
+                     &\leq 2^{h(e_{1})} + 2^{h(e_{2})} && \text{(by \(P(e_{1})\) and \(P(e_{2})\))} \\
+                         &\leq 2 \cdot 2^{\max{\br{h(e_{1}), h(e_{2})}}} \\
+                         &= 2^{1 + \max{\br{h(e_{1}), h(e_{2})}}} \\
+                         &= 2^{h((e_{1} \odot e_{2}))} && \text(by definition of \(h\))
+\end{align*}
+So \(P((e_{1} \odot e_{2}))\) follows.
