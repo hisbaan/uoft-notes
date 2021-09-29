@@ -96,7 +96,7 @@ To prove that a property is true for all \(e \in \cE\), parallel the recursive s
 
 - *Verify the base case(s)*: Show that the property is true for the simplest members, \(\{x, y, z\}\), that is show \(P(x), P(y), \tand P(z)\).
 
-- *Inductive step*: Let \(e_{1}\) and \(e_{2}\) be arbitrary elements of \(\cE\). Assume \(H(\cbr{e_{1}, e_{2})}\): \(P(e_{1})\) and \(P(e_{2})\), that is \(e_{1}\) and \(e_{2}\) have the property.
+- *Inductive step*: Let \(e_{1}\) and \(e_{2}\) be arbitrary elements of \(\cE\). Assume \(H(\cbr{e_{1}, e_{2}})\): \(P(e_{1})\) and \(P(e_{2})\), that is \(e_{1}\) and \(e_{2}\) have the property.
 
   + *Show that \(C(\cbr{e_{1}, e_{2}})\) follows:*
 
@@ -113,11 +113,11 @@ WTS \(\forall e \in \cE, P(e)\)
 
 Verify the basis: Let \(t \in \cbr{x, y, z}\). The \(\vr{t} = 1 = 0 + 1 = \op{t} + 1\), so \(P(t)\) holds for every element of the basis.
 
-Let \(e_{1}, e_{2} \in \cE\), and assume \(P(e_{1})\) and \(P(e_{2})\). Want to prove that \(P(\br{e_{1} \odot e_{2}})\) where \(\odot \in \cbr{+, -, \times, \div}\), that is \(\vr{\cbr{e_{1} \odot e_{2}}} = \op{\cbr{e_{1} \odot e_{2}}} + 1\).
+Let \(e_{1}, e_{2} \in \cE\), and assume \(P(e_{1})\) and \(P(e_{2})\). Want to prove that \(P(\br{e_{1} \odot e_{2}})\) where \(\odot \in \cbr{+, -, \times, \div}\), that is \(\vr{\br{e_{1} \odot e_{2}}} = \op{\br{e_{1} \odot e_{2}}} + 1\).
 \begin{align*}
   \vr{\br{e_{1} \odot e_{2}}} &= \vr{e_{1}} + \vr{e_{2}} \\
                           &= \op{e_{1}} + 1 + \op{e_{2}} + 1 && \text{(by \(P(e_{1})\) and \(P(e_{2})\))} \\
-                          &= \sbr{\op{e_{1}} + 1 \op{e_{2}}} + 1 \\
+                          &= \sbr{\op{e_{1}} + \op{e_{2}}} + 1 \\
                           &= \op{e_{1} \odot e_{2}} + 1
 \end{align*}
 So \(P((e_{1} \odot e_{2}))\) follows.
@@ -125,22 +125,19 @@ So \(P((e_{1} \odot e_{2}))\) follows.
 ** Prove \(\forall e \in \cE, \vr{e} \leq 2^{h(3)}\)
 
 Define the heights, \(h(x) = h(y) = h(z) = 0\), and \(h(\br{e_{1} \odot e_{2}})\) as \(1 + \max\br{h(e_{1}), h(e_{2})}\) if \(e_{1}, e_{2} \in \cE\) and \(\odot \in \cbr{+, -, \times, \div}\). What's the connection between the unmber of variables and the height?
-
 \begin{align*}
   h(x) = 0 &, \vr{x} = 1 \\
   h(\br{x + y}) = 1 &, \vr{\br{x + y}} = 2 \\
   h(\br{\br{x + y} - z}) = 2 &, \vr{\br{\br{x + y} - z}} \\
-  h(\br{\br{x + y} - \br{z \times x}}) = 2 &, \vr{\br{\br{x + y} - \br{z \times x}}} = 4
-% TODO add the last example from the annotated slided later
+  h(\br{\br{x + y} - \br{z \times x}}) = 2 &, \vr{\br{\br{x + y} - \br{z \times x}}} = 4 \\
+  h(\br{\br{\br{x + y} - \br{z \times x}} \div \br{\br{x + y} - \br{z \times x}}}) = 3 &, \vr{\br{\br{\br{x + y} - \br{z \times x}} \div \br{\br{x + y} - \br{z \times x}}}} = 8
 \end{align*}
 For every \(e \in \cE\) define \(P(e)\) as \(\vr{e} \leq 2^{h(e)}\).
 
 WTS \(\forall e \in \cE, P(e)\)
 
 Let \(a \in \cbr{x, y, z}\). Then \(a\) has one variable (itself), and no operators so \(\vr{a} = 1 = 2^{0} = 2^{h(a)}\) since \(h\) of any single vairable is 0. So \(P(a)\) holds for \(a \in \cbr{x, y, z}\) (the basis).
-
-
-% ``holy cow! I wrote the wrong proof'' - Danny heap
+# "holy cow! I wrote the wrong proof" - Danny heap
 
 Let \(e_{1}, e_{2} \in \cE\). Assume \(P(e_{1}), P(e_{2})\) i.e. \(\vr{e_{1}} \leq 2^{h(e_{1})}\) and \(\vr{e_{2}} \leq 2^{h(e_{2})}\). We will show that \(P(e_{1} \odot e_{2})\) is true, where \(\odot \in \cbr{+, -, \times, \div}\).
 \begin{align*}
