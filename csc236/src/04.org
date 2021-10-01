@@ -1,0 +1,75 @@
+#+TITLE: CSC236 Week 04: Well-Ordering, Induction Pitfalls
+#+date: September 30 -- October 6, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+#+latex_header: \usepackage{import}
+
+* Principle of well-ordering
+
+Every non-empty subset of \(\N\) has a smallest element
+
+- How would you prove this for some \(S \subseteq \N\)?
+
+  Since \(\N\) is bounded below by \(0\) and \(0 \in \N\), we know that any subset \(S\) of \(\N\) is also bounded below by \(0\). Since it is bounded below, we can say that there is a smallest element.
+
+- Is there something similar for \(\Q\) or \(\R\)?
+
+  No. For example, \((0, 1) \subseteq \Q, \cbr{\frac{1}{n} : n \in \N^{+}}\).
+
+- Here is the main part of proving the existence of a unique quotient and remainder
+
+  \[
+    \forall m \in \N, \forall n \in \N^{+}, \exists q, r \in \N \st m = qn +r \land 0 \leq r < n
+  \]
+
+  The course notes use Mathematical Induction. Well-ordering seems shorter and clearer.
+
+* Well-ordering example
+
+\(\forall m \in \N, \forall n \in \N^{i}, let R(m, n) = \cbr{r \in \N : \exists q \in \N \st m = qn + r}\) has a smallest element
+
+For a given pair natural numbers \(m, n \neq 0\) does the set \(R(m, n)\) staisfy the conditions for well-ordering?
+\[
+  R(m, n) = \cbr{r \in \N : \exists q \in \N \st m = qn + r}
+\]
+If so, we still need to be sure that the smallest element, \(r'\) has
+\begin{enumerate}
+  \item \(0 \leq r' < n\)
+  \item That \(q'\) and \(r'\) are unique --- no other pari of natural numbers would work
+\end{enumerate}
+\dots in order to have
+\[
+  \forall m \in \N, \forall n \in \N^{+}, \exists! q', r' \st m = q' n + r' \land 0 \leq r < n
+\]
+
+/Proof./ Let \(m \in \N, n \in \N^{+}\). The \(R(m, n)\) is a non-empty set of natural numbers. Then there is a smallest element of \(R(m, n)\), let it be \(r'\), with corresponding \(q'\) such that \(m = q'n + r'\).
+
+\begin{itemize}
+  \item
+        Case \(r' < n\):
+        This automatically satisfies our requirements.
+  \item
+        Case \(r' \geq n\):
+        Then we can show that there is another \(r''\) such that \(r'' < r'\) and \(r'\) is not the smallest element of the set.
+        \begin{align*}
+          m &= q'n + r' && \text{(by choice of \(r'\))} \\
+            &= \br{q' + 1} n + \br{r' - n}
+        \end{align*}
+        Let \(r'' = r' - n, q'' = q' - 1\). Then \(r'' \in R(m, n)\), since \(m = q''n + r''\)
+
+        Then \(r'' < r'\) which is a contradiction, and thus the inital asusmption that \(r' \geq n\) is false.
+
+        So we have a pair of natural number \(\br{r', q'}\) such that \(m = q'n + r'\) and \(0 \leq r' < n\). \mbox{}\hfill\(\blacksquare\)
+\end{itemize}
+
+* \(P(n)\): Every round-robin tornament with \(n\) players with a cycle has a 3-cycle.
+
+Use: every non-empty subset of \(\N\) has a smallest leement
+
+Think of a round-robin as a complete oriented graph \(G = (V, E)\), where \(V = \cbr{p_1, \dots, p_n}\) and every pair of distinct vertices has a unieuqly directed edge between them. Claim: \(\forall n \in \N^{\geq 3}, P(n)\)
+\begin{center}
+    \import{img}{3-cycle.pdf_tex}
+\end{center}
+If there is a cycle \(p_1 \to p_2 \to p_3 \to \dots \to p_n \to p_1\), can you find a shorter one? Can you add another directed edge without creating a 3-cycle? No, you can't.
+
+Let \(T\) be a tournament wiht \(n \geq 3\) contestants. Assume \(T\) has at least one cycle. Since there are no 1-cycles or 2-cycles (why?), \(T\) has a cycle of length at least 3. Let \(C = \cbr{c \ in \N^{\geq 3} : c \text{ is the length of a cycle in } T}\). So \(C\) is a non-empty set of natural numbers, so it must have a smallest element \(c'\).
