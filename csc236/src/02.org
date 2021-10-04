@@ -92,7 +92,7 @@ I will prove, using complete induction, that \(\forall n > 1, P(n)\).
 \end{enumerate}
 #+end_latex
 
-* Zero Pair-Free Binary Strings
+* Zero pair-free binary strings
 
 #+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
 

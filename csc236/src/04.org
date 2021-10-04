@@ -28,7 +28,7 @@ Every non-empty subset of \(\N\) has a smallest element
 
 \(\forall m \in \N, \forall n \in \N^{i}, let R(m, n) = \cbr{r \in \N : \exists q \in \N \st m = qn + r}\) has a smallest element
 
-For a given pair natural numbers \(m, n \neq 0\) does the set \(R(m, n)\) staisfy the conditions for well-ordering?
+For a given pair natural numbers \(m, n \neq 0\) does the set \(R(m, n)\) satisfy the conditions for well-ordering?
 \[
   R(m, n) = \cbr{r \in \N : \exists q \in \N \st m = qn + r}
 \]
@@ -62,14 +62,69 @@ If so, we still need to be sure that the smallest element, \(r'\) has
         So we have a pair of natural number \(\br{r', q'}\) such that \(m = q'n + r'\) and \(0 \leq r' < n\). \mbox{}\hfill\(\blacksquare\)
 \end{itemize}
 
-* \(P(n)\): Every round-robin tornament with \(n\) players with a cycle has a 3-cycle.
+* \(P(n)\): Every round-robin tournament with \(n\) players with a cycle has a 3-cycle.
 
-Use: every non-empty subset of \(\N\) has a smallest leement
+Use: every non-empty subset of \(\N\) has a smallest element
 
-Think of a round-robin as a complete oriented graph \(G = (V, E)\), where \(V = \cbr{p_1, \dots, p_n}\) and every pair of distinct vertices has a unieuqly directed edge between them. Claim: \(\forall n \in \N^{\geq 3}, P(n)\)
-\begin{center}
-    \import{img}{3-cycle.pdf_tex}
-\end{center}
+Think of a round-robin as a complete oriented graph \(G = (V, E)\), where \(V = \cbr{p_1, \dots, p_n}\) and every pair of distinct vertices has a uniquely directed edge between them.
+
 If there is a cycle \(p_1 \to p_2 \to p_3 \to \dots \to p_n \to p_1\), can you find a shorter one? Can you add another directed edge without creating a 3-cycle? No, you can't.
 
-Let \(T\) be a tournament wiht \(n \geq 3\) contestants. Assume \(T\) has at least one cycle. Since there are no 1-cycles or 2-cycles (why?), \(T\) has a cycle of length at least 3. Let \(C = \cbr{c \ in \N^{\geq 3} : c \text{ is the length of a cycle in } T}\). So \(C\) is a non-empty set of natural numbers, so it must have a smallest element \(c'\).
+Claim: \(\forall n \in \N^{\geq 3}, P(n)\)
+\begin{center}
+    \hspace{1cm}\import{img}{3-cycle.pdf_tex}
+\end{center}
+
+Let \(T\) be a tournament with \(n \geq 3\) contestants. Assume \(T\) has at least one cycle. Since there are no 1-cycles or 2-cycles (why?), \(T\) has a cycle of length at least 3. Let \(C = \cbr{c \ in \N^{\geq 3} : c \text{ is the length of a cycle in } T}\). So \(C\) is a non-empty set of natural numbers, so it must have a smallest element \(c'\).
+
+Then, either \(c' = 3\), in which case we are done, or \(c' > 3\).
+
+If \(c' > 3\), there are some sub-cases to consider:
+
+We want to show that this cycle cannot be: \(p_{1} \to p_{2} \to p_{3} \to \dots \p_{c'} \to p_{1}\). To do this, we can find a smaller 3-cycle that contradicts this is the smallest cycle.
+
+- Case \(p_{3} \to p_{1}\): Then there is a shorter cycle, \(p_{1} \to \p_{2} \to p_{3} \to p_{1}\), contradicting \(c'\) being the shortest cycle length.
+
+- Case \(p_{1} \to p_{3}\): Then there is a shorter cycle, \(p_{1} \to p_{3} \to \dots \to p_{c'} \to \p_{1}\) has length \(c' - 1\), contradicting \(c'\) being the shortest cycle length.
+
+Since assume the shortest cycle length, \(c'\) results in a contradiction, ... Fill in from annotated slides.
+
+* No basis?
+
+\(\DS \forall n \in \N, \sum_{i = 0}^{n} 2^{i} = 2^{n + 1}\) (!?)
+
+Let \(n \in \N\). Assume \(\sum_{i = 0}^{n} 2^{i} = 2^{n + 1}\) (IH). I will show that \(\sum_{i = 0}^{n + 1} 2^{i} = 2^{n + 2}.\)
+
+\begin{align*}
+  \sum_{i = 0}^{n + 1} 2^{i} &= \sbr{\sum_{i = 0}^{n} 2^{i}} + 2^{n + 1} \\
+                             &= 2^{n + 1} + 2^{n + 1} && \text{(by the IH)} \\
+                             &= 2 \cdot 2^{n + 1} \\
+                             &= 2^{n + 2}
+\end{align*}
+However, there is no verified base case!! This means that while we can prove the induction step, there is no basis to start the ``infinite loop'' of induction. For example, Let \(\DS n = 0, \sum_{i = 0}^{n} 2^{i} = \sum_{i = 0}^{0} 2^{i} = 2^{0} = 1 \neq 2^{1} = 2^{n}\).
+
+* Zero pair free binary strings, again but with well-ordering
+
+#+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
+
+\[f(n) = \begin{cases} 1, & n = 0 \\ 2, & n = 1 \\ f(n - 1) + f(n + 2), & n > 1 \\  \end{cases}\]
+
+\(P(n)\) can follow simply from \(n\) being a natural number. You do not need to assume to \(P(n - 1)\) and \(P(n - 2)\) in order to prove this. Since the function is defined recursively, it is tempting to use induction, but you do not always need to.
+
+* How not to do simple induction
+
+Does a graph \(G = (V, E)\) with \(\abs{V} > 0\) have \(\abs{E} = \abs{V} - 1\)?
+\begin{itemize}
+  \item
+        Base case:
+        Easy
+  \item
+        Inductive step:
+        What happens if you try to extend an arbitrary graph with \(\abs{V} = n\) to one with \(\abs{V} = n + 1\)? The claim breaks.
+  \item
+        Variations:
+        What happens if you restrict the claim to connected graphs? If we make the graph cyclic, then the statement breaks again. What about acyclic connected graphs? In this final case, it becomes true.
+  \item
+        Take-home:
+        Decompose rather than construct\dots except in structural induction. You never want to take an object of size \(n\) and extend it to size \(n + 1\). Instead, you want to take an object of size \(n + 1\), and find something related to \(n\) (and thus your inductive hypothesis) inside of it.
+\end{itemize}

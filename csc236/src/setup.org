@@ -37,5 +37,6 @@
 #+latex_header: \newcommand{\sbr}[1]{\left[#1\right]}
 #+latex_header: \newcommand{\cbr}[1]{\left\{#1\right\}}
 
+#+latex_header: \newcommand{\DS}{\displaystyle{}}
 #+latex_header: \renewcommand{\qedsymbol}{\(\blacksquare\)}
 #+latex_header: \renewcommand*{\proofname}{\underline{pf}:}

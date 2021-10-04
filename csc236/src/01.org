@@ -165,5 +165,3 @@ scratch work: check for a few values of \(n\):
   And thus, we have shown \(\forall n \in \N, 3^{n} \geq n^{3}\), as needed. \qedhere
 
 #+end_proof
-
-# decompose rather than construct. Take a bigger thing and then break it down, don't build up a smaller on because then you know that there will always be a bigger thing. You don't have to guess at the existence of the bigger thing you're making. Except in structural induction (later)
