@@ -1,0 +1,66 @@
+#+TITLE: CSC236 Week 05: Languages: Definitions
+#+date: October 7 -- October 13, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* Some definitions
+- *alphabet:* Finite, non-empty set of symbols, e.g. \(\cbr{a, b}\) or \(\cbr{0, 1, -1}\). Conventionally denotes \(\Sigma\).
+- *string:* Finite (including empty) sequence of symbols over an alphabet: abba is a string over \(\cbr{a, b}\). Convention: \(\varepsilon\) is the empty string, never an allowed symbol, \(\Sigma^*\) is set of all strings over \(\Sigma\).
+- *language:* Subset of \(\Sigma^*\) for some alphabet \(\Sigma\). Possible empty, possibly empty, possibly infinite subset. E.e. \(\cbr{}, \cbr{aa, aaa, aaaa, \dots}\).
+
+*N.B.:* \(\cbr{} \neq \cbr{\varepsilon}\). \(\abs{\cbr{}} = 0 \neq 1 = \abs{\cbr{\varepsilon}}\)
+
+Many problems can be reduced to languages: logical formulas, identifiers fro compilation, natural language processing. Key question is recognition:
+\[
+\text{Given language \(L\) ans string \(s\), is \(s \in L\)?}
+\]
+
+* More notation --- string operations
+- *string length:* denotes \(\abs{s}\), is the number of symbols in \(s\), e.g. \(\abs{bba} = 3\).
+- *\(s = t\):* if and only if \(\abs{s} = \abs{t}\), and \(s_i = s_t\), for \(0 \le i < \abs{s}\).
+- *\(s^R\):* reversal of \(s\) is obtained by reversing symbols of \(s\), e.g. \(1011^R = 1101\).
+- *\(st \text{ or } s \circ t\):* concatenation of \(s\) and \(t\) --- all characters of \(s\) followed by all those of \(t\), e.g. \(bba \circ bb = bbabb\).
+- *\(s^k\):* denotes \(s\) concatenated with itself \(k\) times, e.g. \(ab^3 = ababab, 101^0 = \varepsilon\).
+- *\(\Sigma^n\):* all strings of length \(n\) over \(\Sigma\), \(\Sigma^*\) denotes all strings over \(\Sigma\).
+
+* Language operations
+- *\(\overline{L}\):* Complement of \(L\), i.e. \(\Sigma^* - L\). If \(L\) is a language of strings over \(\cbr{0, 1}\) that start with \(0\), then \(\overline{L}\) is the language of strings that begin with 1 plus the empty string.
+- *\(L \cup L'\):* Union.
+- *\(L \cap L'\):* Intersection.
+- *\(L - L'\):* Difference.
+- *\(\mathrm{Rev}(L)\):* = \(cbr{s^R : s \in L}\)
+- *concatenation:* \(LL' \text{ or } L \circ L' = \cbr{rt : r \in L, r \in L'}\). Special cases \(L\cbr{\varepsilon} = L = \cbr{\varepsilon}L, \text{ and } L\cbr{} = \cbr{} = \cbr{}L\).
+- *exponentiation:* \(L^k\) is concatenation of \(L\), \(k\) times. Special case, \(L^0 = \cbr{\varepsilon}\), including \(L = \cbr{}\).
+- *Kleene star:* \(L^* = L^0 \cup L^1 \cup L^2 \cup \dots\)
+
+* Another way to define languages
+In addition to the set description \(L = \cbr{\dots}\).
+
+Definition: The regular expressions (regexps or REs) over alphabet \(\Sigma\) is the smallest set such that
+- \(\emptyset, \varepsilon, \text{ and } x\), for every \(x \in \Sigma\) are REs over \(\Sigma\).
+- If \(T\) and \(S\) are REs are over \(\Sigma\), then so are:
+  + \(\br{T + S}\) (union) --- lowest precedence operator
+  + \(\br{TS}\) (concatenation) --- middle precedence operator
+  + \(T^*\) (star) --- highest precedence
+
+* Regular expression to languages:
+The \(L(R)\), the language denoted (or described) by \(R\) is defined by structural induction.
+
+- Basis; If \(R\) is a regular expression by the basis of the definition of regular expressions, then define \(L(R)\):
+  + \(L(\emptyset) = \emptyset\) (the empty language -- no strings!)
+  + \(L(\varepsilon) = \cbr{\varepsilon}\) (the language consisting of just the empty string)
+  + \(L(x) = \cbr{x}\) (the language consisting of the one-symbol string)
+- Induction step: If \(R\) is a regular expression by the induction step of the definition, then define \(L(R)\):
+  + \(L(\br{T + S}) = L(S) \cup L(T)\)
+  + \(L(\br{TS}) = L(S)L(T)\)
+  + \(L(T^*) = L(T)*\)
+
+We are assuming about \(\br{S + T}\) and \(\br{ST}\) above?
+
+* Regexp examples
+- \(L(0 + 1) = \cbr{0, 1}\)
+- \(L(br{0 + 1}^*)\) All binary strings over \(\cbr{0, 1}\)
+- \(L(\br{01}^*) = \cbr{\varepsilon, 01, 0101, 010101, \dots}\)
+- \(L(0^*1^*)\) 0 or more 0s followed by 0 or more 1s
+- \(L(0^* + 1^*\) 0 or more 0s or 0 or more 1s
+- \(L(\br{0 + 1}\br{0 + 1}^*)\) Non-empty binary strings over \(\cbr{0, 1}\)

@@ -72,7 +72,7 @@ If there is a cycle \(p_1 \to p_2 \to p_3 \to \dots \to p_n \to p_1\), can you f
 
 Claim: \(\forall n \in \N^{\geq 3}, P(n)\)
 \begin{center}
-    \hspace{1cm}\import{img}{3-cycle.pdf_tex}
+    \import{img}{3-cycle.pdf_tex}
 \end{center}
 
 Let \(T\) be a tournament with \(n \geq 3\) contestants. Assume \(T\) has at least one cycle. Since there are no 1-cycles or 2-cycles (why?), \(T\) has a cycle of length at least 3. Let \(C = \cbr{c \ in \N^{\geq 3} : c \text{ is the length of a cycle in } T}\). So \(C\) is a non-empty set of natural numbers, so it must have a smallest element \(c'\).
@@ -87,7 +87,8 @@ We want to show that this cycle cannot be: \(p_{1} \to p_{2} \to p_{3} \to \dots
 
 - Case \(p_{1} \to p_{3}\): Then there is a shorter cycle, \(p_{1} \to p_{3} \to \dots \to p_{c'} \to \p_{1}\) has length \(c' - 1\), contradicting \(c'\) being the shortest cycle length.
 
-Since assume the shortest cycle length, \(c'\) results in a contradiction, ... Fill in from annotated slides.
+# Since assuming the shortest cycle length, \(c'\) results in a contradiction,
+# TODO fill in from lecture slides
 
 * No basis?
 

@@ -4,6 +4,9 @@
 #+latex_header: \usepackage{inconsolata}
 #+latex_header: \renewcommand\theFancyVerbLine{\small\arabic{FancyVerbLine}}
 
+#+latex_header: \usepackage{import, pdfpages, transparent, xcolor}
+#+latex_header: \newcommand{\inkfig}[2][1]{\def\svgwidth{#1\columnwidth} \import{./img/}{#2.pdf_tex}}
+
 #+latex_header: \setlength{\parskip}{0.5em}
 #+latex_header: \setlength{\parindent}{0}
 
@@ -39,4 +42,3 @@
 
 #+latex_header: \newcommand{\DS}{\displaystyle{}}
 #+latex_header: \renewcommand{\qedsymbol}{\(\blacksquare\)}
-#+latex_header: \renewcommand*{\proofname}{\underline{pf}:}

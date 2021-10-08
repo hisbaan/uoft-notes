@@ -38,7 +38,7 @@
   \newcommand*\fsize{\dimexpr\f@size pt\relax}%
   \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
   \ifx\svgwidth\undefined%
-    \setlength{\unitlength}{207.22697581bp}%
+    \setlength{\unitlength}{164.79881467bp}%
     \ifx\svgscale\undefined%
       \relax%
     \else%
@@ -50,13 +50,14 @@
   \global\let\svgwidth\undefined%
   \global\let\svgscale\undefined%
   \makeatother%
-  \begin{picture}(1,0.78672062)%
+  \begin{picture}(1,0.99853488)%
     \lineheight{1}%
     \setlength\tabcolsep{0pt}%
     \put(0,0){\includegraphics[width=\unitlength,page=1]{3-cycle.pdf}}%
-    \put(0.23133416,0.73631893){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_1\)\end{tabular}}}}%
-    \put(0.77591225,0.73532687){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_2\)\end{tabular}}}}%
-    \put(0.23462485,0.21444006){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_3\)\end{tabular}}}}%
-    \put(0.79148495,0.20049103){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_4\)\end{tabular}}}}%
+    \put(0.15692758,0.81330835){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_1\)\end{tabular}}}}%
+    \put(0.8235056,0.81206087){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_2\)\end{tabular}}}}%
+    \put(0.15196346,0.14796803){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_4\)\end{tabular}}}}%
+    \put(0.82488352,0.14863206){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(p_3\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{3-cycle.pdf}}%
   \end{picture}%
 \endgroup%

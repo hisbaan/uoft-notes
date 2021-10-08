@@ -70,8 +70,8 @@ For natural numbers \(n\) define \(P(n): f(n)\) is a multiple of 3.
 I will prove, using complete induction, that \(\forall n > 1, P(n)\).
 
 #+begin_latex
-\begin{enumerate}
-  \item[\(i\).] Induction on \(n\)
+\begin{itemize}
+  \item Induction on \(n\):
 
         Let \(n \in N\). Assume \(n > 1\). Also assume that \(P(k)\) is true for all natural numbers \(k\) less than \(n\), and greater than 1.
 
@@ -83,13 +83,13 @@ I will prove, using complete induction, that \(\forall n > 1, P(n)\).
 
         So \(P(n)\) follows in both possible cases.
 
-  \item[\(ii\).] Base Cases
+  \item Base Cases:
 
         \(P(2)\) claims that \(f(2) = 3\)  is a multiple of 3, which is true.
 
         \(P(3)\) claims that \(f(3) = 3\) is a multiple of 3, which is true. % we have do to this because the floor of the square root of three is not 2, it is 1
 
-\end{enumerate}
+\end{itemize}
 #+end_latex
 
 * Zero pair-free binary strings
