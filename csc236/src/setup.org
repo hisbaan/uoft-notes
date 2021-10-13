@@ -41,4 +41,5 @@
 #+latex_header: \newcommand{\cbr}[1]{\left\{#1\right\}}
 
 #+latex_header: \newcommand{\DS}{\displaystyle{}}
+#+latex_header: \newcommand{\orgqed}{\mbox{}\hfill\(\blacksquare\)}
 #+latex_header: \renewcommand{\qedsymbol}{\(\blacksquare\)}

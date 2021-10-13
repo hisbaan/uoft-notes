@@ -87,9 +87,9 @@ Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered
 - \(3 \times 3\): No. The remaining number of squares is not divisible by 3.
 - \(4 \times 4\): Yes.
 
-\(P(n)\): a \(2^n \times 2^n\) square grid, with one subsquare removed, can be tiled (covered without overlapping) by "chair" trominoes.
 
-#+begin_src latex
+/Proof:/ \(\forall n \in \N\), define the predicate \(P(n)\) as a \(2^{n} \times 2^{n}\) square grid, with one subsquare removed, can be tiled (covered without overlapping) by "chair" trominoes.
+
 \begin{itemize}
   \item
         Induction on \(n\)
@@ -107,30 +107,27 @@ Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered
 
         A \(2^{0} \times 2^{0}\) grid, with one square removed, is just empty space! This can be tiled with 0 charis. So \(P(0)\) is true.
 \end{itemize}
-#+end_src
+
+And thus \(\forall n \in \N, P(n)\). \orgqed
 
 * \(3^{n} \geq n^{3}\)?
 
 ** Scratch Work
-scratch work: check for a few values of \(n\):
 
-\(3^0 = 1 \geq 0 = 0^3\) \(\checkmark\)
-
-\(3^1 = 1 \geq 1 = 1^3\) \(\checkmark\)
-
-\(3^2 = 9 \geq 8 = 2^3\) \(\checkmark\)
-
-\(3^3 = 27 \geq 27 = 3^3\) \(\checkmark\)
-
-\(3^4 = 81 \geq 64 = 4^3\) \(\checkmark\)
-
-\(3^{-1} = \frac{1}{3} \geq -1 = -1^3\) \(\checkmark\)
-
-\(3^{2.5} = < 2.5^3 = 4^3\) \(\times\)
+Check for a few values of \(n\):
+\begin{align*}
+3^0 = 1 &\geq 0 = 0^3 && \checkmark \\
+3^1 = 3 &\geq 1 = 1^3 && \checkmark \\
+3^2 = 9 &\geq 8 = 2^3 && \checkmark \\
+3^3 = 27 &\geq 27 = 3^3 && \checkmark \\
+3^4 = 81 &\geq 64 = 4^3 && \checkmark \\
+3^{-1} = \frac{1}{3} &\geq -1 = -1^3 && \checkmark \\
+3^{2.5} &< 2.5^3 && \times
+\end{align*}
 
 ** Simple Induction
 
-#+begin_proof
+/Proof:/ \(\forall n \in \N\), define the predicate \(P(n)\) as \(3^n \geq n^3\).
 
   \begin{itemize}
     \item Induction on \(n\)
@@ -148,7 +145,7 @@ scratch work: check for a few values of \(n\):
             =&~ \br{n + 1}^{3}  \\
           \end{align*}
 
-          And thus we have shown that, starting at \(n = 3\), \(H(n) \implies H(n + 1)\).
+          And thus we have shown that \(\forall n \in \N \st n \geq 3, H(n) \implies H(n + 1)\).
 
     \item Base Case
 
@@ -162,6 +159,4 @@ scratch work: check for a few values of \(n\):
           \end{flalign}
   \end{itemize}
 
-  And thus, we have shown \(\forall n \in \N, 3^{n} \geq n^{3}\), as needed. \qedhere
-
-#+end_proof
+  And thus, we have shown \(\forall n \in \N, 3^{n} \geq n^{3}\), as needed. \orgqed

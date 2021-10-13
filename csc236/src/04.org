@@ -26,7 +26,7 @@ Every non-empty subset of \(\N\) has a smallest element
 
 * Well-ordering example
 
-\(\forall m \in \N, \forall n \in \N^{i}, let R(m, n) = \cbr{r \in \N : \exists q \in \N \st m = qn + r}\) has a smallest element
+\(\forall m \in \N, \forall n \in \N^{i}, R(m, n) = \cbr{r \in \N : \exists q \in \N \st m = qn + r}\) has a smallest element.
 
 For a given pair natural numbers \(m, n \neq 0\) does the set \(R(m, n)\) satisfy the conditions for well-ordering?
 \[
@@ -58,9 +58,8 @@ If so, we still need to be sure that the smallest element, \(r'\) has
         Let \(r'' = r' - n, q'' = q' - 1\). Then \(r'' \in R(m, n)\), since \(m = q''n + r''\)
 
         Then \(r'' < r'\) which is a contradiction, and thus the inital asusmption that \(r' \geq n\) is false.
-
-        So we have a pair of natural number \(\br{r', q'}\) such that \(m = q'n + r'\) and \(0 \leq r' < n\). \mbox{}\hfill\(\blacksquare\)
 \end{itemize}
+So we have a unique pair of natural numbers \(\br{r', q'}\) such that \(m = q'n + r'\) and \(0 \leq r' < n\). \orgqed
 
 * \(P(n)\): Every round-robin tournament with \(n\) players with a cycle has a 3-cycle.
 
@@ -75,26 +74,26 @@ Claim: \(\forall n \in \N^{\geq 3}, P(n)\)
     \import{img}{3-cycle.pdf_tex}
 \end{center}
 
-Let \(T\) be a tournament with \(n \geq 3\) contestants. Assume \(T\) has at least one cycle. Since there are no 1-cycles or 2-cycles (why?), \(T\) has a cycle of length at least 3. Let \(C = \cbr{c \ in \N^{\geq 3} : c \text{ is the length of a cycle in } T}\). So \(C\) is a non-empty set of natural numbers, so it must have a smallest element \(c'\).
+/Proof:/ Let \(T\) be a tournament with \(n \geq 3\) contestants. Assume \(T\) has at least one cycle. Since there are no 1-cycles or 2-cycles (think about why), \(T\) has a cycle of length at least 3.
 
-Then, either \(c' = 3\), in which case we are done, or \(c' > 3\).
+Let \(C = \cbr{c \in \N^{\geq 3} : c \text{ is the length of a cycle in } T}\). So \(C\) is a non-empty set of natural numbers, so it must have a smallest element \(c'\). Then, either \(c' = 3\), in which case we are done, or \(c' > 3\).
 
 If \(c' > 3\), there are some sub-cases to consider:
 
-We want to show that this cycle cannot be: \(p_{1} \to p_{2} \to p_{3} \to \dots \p_{c'} \to p_{1}\). To do this, we can find a smaller 3-cycle that contradicts this is the smallest cycle.
+We want to show that this cycle cannot be: \(p_{1} \to p_{2} \to p_{3} \to \dots p_{c'} \to p_{1}\). To do this, we can find a smaller 3-cycle that contradicts this is the smallest cycle.
 
-- Case \(p_{3} \to p_{1}\): Then there is a shorter cycle, \(p_{1} \to \p_{2} \to p_{3} \to p_{1}\), contradicting \(c'\) being the shortest cycle length.
+- Case \(p_{3} \to p_{1}\): Then there is a shorter cycle, \(p_{1} \to p_{2} \to p_{3} \to p_{1}\), contradicting \(c'\) being the shortest cycle length.
 
-- Case \(p_{1} \to p_{3}\): Then there is a shorter cycle, \(p_{1} \to p_{3} \to \dots \to p_{c'} \to \p_{1}\) has length \(c' - 1\), contradicting \(c'\) being the shortest cycle length.
+- Case \(p_{1} \to p_{3}\): Then there is a shorter cycle, \(p_{1} \to p_{3} \to \dots \to p_{c'} \to p_{1}\) has length \(c' - 1\), contradicting \(c'\) being the shortest cycle length. \orgqed
 
 # Since assuming the shortest cycle length, \(c'\) results in a contradiction,
 # TODO fill in from lecture slides
 
 * No basis?
 
-\(\DS \forall n \in \N, \sum_{i = 0}^{n} 2^{i} = 2^{n + 1}\) (!?)
+What if we try to prove \(\DS \forall n \in \N, \sum_{i = 0}^{n} 2^{i} = 2^{n + 1}\) (!?)
 
-Let \(n \in \N\). Assume \(\sum_{i = 0}^{n} 2^{i} = 2^{n + 1}\) (IH). I will show that \(\sum_{i = 0}^{n + 1} 2^{i} = 2^{n + 2}.\)
+/Pseudo Proof:/ Let \(n \in \N\). Assume \(\sum_{i = 0}^{n} 2^{i} = 2^{n + 1}\) (IH). I will show that \(\sum_{i = 0}^{n + 1} 2^{i} = 2^{n + 2}.\)
 
 \begin{align*}
   \sum_{i = 0}^{n + 1} 2^{i} &= \sbr{\sum_{i = 0}^{n} 2^{i}} + 2^{n + 1} \\
@@ -127,5 +126,5 @@ Does a graph \(G = (V, E)\) with \(\abs{V} > 0\) have \(\abs{E} = \abs{V} - 1\)?
         What happens if you restrict the claim to connected graphs? If we make the graph cyclic, then the statement breaks again. What about acyclic connected graphs? In this final case, it becomes true.
   \item
         Take-home:
-        Decompose rather than construct\dots except in structural induction. You never want to take an object of size \(n\) and extend it to size \(n + 1\). Instead, you want to take an object of size \(n + 1\), and find something related to \(n\) (and thus your inductive hypothesis) inside of it.
+        Decompose rather than construct... except in structural induction. You never want to take an object of size \(n\) and extend it to size \(n + 1\). Instead, you want to take an object of size \(n + 1\), and find something related to \(n\) (your inductive hypothesis) inside of it.
 \end{itemize}

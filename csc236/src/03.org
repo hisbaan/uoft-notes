@@ -27,12 +27,9 @@ Compare the first few values of \(f(n)\) to the first few values of \(f'(n)\)
 
 * Prove that \(\forall n \in \N, f(n) = f'(n)\)
 
-\(\forall n \in \N\), define \(P(n)\) by \(f(n) = f'(n)\).
+\(\forall n \in \N\), define \(P(n)\) by \(f(n) = f'(n)\). Prove by complete induction that \(\forall n \in \N, P(n)\). It helps to verify \(1 + r_{1} = r_{1}^2\) and \(1 + r_{2} = r_{2}^{2}\).
 
-Prove by complete induction that \(\forall n \in \N, P(n)\). It helps to verify \(1 + r_{1} = r_{1}^2\) and \(1 + r_{2} = r_{2}^{2}\).
-
-#+begin_latex
-Let \(n \in \N\). Assume the induction hypothesis, \(\forall k \in \N \st k < n\) has \(f(k) = f'(k)\).
+/Proof:/ Let \(n \in \N\). Assume the induction hypothesis, \(\forall k \in \N \st k < n\) has \(f(k) = f'(k)\).
 
 \begin{itemize}
   \item
@@ -55,20 +52,21 @@ Let \(n \in \N\). Assume the induction hypothesis, \(\forall k \in \N \st k < n\
         \(f(1) = 2 = f'(1)\), by evaluating \(f'(1)\) so \(P(1)\) holds.
 \end{itemize}
 
-Thus, in all possible cases, \(P(n)\) holds. \(\blacksquare\)
-#+end_latex
+Thus, in all possible cases, \(P(n)\) holds. \orgqed
+
 * Define sets inductively
 
 One way to define the natural numbers:
-- \(\N\): The smallest set such that
+
+\(\N\): The smallest set such that
   1. \(0 \in \N\)
   2. \(n \in \N \implies n + 1 \in \N\)
 By *smallest* we mean \(\N\) has no proper subsets that satisfy these two conditions. If we leave out *smallest*, what other sets satisfy the definition? \(\Q, \R, \C, \Z, \text{ etc.}\)
 
 * What can you do with it?
 
-The definition on the previous page defined the simplest natural number (0) and the rule to produce new natural numbers from old (add 1). Proof using Mathematical Induction work by showing that 0 has some property, and then that the rule to produce natural numbers preserves the property, that is
-1. show that \(P(0)\) is true for basis, 0.
+The definition in \S 3 defined the simplest natural number (0) and the rule to produce new natural numbers from old ones (add 1). Proof using Mathematical Induction work by showing that 0 has some property, and then that the rule to produce natural numbers preserves the property, that is
+1. Show that \(P(0)\) is true for basis, 0.
 2. Prove that \(\forall n \in \N, P(n) \implies P(n + 1)\).
 
 * Other structurally-defined sets
@@ -81,12 +79,9 @@ Define \(\cE\): The smallest set such that
 
 1. \(x, y, z \in \cE\)
 2. \(e_{1}, e_{2} \in \cE \implies (e_{1} + e_{2}), (e_{1} - e_{2}), (e_{1} \times e_{2}), (e_{1} \div e_{2}) \in \cE\)
-Form some expressions in \(\cE\). Count the number of variables (symbols from \(\{x, y, z\}\)) and the number of operators symbols from \(\{+, -, \times, \div\}\). Make a conjecture
-
-\((x + y), (x \times y) \in \cE\)
-
-\(((x + y) \times (x \times y)) \in \cE\)
-
+Form some expressions in \(\cE\). Count the number of variables (symbols from \(\{x, y, z\}\)) and the number of operators symbols from \(\{+, -, \times, \div\}\). Make a conjecture:
+\[(x + y), (x \times y) \in \cE\]
+\[((x + y) \times (x \times y)) \in \cE\]
 Let \(\vr{e}\) count the number of variables in \(e\) and let \(\op{e}\) count the number of operators in \(e\).
 \[\forall e \in \cE, \vr{e} = \op{e} + 1\]
 
@@ -107,11 +102,7 @@ To prove that a property is true for all \(e \in \cE\), parallel the recursive s
 
 ** Prove \(\forall e \in \cE, \vr{e} = \op{e} + 1\)
 
-For every \(e \in \cE\), define \(P(e)\) as \(\vr{e} = \op{e} + 1\)
-
-WTS \(\forall e \in \cE, P(e)\)
-
-Verify the basis: Let \(t \in \cbr{x, y, z}\). The \(\vr{t} = 1 = 0 + 1 = \op{t} + 1\), so \(P(t)\) holds for every element of the basis.
+/Proof:/ For every \(e \in \cE\), define \(P(e)\) as \(\vr{e} = \op{e} + 1\). Verify the basis: Let \(t \in \cbr{x, y, z}\). The \(\vr{t} = 1 = 0 + 1 = \op{t} + 1\), so \(P(t)\) holds for every element of the basis.
 
 Let \(e_{1}, e_{2} \in \cE\), and assume \(P(e_{1})\) and \(P(e_{2})\). Want to prove that \(P(\br{e_{1} \odot e_{2}})\) where \(\odot \in \cbr{+, -, \times, \div}\), that is \(\vr{\br{e_{1} \odot e_{2}}} = \op{\br{e_{1} \odot e_{2}}} + 1\).
 \begin{align*}
@@ -120,7 +111,7 @@ Let \(e_{1}, e_{2} \in \cE\), and assume \(P(e_{1})\) and \(P(e_{2})\). Want to 
                           &= \sbr{\op{e_{1}} + \op{e_{2}}} + 1 \\
                           &= \op{e_{1} \odot e_{2}} + 1
 \end{align*}
-So \(P((e_{1} \odot e_{2}))\) follows.
+So \(P((e_{1} \odot e_{2}))\) follows. \orgqed
 
 ** Prove \(\forall e \in \cE, \vr{e} \leq 2^{h(3)}\)
 
@@ -132,19 +123,17 @@ Define the heights, \(h(x) = h(y) = h(z) = 0\), and \(h(\br{e_{1} \odot e_{2}})\
   h(\br{\br{x + y} - \br{z \times x}}) = 2 &, \vr{\br{\br{x + y} - \br{z \times x}}} = 4 \\
   h(\br{\br{\br{x + y} - \br{z \times x}} \div \br{\br{x + y} - \br{z \times x}}}) = 3 &, \vr{\br{\br{\br{x + y} - \br{z \times x}} \div \br{\br{x + y} - \br{z \times x}}}} = 8
 \end{align*}
-For every \(e \in \cE\) define \(P(e)\) as \(\vr{e} \leq 2^{h(e)}\).
 
-WTS \(\forall e \in \cE, P(e)\)
-
-Let \(a \in \cbr{x, y, z}\). Then \(a\) has one variable (itself), and no operators so \(\vr{a} = 1 = 2^{0} = 2^{h(a)}\) since \(h\) of any single vairable is 0. So \(P(a)\) holds for \(a \in \cbr{x, y, z}\) (the basis).
-# "holy cow! I wrote the wrong proof" - Danny heap
+/Proof:/ For every \(e \in \cE\) define \(P(e)\) as \(\vr{e} \leq 2^{h(e)}\). Let \(a \in \cbr{x, y, z}\). Then \(a\) has one variable (itself), and no operators so \(\vr{a} = 1 = 2^{0} = 2^{h(a)}\) since \(h\) of any single vairable is 0. So \(P(a)\) holds for \(a \in \cbr{x, y, z}\) (the basis).
 
 Let \(e_{1}, e_{2} \in \cE\). Assume \(P(e_{1}), P(e_{2})\) i.e. \(\vr{e_{1}} \leq 2^{h(e_{1})}\) and \(\vr{e_{2}} \leq 2^{h(e_{2})}\). We will show that \(P(e_{1} \odot e_{2})\) is true, where \(\odot \in \cbr{+, -, \times, \div}\).
+#+begin_latex
 \begin{align*}
   \vr{e_{1} \odot e_{2}} &= \vr{e_{1}} + \vr{e_{2}} \\
-                     &\leq 2^{h(e_{1})} + 2^{h(e_{2})} && \text{(by \(P(e_{1})\) and \(P(e_{2})\))} \\
-                         &\leq 2 \cdot 2^{\max{\br{h(e_{1}), h(e_{2})}}} \\
-                         &= 2^{1 + \max{\br{h(e_{1}), h(e_{2})}}} \\
-                         &= 2^{h((e_{1} \odot e_{2}))} && \text(by definition of \(h\))
+                        &\leq 2^{h(e_{1})} + 2^{h(e_{2})} && \text{(by \(P(e_{1})\) and \(P(e_{2})\))} \\
+                        &\leq 2 \cdot 2^{\max{\br{h(e_{1}), h(e_{2})}}} \\
+                        &= 2^{1 + \max{\br{h(e_{1}), h(e_{2})}}} \\
+                        &= 2^{h((e_{1} \odot e_{2}))} && \text{(by definition of \(h\))}
 \end{align*}
-So \(P((e_{1} \odot e_{2}))\) follows.
+#+end_latex
+So \(P((e_{1} \odot e_{2}))\) follows. \orgqed
