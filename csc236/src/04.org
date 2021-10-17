@@ -84,10 +84,9 @@ We want to show that this cycle cannot be: \(p_{1} \to p_{2} \to p_{3} \to \dots
 
 - Case \(p_{3} \to p_{1}\): Then there is a shorter cycle, \(p_{1} \to p_{2} \to p_{3} \to p_{1}\), contradicting \(c'\) being the shortest cycle length.
 
-- Case \(p_{1} \to p_{3}\): Then there is a shorter cycle, \(p_{1} \to p_{3} \to \dots \to p_{c'} \to p_{1}\) has length \(c' - 1\), contradicting \(c'\) being the shortest cycle length. \orgqed
+- Case \(p_{1} \to p_{3}\): Then there is a shorter cycle, \(p_{1} \to p_{3} \to \dots \to p_{c'} \to p_{1}\) has length \(c' - 1\), contradicting \(c'\) being the shortest cycle length.
 
-# Since assuming the shortest cycle length, \(c'\) results in a contradiction,
-# TODO fill in from lecture slides
+In both cases, assuming \(c' > 3\) leads to a contradiction, so this assumption is false. \orgqed
 
 * No basis?
 

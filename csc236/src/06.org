@@ -1,0 +1,51 @@
+#+TITLE: CSC236 Week 06: Automata and Languages
+#+date: October 14 -- October 20, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* \(L = \cbr{x \in \cbr{0, 1}^{*} | x \text{ begins and ends with a different bit}}\)
+
+The language \(L'((0 \br{0 + 1}^{*} 1) \cup (1 \br{1 + 0}^{*} 0))\) should be the same language as the one listed above.
+
+If we want to prove this, we can show that \(\forall x \in L, x \in L' \land \forall x \in L', x \in L\). This is the same as showing that \(L \subseteq L' \land L' \subseteq L\), which is equivalent to \(L = L'\), what we are trying to show.
+
+/Proof:/ First we show that \(L' \subseteq L\):
+Let \(x \in L'\). Then either \(x = 1y0\) where \(y \in \cbr{0, 1}^{*}\) or \(x = 0w1\), where \(w \in \cbr{1, 0}^{*}\). Without loss of generality, assume \(x = 1y0\), otherwise just replace 1 with 0, 0 with 1, and \(y\) with \(w\).
+
+Then \(1 \in L(1), 0 \in L(0), \tand y \in L(0 + 1)^{*}\), since it is the concatenation of 0 or more strings from \(L(0 + 1)\). So \(x \in L(1)L(0 + 1)^{*}L(0)\), so it begins with 1 and ends with 0, which are different, so \(x \in L\).
+
+Next we show that \(L \subseteq L\):
+left as an exercise to the reader
+
+So since we have shown that \(L \subseteq L' \land L' \subseteq L\), \(L = L'\). \orgqed
+
+* RE identities
+
+Some of these follow from set properties, others require some proof
+
+- Commutativity of union: \(R + S \equiv S + R\)
+- Associativity of union: \((R + S) + T \equiv R + (S + T)\)
+- Associativity of concatenation: \((RS) T \equiv R(ST)\)
+- Left distributivity: \(R (S + T) \equiv RS + RT\)
+- Right distributivity: \((S + T) R \equiv SR + ST\)
+- Identity for union: \(R + \emptyset \equiv R\)
+- Identity for concatenation: \(R \varepsilon \equiv R \equiv \varepsilon R\)
+- Annihilator for concatenation: \(\emptyset R \equiv \emptyset \equiv R \emptyset\)
+- Idempotence of Kleene star: \((R^*)^* \equiv R^*\)
+
+* Turnstile finite-state machine
+
+Let out alphabet be \(\cbr{t, p, b}\), where \(p\) denotes push, \(t\) denotes tap or token, and \(b\) denotes bicycle.
+
+We will study three different states: \(Q = \cbr{U, L, D}\). \(U\) denotes unlocked, \(L\) denotes locked, \(D\) stands for dead (or jammed or deactivated).
+
+\(\Sigma^*\) is all strings over \(\cbr{t, p, b} = \cbr{t, p, b}^*\)
+
+\begin{figure}[ht]
+    \centering
+    \inkfig[0.7]{turnstile}
+\end{figure}
+
+Is \(tptppt\) accepted? We start at \(L\), go to \(U\) with the first \(t\), go back to \(L\) with \(p\) and so on. When we have a \(p\) but we are at \(L\), then nothing happens as pushing on a locked turnstile will do nothing. Similarly, when we have a \(t\) when we are at a \(U\), then nothing will happen as using a tap/token on an unlocked turnstile will also do nothing. Following these rules, we arrive at the following:
+\[L \xrightarrow{_t} U \xrightarrow{_p} L \xrightarrow{_t} U \xrightarrow{_p} L \xrightarrow{_p} L \xrightarrow{_t} U\]
+And thus the combination is accepted.
