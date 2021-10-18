@@ -1,0 +1,80 @@
+%% Creator: Inkscape 1.1.1 (3bf5ae0d25, 2021-09-20), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'float-machine.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{1347.02365665bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.64697219)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{float-machine.pdf}}%
+    \put(0.45963329,0.50759006){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(D\)\end{tabular}}}}%
+    \put(0.46288574,0.08527248){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(P\)\end{tabular}}}}%
+    \put(0.47331158,0.30288121){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(N\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{float-machine.pdf}}%
+    \put(0.24495579,0.3245668){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, \dots, 9\)\end{tabular}}}}%
+    \put(0.20187897,0.44723552){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(.\)\end{tabular}}}}%
+    \put(0.03364151,0.18572117){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(S\)\end{tabular}}}}%
+    \put(0.24599681,0.1533954){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(+/-\)\end{tabular}}}}%
+    \put(0.52637822,0.3982541){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, \dots, 9\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{float-machine.pdf}}%
+    \put(0.60341664,0.25603426){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(.\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{float-machine.pdf}}%
+    \put(0.76948698,0.44695279){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, \dots, 9\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{float-machine.pdf}}%
+    \put(0.57677121,0.51532414){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, \dots, 9\)\end{tabular}}}}%
+    \put(0.08819347,0.30055017){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(Q0\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{float-machine.pdf}}%
+    \put(0.4767819,0.19484472){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, \dots, 9\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{float-machine.pdf}}%
+    \put(0.92892642,0.09631944){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(.\)\end{tabular}}}}%
+    \put(0.72446437,0.30929953){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(F\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{float-machine.pdf}}%
+  \end{picture}%
+\endgroup%

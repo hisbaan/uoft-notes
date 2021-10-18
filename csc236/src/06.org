@@ -15,7 +15,7 @@ Let \(x \in L'\). Then either \(x = 1y0\) where \(y \in \cbr{0, 1}^{*}\) or \(x 
 Then \(1 \in L(1), 0 \in L(0), \tand y \in L(0 + 1)^{*}\), since it is the concatenation of 0 or more strings from \(L(0 + 1)\). So \(x \in L(1)L(0 + 1)^{*}L(0)\), so it begins with 1 and ends with 0, which are different, so \(x \in L\).
 
 Next we show that \(L \subseteq L\):
-left as an exercise to the reader
+this is left as an exercise to the reader
 
 So since we have shown that \(L \subseteq L' \land L' \subseteq L\), \(L = L'\). \orgqed
 
@@ -49,3 +49,52 @@ We will study three different states: \(Q = \cbr{U, L, D}\). \(U\) denotes unloc
 Is \(tptppt\) accepted? We start at \(L\), go to \(U\) with the first \(t\), go back to \(L\) with \(p\) and so on. When we have a \(p\) but we are at \(L\), then nothing happens as pushing on a locked turnstile will do nothing. Similarly, when we have a \(t\) when we are at a \(U\), then nothing will happen as using a tap/token on an unlocked turnstile will also do nothing. Following these rules, we arrive at the following:
 \[L \xrightarrow{_t} U \xrightarrow{_p} L \xrightarrow{_t} U \xrightarrow{_p} L \xrightarrow{_p} L \xrightarrow{_t} U\]
 And thus the combination is accepted.
+
+* Float machine
+
+Which strings are floats in Python?
+
+\(\Sigma = \cbr{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, ., - , +}\)
+
+Examples of accepted floats: \(\cbr{1.25, -0.3, .3, 125.}\)
+
+Examples of rejected floats: \({125, 1..2, 1.2.5, -., 1.25-}\)
+
+\begin{center}
+  \inkfig[0.7]{float-machine}
+\end{center}
+
+* States needed to classify a string
+
+What state is a stingy vending machine in, based on coins? Accepts only nickels, dimes, and quarters, no change given, and everything costs 30 cents.
+
+| \(\delta\) |  0 |           5 |          10 |          15 |          20 | 25          | \(\geq 30\) |
+|------------+----+-------------+-------------+-------------+-------------+-------------+-------------|
+| \(n\)      |  5 |          10 |          15 |          20 |          25 | \(\geq 30\) | \(\geq 30\) |
+| \(d\)      | 10 |          15 |          20 |          25 | \(\geq 30\) | \(\geq 30\) | \(\geq 30\) |
+| \(q\)      | 25 | \(\geq 30\) | \(\geq 30\) | \(\geq 30\) | \(\geq 30\) | \(\geq 30\) | \(\geq 30\) |
+
+
+* Integer multiples of 3
+
+If an integer is divided by 3, it falls into one of three groups. Remainder 0, remainder 1, and remainder 2. Concatenating a number onto the end of another number can have interesting effects depicted in the diagram below.
+
+\begin{center}
+    \inkfig{multiple-3}
+\end{center}
+
+* Build an automaton with formalities
+
+The idea motivating this is to be able to describe the complicated systems above without drawing out messy and time consuming diagrams.
+
+Quintuple: \(\br{Q, \Sigma, q_0, F,\delta}\)
+
+\(Q\) is a set of states, \(\Sigma\) is finite, non-empty alphabet, \(q_0\) is the start state, \(F\) is the set of accepting states, and \(\delta: Q \times \Sigma \mapsto Q\) is a transition function.
+
+We can extend \(\delta: Q \times \Sigma \mapsto Q\) to a transition function that tells us what state a string \(s\) takes the automaton to:
+
+\[
+  \delta^{*} : Q \times \Sigma^{*} \mapsto Q \qquad \delta^{*}(q, s) = \begin{cases} q & \text{ if } s = \varepsilon \\ \delta(\delta^{*}(q, s'), a) & \text{ if } s' \in \Sigma^{*}, a \in \Sigma, s = s'a \end{cases}
+\]
+
+String \(s\) is accepted if and only if \(\delta^*(q, s) \in F\), and it is rejected otherwise.

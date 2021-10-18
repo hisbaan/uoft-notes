@@ -1,0 +1,87 @@
+%% Creator: Inkscape 1.1.1 (3bf5ae0d25, 2021-09-20), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'multiple-3.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{880.71207362bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.69314096)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{multiple-3.pdf}}%
+    \put(0.47965976,0.39875902){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, 3, 6, 9\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{multiple-3.pdf}}%
+    \put(0.25003776,0.3219363){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1, 4, 7\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{multiple-3.pdf}}%
+    \put(0.64592661,0.2855632){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(2, 5, 8\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{multiple-3.pdf}}%
+    \put(0.30412811,0.16131563){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(S\)\end{tabular}}}}%
+    \put(0.45249812,0.21574484){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(Q0\)\end{tabular}}}}%
+    \put(0.06332195,0.39372129){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(R1\)\end{tabular}}}}%
+    \put(0.80214683,0.41756693){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(R2\)\end{tabular}}}}%
+    \put(0.44959714,0.58188837){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(R0\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{multiple-3.pdf}}%
+    \put(0.66773947,0.64154429){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, 3, 6, 9\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{multiple-3.pdf}}%
+    \put(0.10050748,0.56380368){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, 3, 6, 9\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{multiple-3.pdf}}%
+    \put(0.90613027,0.45839054){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, 3, 6, 9\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{multiple-3.pdf}}%
+    \put(0.635464,0.52291019){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(2, 5, 8\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{multiple-3.pdf}}%
+    \put(0.5664608,0.47821948){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1, 4, 7\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{multiple-3.pdf}}%
+    \put(0.3168644,0.59969175){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1, 4, 7\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{multiple-3.pdf}}%
+    \put(0.30666564,0.45118163){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(2, 5, 8\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=12]{multiple-3.pdf}}%
+    \put(0.40146263,0.08038094){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1, 4, 7\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=13]{multiple-3.pdf}}%
+    \put(0.41667367,0.00840029){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(2, 5, 8\)\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
