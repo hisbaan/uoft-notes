@@ -1,0 +1,88 @@
+#+TITLE: CSC236 Week 07: Autoamata and Languages
+#+date: October 21 -- October 27, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* Example --- an odd machine
+
+A machine that accepts strings over \(\cbr{0, 1}\) with an odd number of 0s.
+
+We will formally prove that this description can be represented by:
+
+\[\delta^{*}(E, s) = \begin{cases} E & \text{only if \(s\) has even number of 0s} \\ O & \text{only if \(s\) has odd number of 0s}\end{cases}\]
+
+Define \(\Sigma^*\) as the smallest set of strings over \(\Sigma\) such that:
+- \(\varepsilon \in \Sigma^*\)
+- \(s \in \Sigma^* \implies s0, s0 \in \Sigma^*\)
+
+Define \(P(s)\) as \(\delta^{*}(E, s)\) correctly defines the machine.
+
+/Proof:/ We will show that \(\forall s \in \Sigma^*, P(s)\).
+
+\begin{itemize}
+\item Base Case:
+The following implications hold vacuously:
+\[
+  \delta^{*}(E, \varepsilon) = E \implies \varepsilon \text{ has an even number of 0s}
+\]
+\[
+  \delta^{*}(E, \varepsilon) = O \implies \varepsilon \text{ has an odd number of 0s}
+\]
+And thus for all members of the basis, \(P(s)\).
+\item Inductive step:
+Let \(s \in \Sigma^{*}\) and assume \(P(s)\). We want to show that \(P(s0)\) and \(P(s1)\) hold.
+
+\begin{enumerate}
+  \item[\(P(s0)\):]
+        If \(\delta^{*}(E, s) = E\)
+        \begin{align*}
+          \delta^{*}(E, s0) &= \delta(\delta^{*}(E, s), 0) \\
+                            &= \delta(E, 0) && \text{(by the current case)} \\
+                            &= O
+        \end{align*}
+        So \(s0\) has an odd number of 0s and \(P(s0)\) follows in this case.
+
+        If \(\delta^{*}(E, s) = O\)
+        \begin{align*}
+          \delta^{*}(E, s0) &= \delta(\delta^{*}(E, s), 0) \\
+                            &= \delta(O, 0) && \text{(by the current case)} \\
+                            &= E
+        \end{align*}
+        So \(s0\) has an even number of 0s and \(P(s0)\) follows in this case.
+
+        So \(P(s0)\) holds.
+
+  \item[\(P(s1)\):]
+        If \(\delta^{*}(E, s) = E\)
+        \begin{align*}
+          \delta^{*}(E, s1) &= \delta(\delta^{*}(E, s), 1) \\
+                            &= \delta(E, 1) && \text{(by the current case)} \\
+                            &= E
+        \end{align*}
+        So \(s1\) has an even number of 0s and \(P(s1)\) follows in this case.
+
+        If \(\delta^{*}(E, s) = O\)
+        \begin{align*}
+          \delta^{*}(E, s1) &= \delta(\delta^{*}(E, s), 1) \\
+                            &= \delta(O, 1) && \text{(by the current case)} \\
+                            &= O
+        \end{align*}
+        So \(s1\) has an odd number of 0s and \(P(s1\) follows in this case.
+
+        So \(P(s1)\) holds.
+\end{enumerate}
+Since \(P(s0)\) and \(P(s1)\) both hold, we have shown that \(s \in \Sigma^* \land P(s) \implies P(s0) \land P(s1)\).
+\end{itemize}
+
+So \(\forall s \in \Sigma^*, P(s)\), as needed. \orgqed
+
+#+latex: \newpage
+
+* More odd/even: intersection
+
+\(L\) is the langauge of binary strings with an odd number of 0s, and at least one 0. We will devise a machine for \(L\) using product construction.
+
+\begin{figure}[ht]
+    \centering
+    \inkfig{machine-intersection}
+\end{figure}
