@@ -86,3 +86,55 @@ So \(\forall s \in \Sigma^*, P(s)\), as needed. \orgqed
     \centering
     \inkfig{machine-intersection}
 \end{figure}
+
+If there is an odd number of 0s, we don't need to check if we have 0s or not. This means that we do not need to check for the upper right hand state. We could simply leave this state out since there are no arrows going into it.
+
+#+latex: \newpage
+
+* More odd/even: union
+
+\(L\) is the langauge of binary strings with an odd number of 0s, or at least one 1. We will devise a machine for \(L\) using product construction.
+
+\begin{figure}[ht]
+    \centering
+    \inkfig{machine-union}
+\end{figure}
+
+* Non-deterministic FSA (NFSA) example
+
+FSA that accepts \(L((010 + 01)^*)\). With NFSA, we allow more than one transition from a state for the same character. There is no "definite" transition for a given character, there can be different "paths" that a string would take since there can be more than one transition for a given character.
+
+- Accepts: \(\varepsilon, 01001, 0101, 01, \dots\)
+- Rejects: \(1, 110, 10, 01011, \dots\)
+
+\begin{center}
+    \inkfig[0.7]{non-deterministic-fsa}
+\end{center}
+
+# \begin{figure}[ht]
+#     \centering
+#     \inkfig[0.7]{non-deterministic-fsa}
+# \end{figure}
+
+A string is accepted if there is some path that accepts the string (goes from the starting state to the accepted state).
+
+* NFSAs are real... you can always convert them to DFSAs
+
+Use subset construction, notes page 219 if \(\Sigma = \cbr{0, 1}\), the construction is, roughly:
+- Start at the start state combined with any states reachable from start with \(\varepsilon\)-transitions.
+- If there are ant 1-transition from this new combined start state, combine them into a new state.
+- There are any 0-translations from this new combined start, combine them into a new state.
+- Repeat for every state reachable from the start.
+
+This system lets us deal with the creation of determinsitic finite state automata for regular expressions much more easily by making it a non-deterministic finite state automata and then converting it into a deterministic one.
+
+  #+latex: \newpage
+
+* Deterministic FSA (DFSA) from NFSA
+
+We will follow the algorithm to construct a DFSA from the previous NFSA.
+
+\begin{figure}[ht]
+    \centering
+    \inkfig{deterministic-fsa}
+\end{figure}

@@ -1,0 +1,94 @@
+%% Creator: Inkscape 1.1.1 (3bf5ae0d25, 2021-09-20), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'machine-union.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{942.38170714bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.81990074)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{machine-union.pdf}}%
+    \put(0.82273431,0.14372212){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)s\end{tabular}}}}%
+    \put(0.80799849,0.39595067){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}no\(-1\)s\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{machine-union.pdf}}%
+    \put(0.76550689,0.26856849){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{machine-union.pdf}}%
+    \put(0.91158807,0.24424109){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0, 1\)\end{tabular}}}}%
+    \put(0.21927748,0.70570905){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(E\)\end{tabular}}}}%
+    \put(0.529998,0.7016282){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(O\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{machine-union.pdf}}%
+    \put(0.07320951,0.79925685){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(S\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{machine-union.pdf}}%
+    \put(0.9680545,0.42933664){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(S\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{machine-union.pdf}}%
+    \put(0.37437709,0.79110468){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0.37693951,0.62426741){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0.67790784,0.80699198){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0.20106494,0.57112853){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0.90430528,0.51082546){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0.12420351,0.39587099){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(E\)/no\(-1\)s\end{tabular}}}}%
+    \put(0.48160936,0.39327491){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(O\)/no\(-1\)s\end{tabular}}}}%
+    \put(0.49993819,0.0678489){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(O/1\)s\end{tabular}}}}%
+    \put(0.13446606,0.07187194){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(E/1\)s\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{machine-union.pdf}}%
+    \put(0.32392107,0.1116557){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0.32391557,0.03915717){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0.40838633,0.19222243){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0.2468823,0.19151533){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=8]{machine-union.pdf}}%
+    \put(0.00161934,0.44438993){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(S\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=9]{machine-union.pdf}}%
+    \put(0.5712135,0.20314189){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0.09684095,0.23436039){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=10]{machine-union.pdf}}%
+    \put(0.33484913,0.3909255){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0.33525912,0.44374365){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=11]{machine-union.pdf}}%
+  \end{picture}%
+\endgroup%

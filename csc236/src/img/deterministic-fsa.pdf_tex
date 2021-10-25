@@ -1,0 +1,74 @@
+%% Creator: Inkscape 1.1.1 (3bf5ae0d25, 2021-09-20), www.inkscape.org
+%% PDF/EPS/PS + LaTeX output extension by Johan Engelen, 2010
+%% Accompanies image file 'deterministic-fsa.pdf' (pdf, eps, ps)
+%%
+%% To include the image in your LaTeX document, write
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics{<filename>.pdf}
+%% To scale the image, write
+%%   \def\svgwidth{<desired width>}
+%%   \input{<filename>.pdf_tex}
+%%  instead of
+%%   \includegraphics[width=<desired width>]{<filename>.pdf}
+%%
+%% Images with a different path to the parent latex file can
+%% be accessed with the `import' package (which may need to be
+%% installed) using
+%%   \usepackage{import}
+%% in the preamble, and then including the image with
+%%   \import{<path to file>}{<filename>.pdf_tex}
+%% Alternatively, one can specify
+%%   \graphicspath{{<path to file>/}}
+%% 
+%% For more information, please see info/svg-inkscape on CTAN:
+%%   http://tug.ctan.org/tex-archive/info/svg-inkscape
+%%
+\begingroup%
+  \makeatletter%
+  \providecommand\color[2][]{%
+    \errmessage{(Inkscape) Color is used for the text in Inkscape, but the package 'color.sty' is not loaded}%
+    \renewcommand\color[2][]{}%
+  }%
+  \providecommand\transparent[1]{%
+    \errmessage{(Inkscape) Transparency is used (non-zero) for the text in Inkscape, but the package 'transparent.sty' is not loaded}%
+    \renewcommand\transparent[1]{}%
+  }%
+  \providecommand\rotatebox[2]{#2}%
+  \newcommand*\fsize{\dimexpr\f@size pt\relax}%
+  \newcommand*\lineheight[1]{\fontsize{\fsize}{#1\fsize}\selectfont}%
+  \ifx\svgwidth\undefined%
+    \setlength{\unitlength}{798.88598825bp}%
+    \ifx\svgscale\undefined%
+      \relax%
+    \else%
+      \setlength{\unitlength}{\unitlength * \real{\svgscale}}%
+    \fi%
+  \else%
+    \setlength{\unitlength}{\svgwidth}%
+  \fi%
+  \global\let\svgwidth\undefined%
+  \global\let\svgscale\undefined%
+  \makeatother%
+  \begin{picture}(1,0.51124166)%
+    \lineheight{1}%
+    \setlength\tabcolsep{0pt}%
+    \put(0,0.37588816){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(S\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=1]{deterministic-fsa.pdf}}%
+    \put(0.19263036,0.40895027){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(A\)\end{tabular}}}}%
+    \put(0.63743868,0.4171092){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(B\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=2]{deterministic-fsa.pdf}}%
+    \put(0.87653233,0.23619857){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(A\) or \(C\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=3]{deterministic-fsa.pdf}}%
+    \put(0.7831933,0.34888068){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+    \put(0.4083142,0.43607941){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=4]{deterministic-fsa.pdf}}%
+    \put(0.61679446,0.0786069){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(A\) or \(B\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=5]{deterministic-fsa.pdf}}%
+    \put(0.75261825,0.17153639){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=6]{deterministic-fsa.pdf}}%
+    \put(0.65544035,0.24919178){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(0\)\end{tabular}}}}%
+    \put(0,0){\includegraphics[width=\unitlength,page=7]{deterministic-fsa.pdf}}%
+    \put(0.80441782,0.11773411){\makebox(0,0)[lt]{\lineheight{1.25}\smash{\begin{tabular}[t]{l}\(1\)\end{tabular}}}}%
+  \end{picture}%
+\endgroup%
