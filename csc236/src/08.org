@@ -1,0 +1,65 @@
+#+TITLE: CSC236 Week 08: Machines, Expressions: Equivalence
+#+date: October 28 -- November 3, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* NFSA that accepts \(L((0 + 10)(0 + 10)^*)\)
+
+\begin{figure}[ht]
+    \centering
+    \inkfig[0.5]{abcnfsa}
+\end{figure}
+
+The \(\varepsilon\) transition makes it non deterministic. \(A \xrightarrow{_0} A \cup B\) and \(C \xrightarrow{_0} A \cup B\).
+
+The corresponding DFSA is as follows:
+
+\begin{center}
+    \inkfig[0.7]{abcdfsa}
+\end{center}
+
+* NFSA that accepts \(\mathrm{Rev}(L((0 + 10)(0 + 10)^*))\)
+
+\begin{center}
+    \inkfig[0.7]{revabcnfsa}
+\end{center}
+
+The corresponding DFSA is as follows:
+
+\begin{center}
+    \inkfig[0.7]{revabcdfsa}
+\end{center}
+
+* FSAs and regexes are equivalent.
+
+\(L = L(M)\) for some DFSA \(M \iff L = L(M')\) for some NFSA \(M' \iff L = L(R)\) for some regular expression \(R\).
+
+Step 1.0: convert \(L(R)\) to \(L(M')\).
+
+Start with \(\emptyset, \varepsilon, a \in \Sigma\).
+
+\begin{itemize}
+  \item
+        Base case:
+        Let \(s \ in \cbr{\emptyset, \varepsilon, a}\)  for some \(a \in \Sigma\).
+
+        \(L(\emptyset) = L(M)\), where \(M\) is:
+
+        \begin{center}
+          \inkfig[0.4]{emptysetmachine}
+        \end{center}
+
+        \(L(\varepsilon) = L(M)\), where \(M\) is:
+
+        \begin{center}
+          \inkfig[0.3]{epsilonmachine}
+        \end{center}
+
+        For correctness, assume \(a = 0\)
+
+        \(L(0) = L(M)\), where \(M\) is:
+
+        \begin{center}
+          \inkfig[0.5]{zeromachine}
+        \end{center}
+\end{itemize}
