@@ -59,7 +59,7 @@ We are assuming about \(\br{S + T}\) and \(\br{ST}\) above?
 
 * Regexp examples
 - \(L(0 + 1) = L(0) \cup L(1) = \cbr{0, 1}\)
-- \(L(br{0 + 1}^*)\) All binary strings over \(\cbr{0, 1}\)
+- \(L(\br{0 + 1}^*)\) All binary strings over \(\cbr{0, 1}\)
 - \(L(\br{01}^*) = \cbr{\varepsilon, 01, 0101, 010101, \dots}\)
 - \(L(0^*1^*)\) 0 or more 0s followed by 0 or more 1s
 - \(L(0^* + 1^*\) 0 or more 0s or 0 or more 1s

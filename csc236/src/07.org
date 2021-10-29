@@ -13,7 +13,7 @@ We will formally prove that this description can be represented by:
 
 Define \(\Sigma^*\) as the smallest set of strings over \(\Sigma\) such that:
 - \(\varepsilon \in \Sigma^*\)
-- \(s \in \Sigma^* \implies s0, s0 \in \Sigma^*\)
+- \(s \in \Sigma^* \implies s0, s1 \in \Sigma^*\)
 
 Define \(P(s)\) as \(\delta^{*}(E, s)\) correctly defines the machine.
 
