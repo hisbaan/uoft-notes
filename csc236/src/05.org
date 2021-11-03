@@ -28,7 +28,7 @@ Many problems can be reduced to languages: logical formulas, identifiers fro com
 - *\(L \cup L'\):* Union.
 - *\(L \cap L'\):* Intersection.
 - *\(L - L'\):* Difference.
-- *\(\mathrm{Rev}(L)\):* = \(cbr{s^R : s \in L}\)
+- *\(\mathrm{Rev}(L)\):* = \(\cbr{s^R : s \in L}\)
 - *concatenation:* \(LL' \text{ or } L \circ L' = \cbr{rt : r \in L, r \in L'}\). Special cases \(L\cbr{\varepsilon} = L = \cbr{\varepsilon}L, \text{ and } L\cbr{} = \cbr{} = \cbr{}L\).
 - *exponentiation:* \(L^k\) is concatenation of \(L\), \(k\) times. Special case, \(L^0 = \cbr{\varepsilon}\), including \(L = \cbr{}\).
 - *Kleene star:* \(L^* = L^0 \cup L^1 \cup L^2 \cup \dots\)
@@ -62,5 +62,5 @@ We are assuming about \(\br{S + T}\) and \(\br{ST}\) above?
 - \(L(\br{0 + 1}^*)\) All binary strings over \(\cbr{0, 1}\)
 - \(L(\br{01}^*) = \cbr{\varepsilon, 01, 0101, 010101, \dots}\)
 - \(L(0^*1^*)\) 0 or more 0s followed by 0 or more 1s
-- \(L(0^* + 1^*\) 0 or more 0s or 0 or more 1s
+- \(L(0^* + 1^*)\) 0 or more 0s or 0 or more 1s
 - \(L(\br{0 + 1}\br{0 + 1}^*)\) Non-empty binary strings over \(\cbr{0, 1}\)

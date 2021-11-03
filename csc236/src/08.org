@@ -34,7 +34,7 @@ The corresponding DFSA is as follows:
 
 \(L = L(M)\) for some DFSA \(M \iff L = L(M')\) for some NFSA \(M' \iff L = L(R)\) for some regular expression \(R\).
 
-Step 1.0: convert \(L(R)\) to \(L(M')\).
+** Step 1.0: convert \(L(R)\) to \(L(M')\).
 
 Start with \(\emptyset, \varepsilon, a \in \Sigma\).
 
@@ -44,22 +44,82 @@ Start with \(\emptyset, \varepsilon, a \in \Sigma\).
         Let \(s \ in \cbr{\emptyset, \varepsilon, a}\)  for some \(a \in \Sigma\).
 
         \(L(\emptyset) = L(M)\), where \(M\) is:
-
         \begin{center}
           \inkfig[0.4]{emptysetmachine}
         \end{center}
-
         \(L(\varepsilon) = L(M)\), where \(M\) is:
-
         \begin{center}
           \inkfig[0.3]{epsilonmachine}
         \end{center}
-
-        For correctness, assume \(a = 0\)
-
         \(L(0) = L(M)\), where \(M\) is:
-
         \begin{center}
           \inkfig[0.5]{zeromachine}
         \end{center}
 \end{itemize}
+
+** Step 1.5: Convert \(L(R)\) to \(L(M')\).
+
+Suppose \(r_1\) and \(r_2\) denote languages accepted by \(M_1\) and \(M_2\) respectively.
+
+\begin{center}
+    \inkfig[0.7]{mysterymachine1}
+\end{center}
+
+\begin{center}
+    \inkfig[0.7]{mysterymachine2}
+\end{center}
+
+\(L(r_1 + r_2) = L(r_1) \cup L(r_2)\). We could build the corresponding machine using product construction on \(M_1\) and \(M_2\) or we could use a NFSA.
+
+\begin{center}
+    \inkfig[0.7]{mm1mm2linkedstarts}
+\end{center}
+
+\(L(r_{1}^* = L(r_1)^*\). We want to transform \(M_1\) into a machine that accepts the Kleene star of the language accpeted by \(M_1\).
+
+\begin{center}
+    \inkfig[0.7]{mm1linkendtostart}
+\end{center}
+
+\(L(r_1r_2) = L(r_1)L(r_2)\). How do we combine \(M_1\) and \(M_2\) to accept this concatenated language? We concatenate the two machines!
+
+\begin{center}
+    \inkfig[0.7]{mm1mm2linkendtostart}
+\end{center}
+
+Not that all three techniques use non-determinism but we can use subset construction to create an equivalent deterministic machine so these answers are no less valid.
+
+* State elimination recipe for state \(q\)
+
+1. \(s_1 \dots s_n\) are states with transition to \(q\), with labels \(S_1 \dots S_n\).
+2. \(t_1 \dots t_n\) are states with transition from \(q\), with labels \(T_1 \dots T_n\).
+3. \(Q\) is any self-loop state on \(q\).
+4. Eliminate \(q\), and add (union) transition label \(S_iQ^*T_j\) from \(s_i\) to \(t_j\).
+
+* FSAs and regexes are equivalent:
+
+\(L = L(M)\) for some DFSA \(M \iff L = L(M')\) for some NFSA \(M' \iff L = L(R)\) for some regular expression \(R\).
+
+** Step 3: convert \(L(M)\) to \(L(R)\) and eliminate states.
+
+\begin{center}
+    \inkfig[0.7]{lmtolr}
+\end{center}
+
+Then we eliminate \(Q_1\):
+
+\begin{center}
+    \inkfig[0.7]{lmtolrwoq}
+\end{center}
+
+Then we eliminate \(Q_2\)!
+
+\begin{center}
+    \inkfig[0.7]{lmtolrwoq2}
+\end{center}
+
+So our regular expression is \((0 + 11 + 10(1 + 00)^*01)^*\).
+
+* Regular languages closure
+
+Regular languages are those that can be
