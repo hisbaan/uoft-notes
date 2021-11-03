@@ -4,7 +4,7 @@
 #+latex_header: \usepackage{inconsolata}
 #+latex_header: \renewcommand\theFancyVerbLine{\small\arabic{FancyVerbLine}}
 
-#+latex_header: \usepackage{import, pdfpages, transparent, xcolor}
+#+latex_header: \usepackage{import, pdfpages, transparent, xcolor, nopageno}
 #+latex_header: \newcommand{\inkfig}[2][1]{\def\svgwidth{#1\columnwidth} \import{./img/}{#2.pdf_tex}}
 
 #+latex_header: \setlength{\parskip}{0.5em}
