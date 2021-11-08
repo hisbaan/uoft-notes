@@ -119,7 +119,3 @@ Then we eliminate \(Q_2\)!
 \end{center}
 
 So our regular expression is \((0 + 11 + 10(1 + 00)^*01)^*\).
-
-* Regular languages closure
-
-Regular languages are those that can be

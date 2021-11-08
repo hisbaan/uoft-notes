@@ -27,7 +27,7 @@ Some of these follow from set properties, others require some proof
 - Associativity of union: \((R + S) + T \equiv R + (S + T)\)
 - Associativity of concatenation: \((RS) T \equiv R(ST)\)
 - Left distributivity: \(R (S + T) \equiv RS + RT\)
-- Right distributivity: \((S + T) R \equiv SR + ST\)
+- Right distributivity: \((S + T) R \equiv SR + TR\)
 - Identity for union: \(R + \emptyset \equiv R\)
 - Identity for concatenation: \(R \varepsilon \equiv R \equiv \varepsilon R\)
 - Annihilator for concatenation: \(\emptyset R \equiv \emptyset \equiv R \emptyset\)

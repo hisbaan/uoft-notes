@@ -1,0 +1,41 @@
+#+TITLE: CSC236 Week 09: Languages: The Last Words
+#+date: November 4 -- November 17, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+#+latex_header: \newcommand{\rev}{\text{Rev}}
+
+* Regula languages closure
+
+regular langes are those that cna be denoted by a regula expression or accept by an FSA. In addition:
+- \(L\) regular \(\implies \overline{L}\) regular.
+- \(L\) regular \(\implies \rev(L)\) regular.
+
+If \(L\) has a finite number of strnigs, then \(L\) is regular.
+
+* Pumping Lemma
+
+If \(L \subseteq \Sigma^{*}\) is a regular language, then there is some \(n_{L} \in \N\) (\(n_{L}\) depends on \(L\) such that \(n_L\) is the number of states in some FSA that accepts \(L\)) such that if \(x \in L\) and \(\abs{x} \geq n_L\) then:
+\begin{flalign} \nonumber
+&\begin{aligned}
+  &\qquad\bullet \exists u, v, w \in \Sigma^{*}, x = uvw \qquad&&\text{\(x\) is a sandwich} \\
+  &\qquad\bullet \abs{v} > 0 \qquad&&\text{middle of sandwich is non-empty} \\
+  &\qquad\bullet \abs{uv} \leq n_{L} \qquad&&\text{first two slices no longer than \(n_{L}\)} \\
+  &\qquad\bullet \forall k \in \N, uv^{k}w \in L &&
+\end{aligned} &&
+\end{flalign}
+Idea: if machine \(M(L)\) has \(\abs{Q} = n_{L}, x \in L \land \abs{x} \geq n_{L}\), denote \(q_{i} = \delta^{*}(q_{0}, x[:i])\), so \(x\) ``visits'' \(q_{0}, q_{1}, \dots, q_{n_{L} - 1}\) with the first \(n_{L}\) prefixes of \(x\) (including \(\varepsilon\))... so there is at least one state that \(x\) ``visits'' twice (pigeonhold principle, and \(x\) has \(n_{L} + 1\) prefixes).
+
+* Consequences of regularity
+
+How about \(L = \cbr{1^{n}0^{n} : n \in \N}\)?
+
+/Proof:/ Assume, for the sake of contradiction, that \(L\) is regular. Then, there must be a machine \(M_{L}\) that accepts \(L\). So \(M_{L}\) has \(\abs{Q} = m > 0\) states. Consider the string \(1^{m}0^{m}\). By the pumping lemma, \(x = uvw\), where \(\abs{uv} \leq m\) and \(\abs{v} > 0\), and \(\forall k \in \N, uv^{k}w \in L\). But, then \(uvvw \in L\), so \(m + \abs{v}\) 1s followed by just \(m\) 0s. \emph{This is a contradiction}. Elements of \(L\) must have the same number of 1s as zeros, but \(m + \abs{v} > m\). \orgqed
+
+* Another approach... Myhill-Nerode
+
+Consider how many different states \(1^k \in \text{Prefix}(L)\) and end up in \ldots for various \(k\)
+
+Scratch work: Could 1, 11, 111 each take the machine to the same state?
+
+/Proof:/ Assume, for the sake of contradiction, that \(L\) (previous section) is regular. Then some machine \(M\) that accepts \(L\) has some number of states \(\abs{Q} = m\). Consider the prefixes \(1^{0}, 1^{1}, \dots, 1^{m}\). Since there are \(m + 1\) such prefixes, at least two drive \(M\) to the same state, so there are \(0 \leq h < i \leq m\) such that \(1^{h}\) and \(1^{i}\) drive \(M\) to the same state but then \(1^{h}0^{h}\) drive the machine to an accepting state. But so does \(1^{i}0^{h}\)! But \(1^{i}0^{h}\) (since \(i \neq h\)) sohuld not be accepted. \emph{This is a contradiction}. By assuming that \(L\) was regular, we had to conclude there was a mchine that accepted \(L\), which lead to a contradiction. So that assumption is false and \(L\) is not regular \orgqed
