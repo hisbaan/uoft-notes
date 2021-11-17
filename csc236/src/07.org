@@ -67,7 +67,7 @@ Let \(s \in \Sigma^{*}\) and assume \(P(s)\). We want to show that \(P(s0)\) and
                             &= \delta(O, 1) && \text{(by the current case)} \\
                             &= O
         \end{align*}
-        So \(s1\) has an odd number of 0s and \(P(s1\) follows in this case.
+        So \(s1\) has an odd number of 0s and \(P(s1)\) follows in this case.
 
         So \(P(s1)\) holds.
 \end{enumerate}
