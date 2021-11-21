@@ -35,7 +35,7 @@ For a given pair natural numbers \(m, n \neq 0\) does the set \(R(m, n)\) satisf
 If so, we still need to be sure that the smallest element, \(r'\) has
 \begin{enumerate}
   \item \(0 \leq r' < n\)
-  \item That \(q'\) and \(r'\) are unique --- no other pari of natural numbers would work
+  \item That \(q'\) and \(r'\) are unique --- no other pair of natural numbers would work
 \end{enumerate}
 \dots in order to have
 \[
@@ -57,7 +57,7 @@ If so, we still need to be sure that the smallest element, \(r'\) has
         \end{align*}
         Let \(r'' = r' - n, q'' = q' - 1\). Then \(r'' \in R(m, n)\), since \(m = q''n + r''\)
 
-        Then \(r'' < r'\) which is a contradiction, and thus the inital asusmption that \(r' \geq n\) is false.
+        Then \(r'' < r'\) which is a contradiction, and thus the initial assumption that \(r' \geq n\) is false.
 \end{itemize}
 So we have a unique pair of natural numbers \(\br{r', q'}\) such that \(m = q'n + r'\) and \(0 \leq r' < n\). \orgqed
 

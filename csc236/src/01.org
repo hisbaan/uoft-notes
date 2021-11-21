@@ -29,7 +29,7 @@
 
 - It's art...
 
-  Strive for correctness, clarity, surprise, humor, pathos, and others.
+  Strive for correctness, clarity, surprise, humour, pathos, and others.
 
 * How to do well in this course
 
@@ -70,7 +70,7 @@ If the initial case works, and each case that works implies its successor works,
 
 - inductive step: introduce \(n\) and inductive hypothesis \(H(n)\)
   + derive conclusion \(C(n)\): show that \(C(n)\) follows from \(H(n)\), indicating *where* you use \(H(n)\) and why that is valid.
-- Verify base case(s): verify that the claim is true for any cases not covered in the inductie step
+- Verify base case(s): verify that the claim is true for any cases not covered in the inductive step
 - In simple induction \(C(n)\) is just \(H(n + 1)\)
 
 * Trominoes
@@ -80,7 +80,7 @@ See https://en.wikipedia.org/wiki/Tromino
 #+attr_latex: :width 200px
 [[file:img/trominoes.png]]
 
-Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered withotu overlapping) by "chair" trominoes?
+Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered without overlapping) by "chair" trominoes?
 
 - \(1 \times 1\): Yes.
 - \(2 \times 2\): Yes.
@@ -100,12 +100,12 @@ Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered
 
         I will prove \(P(n + 1)\), that is a \(2^{n + 1} \times 2^{n + 1}\) grid, with one square removed can be tiled by chairs.
 
-        Let \(G\) be a \(2^{n + 1} \times 2^{n + 1}\) grid with one square removed. Notice that \(G\) can be decomposed into four \(2^{n} \times 2^{n}\) disjoint quadrant grids. We may assyme, WLOG (wihout loss of generality) that the missing square is in the upper-right quadrant, since otherwise just rotate it there, and rotate back when done. By \(P(n)\) I can tile the upper-right quadrant, minus the missing square. By \(P(n)\) 3 more times, I can tile the remaining 3 quadrants, omitting for a moment the 3 tiles nearest the centre of \(G\), with chairs. The briefly omitted squares form a chair! So I complete the tiling by adding one more chair. Thus \(P(n + 1)\).
+        Let \(G\) be a \(2^{n + 1} \times 2^{n + 1}\) grid with one square removed. Notice that \(G\) can be decomposed into four \(2^{n} \times 2^{n}\) disjoint quadrant grids. We may assyme, WLOG (without loss of generality) that the missing square is in the upper-right quadrant, since otherwise just rotate it there, and rotate back when done. By \(P(n)\) I can tile the upper-right quadrant, minus the missing square. By \(P(n)\) 3 more times, I can tile the remaining 3 quadrants, omitting for a moment the 3 tiles nearest the centre of \(G\), with chairs. The briefly omitted squares form a chair! So I complete the tiling by adding one more chair. Thus \(P(n + 1)\).
 
   \item
         Base Case
 
-        A \(2^{0} \times 2^{0}\) grid, with one square removed, is just empty space! This can be tiled with 0 charis. So \(P(0)\) is true.
+        A \(2^{0} \times 2^{0}\) grid, with one square removed, is just empty space! This can be tiled with 0 chairs. So \(P(0)\) is true.
 \end{itemize}
 
 And thus \(\forall n \in \N, P(n)\). \orgqed

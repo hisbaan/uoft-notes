@@ -75,7 +75,7 @@ Suppose \(r_1\) and \(r_2\) denote languages accepted by \(M_1\) and \(M_2\) res
     \inkfig[0.7]{mm1mm2linkedstarts}
 \end{center}
 
-\(L(r_{1}^*) = L(r_1)^*\). We want to transform \(M_1\) into a machine that accepts the Kleene star of the language accpeted by \(M_1\).
+\(L(r_{1}^*) = L(r_1)^*\). We want to transform \(M_1\) into a machine that accepts the Kleene star of the language accepted by \(M_1\).
 
 \begin{center}
     \inkfig[0.7]{mm1linkendtostart}

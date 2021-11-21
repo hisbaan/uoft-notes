@@ -111,11 +111,6 @@ FSA that accepts \(L((010 + 01)^*)\). With NFSA, we allow more than one transiti
     \inkfig[0.7]{non-deterministic-fsa}
 \end{center}
 
-# \begin{figure}[ht]
-#     \centering
-#     \inkfig[0.7]{non-deterministic-fsa}
-# \end{figure}
-
 A string is accepted if there is some path that accepts the string (goes from the starting state to the accepted state).
 
 * NFSAs are real... you can always convert them to DFSAs
@@ -126,9 +121,9 @@ Use subset construction, notes page 219 if \(\Sigma = \cbr{0, 1}\), the construc
 - There are any 0-translations from this new combined start, combine them into a new state.
 - Repeat for every state reachable from the start.
 
-This system lets us deal with the creation of determinsitic finite state automata for regular expressions much more easily by making it a non-deterministic finite state automata and then converting it into a deterministic one.
+This system lets us deal with the creation of deterministic finite state automata for regular expressions much more easily by making it a non-deterministic finite state automata and then converting it into a deterministic one.
 
-  #+latex: \newpage
+#+latex: \newpage
 
 * Deterministic FSA (DFSA) from NFSA
 

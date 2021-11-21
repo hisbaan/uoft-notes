@@ -92,13 +92,13 @@ I will prove, using complete induction, that \(\forall n > 1, P(n)\).
 
 And thus \(\forall n \in \N \st n \geq 2, P(n)\). \orgqed
 
-*Note:* We have to include \(P(3)\) as a base case beacuse \(\floor{\sqrt{3}}\) is not \(2\), but \(1\).
+*Note:* We have to include \(P(3)\) as a base case because \(\floor{\sqrt{3}}\) is not \(2\), but \(1\).
 
 * Zero pair-free binary strings
 
 #+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
 
-Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no paris of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
+Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no pairs of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
 
 #+begin_latex
 \begin{align*}

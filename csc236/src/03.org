@@ -115,7 +115,7 @@ So \(P((e_{1} \odot e_{2}))\) follows. \orgqed
 
 ** Prove \(\forall e \in \cE, \vr{e} \leq 2^{h(3)}\)
 
-Define the heights, \(h(x) = h(y) = h(z) = 0\), and \(h(\br{e_{1} \odot e_{2}})\) as \(1 + \max\br{h(e_{1}), h(e_{2})}\) if \(e_{1}, e_{2} \in \cE\) and \(\odot \in \cbr{+, -, \times, \div}\). What's the connection between the unmber of variables and the height?
+Define the heights, \(h(x) = h(y) = h(z) = 0\), and \(h(\br{e_{1} \odot e_{2}})\) as \(1 + \max\br{h(e_{1}), h(e_{2})}\) if \(e_{1}, e_{2} \in \cE\) and \(\odot \in \cbr{+, -, \times, \div}\). What's the connection between the number of variables and the height?
 \begin{align*}
   h(x) = 0 &, \vr{x} = 1 \\
   h(\br{x + y}) = 1 &, \vr{\br{x + y}} = 2 \\
@@ -124,7 +124,7 @@ Define the heights, \(h(x) = h(y) = h(z) = 0\), and \(h(\br{e_{1} \odot e_{2}})\
   h(\br{\br{\br{x + y} - \br{z \times x}} \div \br{\br{x + y} - \br{z \times x}}}) = 3 &, \vr{\br{\br{\br{x + y} - \br{z \times x}} \div \br{\br{x + y} - \br{z \times x}}}} = 8
 \end{align*}
 
-/Proof:/ For every \(e \in \cE\) define \(P(e)\) as \(\vr{e} \leq 2^{h(e)}\). Let \(a \in \cbr{x, y, z}\). Then \(a\) has one variable (itself), and no operators so \(\vr{a} = 1 = 2^{0} = 2^{h(a)}\) since \(h\) of any single vairable is 0. So \(P(a)\) holds for \(a \in \cbr{x, y, z}\) (the basis).
+/Proof:/ For every \(e \in \cE\) define \(P(e)\) as \(\vr{e} \leq 2^{h(e)}\). Let \(a \in \cbr{x, y, z}\). Then \(a\) has one variable (itself), and no operators so \(\vr{a} = 1 = 2^{0} = 2^{h(a)}\) since \(h\) of any single variable is 0. So \(P(a)\) holds for \(a \in \cbr{x, y, z}\) (the basis).
 
 Let \(e_{1}, e_{2} \in \cE\). Assume \(P(e_{1}), P(e_{2})\) i.e. \(\vr{e_{1}} \leq 2^{h(e_{1})}\) and \(\vr{e_{2}} \leq 2^{h(e_{2})}\). We will show that \(P(e_{1} \odot e_{2})\) is true, where \(\odot \in \cbr{+, -, \times, \div}\).
 #+begin_latex
