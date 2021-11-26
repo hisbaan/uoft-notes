@@ -1,0 +1,178 @@
+#+TITLE: CSC236 Week 10: Recurrences...
+#+date: November 18 -- November 24, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* Recursive definition
+
+This sequence comes up in applied rabbit breeding, the height of AVL tress, and the complexity of Euclid's algorithm for the GCD, and an astonishing number of other places: Define for \(n\) a natural number,
+\[
+F(n) = \begin{cases} n & n < 2 \\ F(n - 2) + F(n - 1) & n \geq 2 \end{cases}
+\]
+
+** Fibonacci patterns
+
+What are Fibonacci numbers multiples of? Which Fibonacci numbers are multiples of 5?
+
+/Proof:/ We define the predicate \(P(n)\) for all natural numbers \(n\) to be: \(\exists k \in \N \st F(5n) = 5k\). We will prove, using simple induction that \(\forall n \in \N, P(n)\) (Note: for every \(n, F(5n + 2), F(5n + 3)\) are recursively defined).
+# because sometimes when I type a 4 it looks like a 2
+\begin{itemize}
+  \item
+        Base Case (\(n = 0\)):
+        \(F(5 \cdot 0) = F(0) = 0 5 \cdot 0\), so \(P(0)\) holds,
+  \item
+        Inducvite step:
+        Let \(n \in \N\). Assume \(P(n)\) i.e. \(\exists k \in \N \st F(5n) = 5k\). It suffices to prove that \(\exists k' \in \N \st F(5(n + 1)) = 5k'\)
+
+        Let \(k' = (3k + F(5n + 1))\). Then,
+        \begin{align*}
+          F(5(n + 1)) &= F(5n + 5) \\
+                      &= F(5n + 3) + F(5n + 4) \\
+                      &= F(5n + 2) + F(5n + 3) + F(5n + 3) \\
+                      &= F(5n + 1) + F(5n + 1) + F(5n + 2) + F(5n + 2) + F(5n + 2) \\
+                      &= 3F(5n) + 5F(5n + 1) \\
+                      &= 3 \cdot 5k + 5F(5n + 1) && \text{(By \(P(n)\))} \\
+                      &= 5 \cdot (3k + F(5n + 1)) \\
+                      &= 5k'
+        \end{align*}
+        So \(P(n + 1)\) follows from \(P(n)\)
+\end{itemize}
+
+So \(\forall \n \in \N, P(n)\)
+
+** Closed form for \(F(n)\)?
+
+No rabbit, no hat
+
+The course notes present a proof by induction that
+\[
+F(n) = \frac{\phi^{n} - \br{\hat{\phi}}^{n}}{\sqrt{5}}, \phi = \frac{1 + \sqrt{5}}{2}, \hat{\phi} = \frac{1 - \sqrt{5}}{2}
+\]
+You can, and should, be able to ...
+
+* Binary search
+
+The binary search function below is represented by the function \(T(n)\).
+
+Since we are not proving correctness, we don't care whether \(A\) is sorted. \(\abs{A} = n = e - b + 1\), where \(n\) is the length of the string/list/tree, \(b\) is the beginning of the search, and \(e\) is the end of the search.
+
+#+begin_src python
+def recBinSearch(x, A, b, e):
+    if b == e:             #
+        if x <= A[b]:      #
+            return b       # has time complexity $c$
+        else:              #
+            return e + 1   #
+    else:
+        m = (b + e) // 2 # midpoint  # has time complexity $1$
+        if x <= A[m]:
+            return recBinSearch(x, A, b, m)      # has time complexity
+        else:                                    # $\max\cbr{T\br{\floor{\frac{n}{2}}}, T\br{\ceil{\frac{n}{2}}}}$
+            return recBinSearch(x, A, m + 1, e)  #
+#+end_src
+
+Left as an exercise to the reader: Show \(\ceil{\frac{n}{2}} = m - b + 1\). \(\floor{\frac{n}{2}} = e - m\)
+
+** Guess the bound of \(T(n)\) by "unwinding it"
+
+Suppose (thoughtful wishing...) that \(n = 2^k\) for some natural number \(k\).
+\begin{align*}
+    T(n) &= T(2^k) \\
+         &= 1 + T(2^{k - 1}) \\
+         &= 1 + 1 + T(2^{k - 2}) \\
+         &= 1 + 1 + 1 + T(2^{k - 3}) \\
+         & \qquad \cdots \\
+         &= k + T(1) \\
+         &= \log_2{n} + c && \text{\(T(1) = C\) and \(2^k = n\) so, \(\log_2{n} = k\))}
+\end{align*}
+
+This is a guess! Even for powers of \(2\), there's an induction (on \(k\) maybe?) here.
+
+** Prove lower bound on \(T(n)\)
+
+/Proof:/ Let \(B \in \R^{ + } = 2\). Let \(c \in \R^{ + } = 1\). Let \(n \in \N\). Assume \(n \geq B\). Assume \(\forall i \st B \leq i < n, T(i) \geq c \cdot \log_{2}(i)\).
+
+
+\begin{itemize}
+\item Case \(n \geq 3\):
+\begin{align*}
+  T(n) &= 1 + \max \cbr{T\br{\ceil{\frac{n}{2}}}, T\br{\floor{\frac{n}{2}}}} \\
+       &\geq 1 + c \log_{2}\br{\ceil{\frac{n}{2}}} && \text{(By IH, since \(n > \ceil{\frac{n}{2}} \geq B\) since \(B \geq 2\))} \\
+       &\geq 1 + c \log_{2}\br{\frac{n}{2}} && \text{(since \(\frac{n}{2} \leq \ceil{\frac{n}{2}}\))} \\
+       &= 1 + c\br{\log_{2}(n) - \log_{2}(2)} \\
+       &= 1 + c\br{\log_{2}(n) - 1} \\
+       &= \br{1 - c} + c \log_{2}(n) \\
+       &\geq c \log_{2}(n) && \text{(since \(c \leq 1\))}
+\end{align*}
+\item Case \(n = 2\):
+\(T(2) = 1 + T(1) = 1 + c' \geq 1 \cdot \log_{2}(2) = c \log_{2}(2)\)
+\item Case \(n = 1\):
+\(T(1) = c' \geq 1 \cdot \log_{2}(1) = 0 = c \cdot 0 = c \log_{2}(1)\)
+\end{itemize}
+So the lower bound of \(T(n)\) is \(c \log_{2}(n)\) \orgqed
+
+** Prove upper bound on \(T(n)\)
+
+/Proof:/ Let \(B \in \R^{ + } = \dots\). Let \(c \in \R^{ + } = \dots\) Let \(n \in \N\). Assume \(n \geq B\) and that \(T(i) \leq c \cdot \log_{2}{i}\) for all \(B \leq i < n\).
+
+It suffices to show that \(T(n) \leq c \log_{2}(n)\)
+
+\begin{itemize}
+  \item Case \(n = \dots\):
+        \begin{align*}
+          T(n) &= 1 + \max \cbr{T\br{\ceil{\frac{n}{2}}}, T\br{\floor{\frac{n}{2}}}} \\
+               &\leq 1 + c \log_{2}\br{\ceil{\frac{n}{2}}} && \text{(since \(B \leq \ceil{\frac{n}{2}} < n\), since \(n \geq 2\))} \\
+               &\leq 1 + c \log_{2}\br{\frac{n + 1}{1}} \\
+               &= 1 + c (\log_{2}(n + 1) - \log_{2}(2)) \\
+               &= 1 + c (\log_{2}(n + 1) - 1) \\
+               &= (1 - c) + c \log_{2}(n + 1)
+        \end{align*}
+        Oops! We want \(T(n) \leq c \log_{2}(n)\), not just \(T(n) \leq c \log_{2}(n + 1)\). We could fiddle aroudn and make this work, by strenghtening the claim to:
+        \[
+            T(n) \leq c \log_{2}(n - 1) \leq c \log_{2}(n)
+        \]
+        This strengthens the IH, and it should work. Howerver, will it generalize to other recursive algorithms that use the ``divide and conquer'' approach? \orgqed
+\end{itemize}
+
+There are other strategies that will work to prove this.
+
+* Reucrrence for MergeSort
+
+#+begin_src python
+MergeSort(A, b, e) -> None:
+    if b == e: return None  # $c_1$
+    m = (b + e) / 2
+
+    MergeSort(A, b, m)      #
+    MergeSort(A, m + 1, e)  #
+
+    # merge sorted A[b..m] and A[m + 1..e] back into A[b..e]
+    B = A[:] # copy A  # linear in $n$              #
+    c = b                                           #
+    d = m + 1                                       #
+    for i in [b,...,e]:                             #
+        if d > e or (c <= m and B[c] < B[d]):       #
+            A[i] = B[c]                             # linear in $n$
+            c = c + 1                               #
+        else: # d <= e and (c > m or B[c] >= B[d])  #
+            A[i] = B[d]                             #
+            d = d + 1                               #
+#+end_src
+
+** Unwind (repeated substitution)
+
+\(T(n) = 2T\br{\frac{n}{2}} + n\)
+
+Assume \(n = 2^k\) for some positive integer \(k\).
+\begin{align*}
+    T(n) &= T(2^{k}) \\
+        &= T\br{\ceil{2^{k - 1}}} + T\br{\floor{2^{k - 1}}} + n && \text{(by definition)}\\
+        &= T\br{2^{k - 1}} + T\br{2^{k - 1}} + 2^{k} && \text{(since \(2^{k}\) is always whole)}\\
+        &= 2T\br{2^{k - 1}} + 2^{k} \\
+        & \qquad \dots && \text{(repeat \(k - 1\) more times)} \\
+        &= 2^{k}T(1) + k\br{2^{k}} \\
+        &= n \cdot c + \log_{2}(n) \cdot n && \text{(since \(n = 2^{k} \tand T(1) = c\))}\\
+        &= cn + n \log_{2}(n)
+\end{align*}
+
+So for the case \(n = 2^{k}, T(n) = cn + n \log_{2}(n)\), which can be simplified to \(T(2^{k}) = 2^{k}c + 2^{k}k\) (only for this specific case).
