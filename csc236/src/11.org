@@ -1,0 +1,162 @@
+#+TITLE: CSC236 Week 11: Recurrences...
+#+date: November 25 -- November 1, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+* Merge sort complexity, a sketch
+1. Derive a recurrence to express worst-case run times in terms of \(n = \abs{A}\):
+   \[T(n) = \begin{cases} c' & \text{if } n = 1 \\ T\br{\ceil{\frac{n}{2}}} + T\br{\floor{\frac{n}{2}}} + n & \text{if } n > 1 \end{cases}\]
+2. Repeated substitution/unwinding in special case where \(n = 2^k\) for some natural number \(k\) leads to:
+   \[
+   T(2^k) = 2^k T(1) k 2^k = c'n + n \log_{2}(n)
+   \]
+
+   We can neglect the \(c'n\) term since it is of a lower order so we make the conjecture, \(T(2^k) \in \Theta(n \log_2(n))\).
+
+3. Prove \(T\) is non-decreasing (see Course Notes Lemma 3.6)
+
+4. Prove \(T \in \bigo(n \log_2(n))\) and \(T \in \Omega(n \log_2(n))\)
+
+* \(T\) is non-decreasing, see Course Notes Lemma 3.6
+
+Exercise: prove the recurrence for binary search is non-decreasing...
+
+Let \(\hat{n} = 2^{\ceil{\log_{2}(n)}}\). We want to sandwich \(T(n)\) between successive powers of 2.
+
+\begin{align*}
+    \ceil{\log_{2}(n)} - 1 &< \log_{2}(n) \leq \ceil{\log_{2}(n)} \\
+    2^{\ceil{\log_{2}(n)} - 1} &< n \leq 2^{\ceil{\log_{2}(n)}} \\
+    \frac{\hat{n}}{2} < n \leq \hat{n}
+\end{align*}
+
+As an aside, try working out \hat{n} for \(n \in \cbr{1, 2, 3, 4, 5, 6, 7,8}\).
+
+# \(T(\hat{n}) = c \hat{n} \log_{2}(\hat{n})\)
+# \(T(\hat{n}) = c \frac{\hat{n}}{2} \log_{2}\br{\frac{\hat{n}}{2}}\)
+# insert diagram dealing with these two expressions>
+
+* Prove \(T \in \bigo(n \log_2(n)\) for the general case
+
+Let \(d \in \R^{ + } = 2(2 + c)\). Let \(B \in \R^{ + } = 2\). Let \(n \in \N\) no smaller than \(B\).
+
+\begin{align*}
+    T(n) &\leq T(\hat{n}) && \text{(since \(T\) is non-decreasing and \(n \leq \hat{n}\))} \\
+         &= \hat{n} \log_{2}(\hat{n}) + c \hat{n} && \text{by the unwinding}\\
+         &< 2n \log_{2}(2n) + c \cdot 2n && \text{(since \(\hat{n} < 2n\) and \(\log_{2}\) is non-decreasing)} \\
+         &= 2n (\log_{2}(2) + \log_{2}(n)) + 2cn \\
+% something fishy is happening here, figure it out before publishing this
+         &= 2n((1 + c) \log_{2}(n) + \log_{2}(n)) && \text{(\(\log_{2}(n) \geq \log_{2}(2) = 1\), since \(n \geq B\))} \\
+         &= 2n(\log_{2}(n))(1 + 1 + c) \\
+         &= 2n(\log_{2}(n))(2 + c) \\
+         &= 2n \log_{2}(n) + 2n (1 + c) \\
+         &= d n \log_{2}(n) && \text{(since d = 2 (2 + c))}
+ % "how big does my d have to be?" - danny heap
+\end{align*}
+
+This proves that \(T\) is bounded above by some constant times \(n \log_{2}(n)\). \orgqed.
+
+Note: in proving \(\Omega\), you will want to use the fact that \(\frac{n}{2} \leq \frac{\hat{n}}{2}\).
+
+* Divide-and-conquer general case
+
+Divide-and-conquer algorithms: partition a problem into \(b\) roughly equal sub-problems, solve, and recombine.
+
+\[
+T(n) = \begin{cases}
+k & \tif n \leq B \\
+a_{1} T\br{\ceil{\frac{n}{b}}} + a_{2} T\br{\floor{\frac{n}{b}}} + f(n) & \tif n > B
+\end{cases}
+\]
+
+Where \(b, k > 0, a_1, a_2 \geq 0, \tand a = a_1 + a_2 > 0\). \(f(n)\) is the cost of splitting and recombining.
+
+\(b\) is the number of pieces we divide the problem into.
+
+\(a\) is the number of recursive calls.
+
+\(f\) is the cost of splitting and recombining, we hope \(f \in \Theta(n^d)\).
+
+** Divide-and conquer Master Theorem
+
+If \(f\) from the previous slide has \(f \in \Theta(n^d)\)
+
+\[
+T(n) \in \begin{cases}
+\Theta(n^{d}) & \tif a < b^{d} \\
+\Theta(n^{d} \log_{b}n) & \tif a = b^{d} \\
+\Theta(n^{\log_{b}a}) & \tif a > b^{d} \\
+\end{cases}
+\]
+
+Note: the complexity is sensitive to \(a\) (the number of recursive calls) and \(d\) (the degree of polynomial for splitting and recombining).
+
+There are three steps to the proof of the Master Theorem. They are exactly parallel to the Merge Sort proof.
+
+1. Unwind the recurrence, and prove a result for \(n = b^k\).
+
+   Only valid for special values of \(n\).
+
+2. Prove that \(T\) is non-creasing
+
+   See the course notes.
+
+3. Extend to all \(n\), similar to Merge Sort.
+
+   Easiest step, remember that technique with \(\hat{n}\).
+
+** Apply the master theorem
+
+*** Merge sort
+
+\(a = b = 2,~d = 1\). So the complexity is \(\Theta(n^1 \log_{2}n)\).
+
+*** Binary search
+
+\(a = 1,~b = 2,~d = 1\). So the complexity is \(\Theta(n^{0} \log_{2}n)\).
+
+* Multiply lots of bits
+
+Machines are usually able to multiply able to process integers of machine size (64-bit, 32-bit, etc.) in constant time. But what if they don't fit into machine instruction? This process takes a longer time:
+\begin{center}
+    \begin{matrix}
+                   & & & 1 & 1 & 0 & 1 \\
+        & & \(\times\) & 1 & 0 & 1 & 1 \\
+        \hline
+                   & & & 1 & 1 & 0 & 1 \\
+                 & & 1 & 1 & 0 & 1 &  \\
+               & 0 & 0 & 0 & 0 & &  \\
+             1 & 1 & 0 & 1 & & &  \\
+    \hline
+             1 & 0 & 0 & 1 & 1 & 1 & 1
+    \end{matrix}
+\end{center}
+Let \(n\) be the number of bits of the numbers we are multiplying. We make \(n\) copies, and have \(n\) additions of 2 \(n-\)bit numbers. So the complexity of this "algorithm" is \(\Theta(n^2)\).
+
+** Divide and recombine
+
+Recursively, \(2^n = n\) left-shifts, and addition/subtractions are \(\Theta(n)\).
+
+|            11 | 01 |
+| \(\times\) 10 | 11 |
+
+Let \(x_0\) be the top left of this table, \(x_1\) be the top right, \(y_0\) be the bottom left, \(y_1\) be the bottom right.
+\begin{align*}
+    xy &= (2^{\frac{n}{2}}x_{1} + x_{0}) (2^{\frac{n}{2}}y_{1} + y_{0}) \\
+       &= 2^{n}x_{1}y_{1} + 2^{\frac{n}{2}}(x_{1}y_{0} + x_{0}y_{1}) + x_{0}y_{0} \\
+\end{align*}
+The time complexity of this can be broken down as follows:
+1. divide each factor (roughly) in half (\(b = 2\)).
+2. Multiply the halves (recursively, if they're too big) (\(a = 4\)).
+3. Combine he products with shifts and adds (linear in number of bits).
+
+According to the master theorem, since we have \(a = 4,~b = 2,~d = 1\), the time complexity of this algorithm is \(\Theta(n^{log_{2}4})) = \Theta(n^2)\).
+
+** Gauss's Trick
+
+Gauss rewrote the multiplication of \(x\) and \(y\) as follows, to reduce the number of individual calculations by making some of the multiplications repeat themselves.
+\[
+xy = 2^{n}{\color{red}x_{1}y_{1}} + 2^{\frac{n}{2}}{\color{red}x_{1}y_{1}} + 2^{\frac{n}{2}}(({\color{red}x_{1}} - {\color{teal}x_{0}})({\color{teal}y_{0}} - {\color{red}y_{1}}) + {\color{teal}x_{0}y_{0}}) + {\color{teal}x_{0}y_{0}}
+\]
+Repeated products can be stored after the first calculation, so they don't need to be calculated multiple times. So, not we have just 3 multiplications, at the cost of 2 more subtractions and one more addition. Since addition and subtractions are linear in the number of bits, this greatly reduces the complexity.
+
+So now, using the master theorem, since \(a = 3~,b = 2,~d = 1\), the time complexity of this algorithm is \(\Theta(n^{\log_{2}3}) = \Theta(n^{1.5894})\). This is, in fact, better that \(\Theta(n^2)\), even if not by much.
