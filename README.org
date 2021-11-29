@@ -7,7 +7,7 @@ This is a repository for the notes that I took while at the University of toront
 | CSC110 | [[http://mariobadr.com][Mario Badr]]         | 2020F | [[csc110/csc110.pdf]] |
 | CSC111 | [[https://www.cs.toronto.edu/~david/][David Liu]]          | 2021S | [[csc111/csc111.pdf]] |
 | MAT137 | [[https://www.gatheringus.com/memorial/alfonso-gracia-saz/7329?locale=en&c=937][Alfonso Gracia-Saz]] | 2020Y | [[mat137/mat137.pdf]] |
-| CSC236 | [[https://cs.toronto.edu/~heap][Daniel Heap]]        | 2021S | [[csc236/csc236.pdf]] |
+| CSC236 | [[https://cs.toronto.edu/~heap][Daniel Heap]]        | 2021F | [[csc236/csc236.pdf]] |
 
 
 * Contributing
@@ -16,7 +16,7 @@ This is a repository for the notes that I took while at the University of toront
 
 *** ORG Mode
 
-Some of the PDF files are written in ORG mode (~.ORG~). This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configuration, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
+Some of the PDF files are written in org (~.org~), a markup language similar to markdown. This is most accessible through GNU Emacs but there are other ways to write it (vim plugins, vscode extensions, etc.). If you need exact emacs configurations, my dotfiles are public and my emacs configuration is [[https://github.com/hisbaan/dotfiles/blob/master/.doom.d/config.el][here]].
 
 In emacs, the key combination for compiling the ORG file into a LaTeX pdf is ~C-c C-e m e l p~ (or ~SPC m e l p~ with evil mode bindings).
 
