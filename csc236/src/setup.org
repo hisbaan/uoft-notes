@@ -35,6 +35,7 @@
 #+latex_header: \newcommand{\st}{\text{ s.t. }}
 #+latex_header: \newcommand{\tand}{\text{ and }}
 #+latex_header: \newcommand{\tor}{\text{ or }}
+#+latex_header: \newcommand{\tif}{\text{ if }}
 
 #+latex_header: \newcommand{\br}[1]{\left(#1\right)}
 #+latex_header: \newcommand{\sbr}[1]{\left[#1\right]}
