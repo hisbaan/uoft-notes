@@ -33,15 +33,11 @@
 
 * How to do well in this course
 
-- read the syllabus as a two-way promise
+- Read the syllabus as a two-way promise
 
-- question, answer, record, synthesize
+- Question, answer, record, synthesize. Try annotating blank slides.
 
-  try annotating blank slides.
-
-- collaborate with respect
-
-  You need computer science friends who are respectful and constructively critical.
+- Collaborate with respect. You need computer science friends who are respectful and constructively critical.
 
 * Assume that you already know
 
@@ -50,17 +46,13 @@
 
 * By December you'll know
 
-- understand and use several flavours of induction.
+- Understand and use several flavours of induction. Some of these flavours will taste new.
 
-  some of these flavours will taste new
+- Formal languages, regular languages, regular expressions.
 
-- Formal languages, regular languages,regular expressions
+- Complexity and correctness of programs --- both recursive and iterative.
 
-  Sets of strings
-
-- complexity and correctness of programs --- both recursive and iterative
-
-* domino fates foretold
+* Domino fates foretold
 
 \[\sbr{P(0) \land \br{\forall n \in \N, P(n) \implies P(n + 1)}} \implies \forall n \in \N, P(n)\]
 
@@ -68,8 +60,8 @@ If the initial case works, and each case that works implies its successor works,
 
 * Simple induction outline
 
-- inductive step: introduce \(n\) and inductive hypothesis \(H(n)\)
-  + derive conclusion \(C(n)\): show that \(C(n)\) follows from \(H(n)\), indicating *where* you use \(H(n)\) and why that is valid.
+- Inductive step: introduce \(n\) and inductive hypothesis \(H(n)\)
+  + Derive conclusion \(C(n)\): show that \(C(n)\) follows from \(H(n)\), indicating *where* you use \(H(n)\) and why that is valid.
 - Verify base case(s): verify that the claim is true for any cases not covered in the inductive step
 - In simple induction \(C(n)\) is just \(H(n + 1)\)
 
@@ -87,7 +79,6 @@ Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered
 - \(3 \times 3\): No. The remaining number of squares is not divisible by 3.
 - \(4 \times 4\): Yes.
 
-
 /Proof:/ \(\forall n \in \N\), define the predicate \(P(n)\) as a \(2^{n} \times 2^{n}\) square grid, with one subsquare removed, can be tiled (covered without overlapping) by "chair" trominoes.
 
 \begin{itemize}
@@ -100,7 +91,7 @@ Can an \(n \times n\) square grid, with one subsquare removed, be tiled (covered
 
         I will prove \(P(n + 1)\), that is a \(2^{n + 1} \times 2^{n + 1}\) grid, with one square removed can be tiled by chairs.
 
-        Let \(G\) be a \(2^{n + 1} \times 2^{n + 1}\) grid with one square removed. Notice that \(G\) can be decomposed into four \(2^{n} \times 2^{n}\) disjoint quadrant grids. We may assyme, WLOG (without loss of generality) that the missing square is in the upper-right quadrant, since otherwise just rotate it there, and rotate back when done. By \(P(n)\) I can tile the upper-right quadrant, minus the missing square. By \(P(n)\) 3 more times, I can tile the remaining 3 quadrants, omitting for a moment the 3 tiles nearest the centre of \(G\), with chairs. The briefly omitted squares form a chair! So I complete the tiling by adding one more chair. Thus \(P(n + 1)\).
+        Let \(G\) be a \(2^{n + 1} \times 2^{n + 1}\) grid with one square removed. Notice that \(G\) can be decomposed into four \(2^{n} \times 2^{n}\) disjoint quadrant grids. We may assume, without loss of generality, that the missing square is in the upper-right quadrant, since otherwise just rotate it there, and rotate back when done. By \(P(n)\) I can tile the upper-right quadrant, minus the missing square. By \(P(n)\) 3 more times, I can tile the remaining 3 quadrants, omitting for a moment the 3 tiles nearest the centre of \(G\), with chairs. The briefly omitted squares form a chair! So I complete the tiling by adding one more chair. Thus \(P(n + 1)\).
 
   \item
         Base Case
@@ -116,13 +107,13 @@ And thus \(\forall n \in \N, P(n)\). \orgqed
 
 Check for a few values of \(n\):
 \begin{align*}
-3^0 = 1 &\geq 0 = 0^3 && \checkmark \\
-3^1 = 3 &\geq 1 = 1^3 && \checkmark \\
-3^2 = 9 &\geq 8 = 2^3 && \checkmark \\
-3^3 = 27 &\geq 27 = 3^3 && \checkmark \\
-3^4 = 81 &\geq 64 = 4^3 && \checkmark \\
-3^{-1} = \frac{1}{3} &\geq -1 = -1^3 && \checkmark \\
-3^{2.5} &< 2.5^3 && \times
+3^0 = 1 &\geq 0 = 0^{3} && \checkmark \\
+3^1 = 3 &\geq 1 = 1^{3} && \checkmark \\
+3^2 = 9 &\geq 8 = 2^{3} && \checkmark \\
+3^3 = 27 &\geq 27 = 3^{3} && \checkmark \\
+3^4 = 81 &\geq 64 = 4^{3} && \checkmark \\
+3^{-1} = \frac{1}{3} &\geq -1 = -1^{3} && \checkmark \\
+3^{2.5} &< 2.5^{3} && \times
 \end{align*}
 
 ** Simple Induction
@@ -133,28 +124,24 @@ Check for a few values of \(n\):
     \item Induction on \(n\)
 
           Let \(n \in \N\). Assume \(H(n)~:~3^{n} \geq n^{3}\). I will prove \(H(n + 1)\) follows, that is \(3^{n + 1} \geq \br{n + 1}^{3}\).
-
           \begin{align*}
-            &~3^{n + 1} \\
-            =&~ 3 \cdot 3^{n} \\
-            \geq&~ 3 \cdot n^{3} \\
-            =&~ n^{3} + n^{3} + n^{3} \\
-            \geq&~ n^{3} + 3n^{2} + 9n && \text{(since \(n \geq 3\))} \\
-            \geq&~ n^{3} + 3n^{2} + 3n + 6n \\
-            =&~ n^{3} + 3n^{2} + 3n + 1 && \text{(since \(6n \geq 1\))} \\
-            =&~ \br{n + 1}^{3}  \\
+            ~3^{n + 1} &=~ 3 \cdot 3^{n} \\
+            &\geq 3 \cdot n^{3} \\
+            &= n^{3} + n^{3} + n^{3} \\
+            &\geq n^{3} + 3n^{2} + 9n && \text{(since \(n \geq 3\))} \\
+            &\geq n^{3} + 3n^{2} + 3n + 6n \\
+            &= n^{3} + 3n^{2} + 3n + 1 && \text{(since \(6n \geq 1\))} \\
+            &= \br{n + 1}^{3}
           \end{align*}
-
           And thus we have shown that \(\forall n \in \N \st n \geq 3, H(n) \implies H(n + 1)\).
 
     \item Base Case
-
           \begin{flalign} \nonumber
             &\begin{aligned}
               3^{3} &\geq 3^{3} \text{ so } P(3) \text{ holds.} \\
               3^{2} &\geq 2^{3} \text{ so } P(2) \text{ holds.} \\
               3^{1} &\geq 1^{3} \text{ so } P(1) \text{ holds.} \\
-              3^{0} &\geq 0^{3} \text{ so } P(0) \text{ holds.} \\
+              3^{0} &\geq 0^{3} \text{ so } P(0) \text{ holds.}
             \end{aligned} &&
           \end{flalign}
   \end{itemize}

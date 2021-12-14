@@ -22,14 +22,14 @@
 Exercise: prove the recurrence for binary search is non-decreasing...
 
 Let \(\hat{n} = 2^{\ceil{\log_{2}(n)}}\). We want to sandwich \(T(n)\) between successive powers of 2.
-
 \begin{align*}
     \ceil{\log_{2}(n)} - 1 &< \log_{2}(n) \leq \ceil{\log_{2}(n)} \\
     2^{\ceil{\log_{2}(n)} - 1} &< n \leq 2^{\ceil{\log_{2}(n)}} \\
     \frac{\hat{n}}{2} < n \leq \hat{n}
 \end{align*}
-
 As an aside, try working out \hat{n} for \(n \in \cbr{1, 2, 3, 4, 5, 6, 7,8}\).
+
+The remainder of this proof can be found in the Vassos' notes, \emph{Lemma 3.6}.
 
 # \(T(\hat{n}) = c \hat{n} \log_{2}(\hat{n})\)
 # \(T(\hat{n}) = c \frac{\hat{n}}{2} \log_{2}\br{\frac{\hat{n}}{2}}\)
@@ -38,10 +38,9 @@ As an aside, try working out \hat{n} for \(n \in \cbr{1, 2, 3, 4, 5, 6, 7,8}\).
 * Prove \(T \in \bigo(n \log_2(n)\) for the general case
 
 Let \(d \in \R^{ + } = 2(2 + c)\). Let \(B \in \R^{ + } = 2\). Let \(n \in \N\) no smaller than \(B\).
-
 \begin{align*}
     T(n) &\leq T(\hat{n}) && \text{(since \(T\) is non-decreasing and \(n \leq \hat{n}\))} \\
-         &= \hat{n} \log_{2}(\hat{n}) + c \hat{n} && \text{by the unwinding}\\
+         &= \hat{n} \log_{2}(\hat{n}) + c \hat{n} && \text{(by the unwinding)}\\
          &< 2n \log_{2}(2n) + c \cdot 2n && \text{(since \(\hat{n} < 2n\) and \(\log_{2}\) is non-decreasing)} \\
          &= 2n (\log_{2}(2) + \log_{2}(n)) + 2cn \\
 % something fishy is happening here, figure it out before publishing this
@@ -52,8 +51,7 @@ Let \(d \in \R^{ + } = 2(2 + c)\). Let \(B \in \R^{ + } = 2\). Let \(n \in \N\) 
          &= d n \log_{2}(n) && \text{(since d = 2 (2 + c))}
  % "how big does my d have to be?" - danny heap
 \end{align*}
-
-This proves that \(T\) is bounded above by some constant times \(n \log_{2}(n)\). \orgqed.
+This proves that \(T\) is bounded above by some constant times \(n \log_{2}(n)\). \orgqed
 
 Note: in proving \(\Omega\), you will want to use the fact that \(\frac{n}{2} \leq \frac{\hat{n}}{2}\).
 
@@ -92,17 +90,11 @@ Note: the complexity is sensitive to \(a\) (the number of recursive calls) and \
 
 There are three steps to the proof of the Master Theorem. They are exactly parallel to the Merge Sort proof.
 
-1. Unwind the recurrence, and prove a result for \(n = b^k\).
+1. Unwind the recurrence, and prove a result for \(n = b^k\). The unwinding is only valid for special values of \(n\).
 
-   Only valid for special values of \(n\).
+2. Prove that \(T\) is non-decreasing. See the course notes for details on how to do this.
 
-2. Prove that \(T\) is non-creasing
-
-   See the course notes.
-
-3. Extend to all \(n\), similar to Merge Sort.
-
-   Easiest step, remember that technique with \(\hat{n}\).
+3. Extend to all \(n\), similar to Merge Sort. This is the easiest step, recall the technique with \(\hat{n}\).
 
 ** Apply the master theorem
 
@@ -142,10 +134,10 @@ Recursively, \(2^n = n\) left-shifts, and addition/subtractions are \(\Theta(n)\
 Let \(x_0\) be the top left of this table, \(x_1\) be the top right, \(y_0\) be the bottom left, \(y_1\) be the bottom right.
 \begin{align*}
     xy &= (2^{\frac{n}{2}}x_{1} + x_{0}) (2^{\frac{n}{2}}y_{1} + y_{0}) \\
-       &= 2^{n}x_{1}y_{1} + 2^{\frac{n}{2}}(x_{1}y_{0} + x_{0}y_{1}) + x_{0}y_{0} \\
+       &= 2^{n}x_{1}y_{1} + 2^{\frac{n}{2}}(x_{1}y_{0} + x_{0}y_{1}) + x_{0}y_{0}
 \end{align*}
 The time complexity of this can be broken down as follows:
-1. divide each factor (roughly) in half (\(b = 2\)).
+1. Divide each factor (roughly) in half (\(b = 2\)).
 2. Multiply the halves (recursively, if they're too big) (\(a = 4\)).
 3. Combine he products with shifts and adds (linear in number of bits).
 

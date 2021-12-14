@@ -62,23 +62,23 @@ Start with \(\emptyset, \varepsilon, a \in \Sigma\).
 Suppose \(r_1\) and \(r_2\) denote languages accepted by \(M_1\) and \(M_2\) respectively.
 
 \begin{center}
-    \inkfig[0.7]{mysterymachine1}
+    \inkfig[0.5]{mysterymachine1}
 \end{center}
 
 \begin{center}
-    \inkfig[0.7]{mysterymachine2}
+    \inkfig[0.5]{mysterymachine2}
 \end{center}
 
 \(L(r_1 + r_2) = L(r_1) \cup L(r_2)\). We could build the corresponding machine using product construction on \(M_1\) and \(M_2\) or we could use a NFSA.
 
 \begin{center}
-    \inkfig[0.7]{mm1mm2linkedstarts}
+    \inkfig[0.5]{mm1mm2linkedstarts}
 \end{center}
 
 \(L(r_{1}^*) = L(r_1)^*\). We want to transform \(M_1\) into a machine that accepts the Kleene star of the language accepted by \(M_1\).
 
 \begin{center}
-    \inkfig[0.7]{mm1linkendtostart}
+    \inkfig[0.5]{mm1linkendtostart}
 \end{center}
 
 \(L(r_1r_2) = L(r_1)L(r_2)\). How do we combine \(M_1\) and \(M_2\) to accept this concatenated language? We concatenate the two machines!
@@ -103,19 +103,19 @@ Not that all three techniques use non-determinism but we can use subset construc
 ** Step 3: convert \(L(M)\) to \(L(R)\) and eliminate states.
 
 \begin{center}
-    \inkfig[0.7]{lmtolr}
+    \inkfig[0.6]{lmtolr}
 \end{center}
 
 Then we eliminate \(Q_1\):
 
 \begin{center}
-    \inkfig[0.7]{lmtolrwoq}
+    \inkfig[0.6]{lmtolrwoq}
 \end{center}
 
 Then we eliminate \(Q_2\)!
 
 \begin{center}
-    \inkfig[0.7]{lmtolrwoq2}
+    \inkfig[0.5]{lmtolrwoq2}
 \end{center}
 
 So our regular expression is \((0 + 11 + 10(1 + 00)^*01)^*\).

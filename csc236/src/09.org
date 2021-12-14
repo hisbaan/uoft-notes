@@ -15,16 +15,16 @@ If \(L\) has a finite number of strings, then \(L\) is regular.
 
 * Pumping Lemma
 
-If \(L \subseteq \Sigma^{*}\) is a regular language, then there is some \(n_{L} \in \N\) (\(n_{L}\) depends on \(L\) such that \(n_L\) is the number of states in some FSA that accepts \(L\)) such that if \(x \in L\) and \(\abs{x} \geq n_L\) then:
+If \(L \subseteq \Sigma^{*}\) is a regular language, then there is some \(n_{L} \in \N\) (\(n_L\) is the number of states in some FSA that accepts \(L\)) such that if \(x \in L\) and \(\abs{x} \geq n_L\) then:
 \begin{flalign} \nonumber
 &\begin{aligned}
   &\qquad\bullet \exists u, v, w \in \Sigma^{*}, x = uvw \qquad&&\text{\(x\) is a sandwich} \\
-  &\qquad\bullet \abs{v} > 0 \qquad&&\text{middle of sandwich is non-empty} \\
+  &\qquad\bullet \abs{v} > 0 \qquad&&\text{the middle of the sandwich is non-empty} \\
   &\qquad\bullet \abs{uv} \leq n_{L} \qquad&&\text{first two slices no longer than \(n_{L}\)} \\
   &\qquad\bullet \forall k \in \N, uv^{k}w \in L &&
 \end{aligned} &&
 \end{flalign}
-Idea: if machine \(M(L)\) has \(\abs{Q} = n_{L}, x \in L \land \abs{x} \geq n_{L}\), denote \(q_{i} = \delta^{*}(q_{0}, x[:i])\), so \(x\) ``visits'' \(q_{0}, q_{1}, \dots, q_{n_{L} - 1}\) with the first \(n_{L}\) prefixes of \(x\) (including \(\varepsilon\))... so there is at least one state that \(x\) ``visits'' twice (pigeonhole principle, and \(x\) has \(n_{L} + 1\) prefixes).
+The general idea is if a machine \(M(L)\) has \(\abs{Q} = n_{L}, x \in L \land \abs{x} \geq n_{L}\), denote \(q_{i} = \delta^{*}(q_{0}, x[:i])\), so \(x\) ``visits'' \(q_{0}, q_{1}, \dots, q_{n_{L} - 1}\) with the first \(n_{L}\) prefixes of \(x\) (including \(\varepsilon\))... so there is at least one state that \(x\) ``visits'' twice (pigeonhole principle, and \(x\) has at least \(n_{L} + 1\) prefixes).
 
 # draw the pumping lemma from slides
 
@@ -40,19 +40,18 @@ Consider how many different states \(1^k \in \text{Prefix}(L)\) and end up in\do
 
 Scratch work: Could 1, 11, 111 each take the machine to the same state?
 
-/Proof:/ Assume, for the sake of contradiction, that \(L\) (previous section) is regular. Then some machine \(M\) that accepts \(L\) has some number of states \(\abs{Q} = m\). Consider the prefixes \(1^{0}, 1^{1}, \dots, 1^{m}\). Since there are \(m + 1\) such prefixes, at least two drive \(M\) to the same state, so there are \(0 \leq h < i \leq m\) such that \(1^{h}\) and \(1^{i}\) drive \(M\) to the same state but then \(1^{h}0^{h}\) drive the machine to an accepting state. But so does \(1^{i}0^{h}\)! But \(1^{i}0^{h}\) (since \(i \neq h\)) sohuld not be accepted. \emph{This is a contradiction}. By assuming that \(L\) was regular, we had to conclude there was a mchine that accepted \(L\), which lead to a contradiction. So that assumption is false and \(L\) is not regular \orgqed
+/Proof:/ Assume, for the sake of contradiction, that \(L\) (previous section) is regular. Then some machine \(M\) that accepts \(L\) has some number of states \(\abs{Q} = m\). Consider the prefixes \(1^{0}, 1^{1}, \dots, 1^{m}\). Since there are \(m + 1\) such prefixes, at least two drive \(M\) to the same state, so there are \(0 \leq h < i \leq m\) such that \(1^{h}\) and \(1^{i}\) drive \(M\) to the same state but then \(1^{h}0^{h}\) drive the machine to an accepting state. But so does \(1^{i}0^{h}\)! But \(1^{i}0^{h}\) (since \(i \neq h\)) sohuld not be accepted. \emph{This is a contradiction}. By assuming that \(L\) was regular, we had to conclude there was a mchine that accepted \(L\), which lead to a contradiction. So that assumption is false and \(L\) is not regular. \orgqed
 
 # TODO finish this
 * "Real life" consequences
 - The proof of irregularity of \(L = \cbr{1^n0^n : n \in \N}\) suggest a proof of irregularity of \(L' = \cbr{x \in \cbr{0, 1}^* : x \text{ has an equal number of 1s and 0s}}\) (explain\dots consider \(L' \cap L(1^*0^*)\))
-- A similar argument implies irregularity of \(L'' \cbr{x \in \Sigma^* : x \text{ has an equal number of }}\)
+- A similar argument implies irregularity of \(L'' = \cbr{x \in \Sigma^* : x \text{ has an equal number of}}\)
 
-* How about \(L = \cbr{w \in \Sigma^* : \abs{w} = p \land p \text{ is prime}}\)
+* How about \(L = \cbr{w \in \Sigma^* : \abs{w} = p \text{ is prime}}\)
 
 Non regular. We can always find a prime that is at least as big as a given machine since there are an infinite amount of primes. There is always some bigger prime. We will prove this by the pumping lemma.
-\begin{proof}
-  /Proof:/ Assume for the sake of contradiction, that \(L\) is regular. So there is some machine \(M\) with \(\abs{Q} = m\) states, that accepts \(L\). Let \(p\) be a prime number that is no smaller then \(m\). Such a \(p\) exists since there are an infinite number of primes. Then the regular expression \(1^{p}\) has length \(\geq m\). This regular expression \(1^{p} = uvw\) where \(\abs{v} > 0\), \(\abs{uv} < m\), and \(uv^{kw} \in L\) for all natural numbers \(k\). We know that \(\abs{uvw} = p\), but \(\abs{uv^{1 + p}w} = p + p \cdot \abs{v} = p \cdot (1 + \abs{v})\), a composite number. \emph{This is a contradiction} since \(L\) consists of only strings of prime length. \orgqed
-\end{proof}
+
+/Proof:/ Assume for the sake of contradiction, that \(L\) is regular. So there is some machine \(M\) with \(\abs{Q} = m\) states, that accepts \(L\). Let \(p\) be a prime number that is no smaller then \(m\). Such a \(p\) exists since there are an infinite number of primes. Then the regular expression \(1^{p}\) has length \(\geq m\). This regular expression \(1^{p} = uvw\) where \(\abs{v} > 0\), \(\abs{uv} < m\), and \(uv^{kw} \in L\) for all natural numbers \(k\). We know that \(\abs{uvw} = p\), but \(\abs{uv^{1 + p}w} = p + p \cdot \abs{v} = p \cdot (1 + \abs{v})\), a composite number. \emph{This is a contradiction} since \(L\) consists of only strings of prime length. \orgqed
 
 * A humble admission... (from Prof. Heap)
 
@@ -73,9 +72,9 @@ Non regular. We can always find a prime that is at least as big as a given machi
 * Push Down Automata (PDA)
 
 - DFSA plus an infinite stack with finite set of stack symbols. Each transition depends on the state, (optionally) the input symbol, (optionally) a pop from stack.
-- Each transition results in a state, (optional) push onto stack.
+- Each transition results in a state, (optional) push onto stack. \\
 
-Design a PDA that accepts \(L = \cbr{1^n0^n : n \in \N}\).
+Design a PDA that accepts \(L = \cbr{1^n0^n : n \in \N}\):
 
 Corresponds to a context-free grammar (production rules) that denotes this language
 - \(S \to 1S0\)

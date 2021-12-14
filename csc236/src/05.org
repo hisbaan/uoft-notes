@@ -4,19 +4,19 @@
 #+setupfile: setup.org
 
 * Some definitions
-- *alphabet:* Finite, non-empty set of symbols, e.g. \(\cbr{a, b}\) or \(\cbr{0, 1, -1}\). Conventionally denotes \(\Sigma\).
-- *string:* Finite (including empty) sequence of symbols over an alphabet: abba is a string over \(\cbr{a, b}\). Convention: \(\varepsilon\) is the empty string, never an allowed symbol, \(\Sigma^*\) is set of all strings over \(\Sigma\).
-- *language:* Subset of \(\Sigma^*\) for some alphabet \(\Sigma\). Possible empty, possibly empty, possibly infinite subset. E.e. \(\cbr{}, \cbr{aa, aaa, aaaa, \dots}\).
+- *Alphabet:* Finite, non-empty set of symbols, e.g. \(\cbr{a, b}\) or \(\cbr{0, 1, -1}\). Conventionally denotes \(\Sigma\).
+- *String:* Finite (including empty) sequence of symbols over an alphabet: abba is a string over \(\cbr{a, b}\). Convention: \(\varepsilon\) is the empty string, never an allowed symbol, \(\Sigma^*\) is set of all strings over \(\Sigma\).
+- *Language:* Subset of \(\Sigma^*\) for some alphabet \(\Sigma\). Possible empty, possibly empty, possibly infinite subset. E.e. \(\cbr{}, \cbr{aa, aaa, aaaa, \dots}\).
 
-*N.B.:* \(\cbr{} \neq \cbr{\varepsilon}\). \(\abs{\cbr{}} = 0 \neq 1 = \abs{\cbr{\varepsilon}}\)
+*N.B.:* \(\cbr{} \neq \cbr{\varepsilon}\). /Proof:/ \(\abs{\cbr{}} = 0 \neq 1 = \abs{\cbr{\varepsilon}} \implies \cbr{} \neq \cbr{\varepsilon}\) \orgqed
 
-Many problems can be reduced to languages: logical formulas, identifiers fro compilation, natural language processing. Key question is recognition:
+Many problems can be reduced to languages: logical formulas, identifiers from compilation, natural language processing. The key question is recognition:
 \[
-\text{Given language \(L\) ans string \(s\), is \(s \in L\)?}
+    \text{Given language \(L\) and string \(s\), is \(s \in L\)?}
 \]
 
 * More notation --- string operations
-- *string length:* denotes \(\abs{s}\), is the number of symbols in \(s\), e.g. \(\abs{bba} = 3\).
+- *String length:* denotes \(\abs{s}\), is the number of symbols in \(s\), e.g. \(\abs{bba} = 3\).
 - *\(s = t\):* if and only if \(\abs{s} = \abs{t}\), and \(s_i = s_t\), for \(0 \le i < \abs{s}\).
 - *\(s^R\):* reversal of \(s\) is obtained by reversing symbols of \(s\), e.g. \(1011^R = 1101\).
 - *\(st \text{ or } s \circ t\):* concatenation of \(s\) and \(t\) --- all characters of \(s\) followed by all those of \(t\), e.g. \(bba \circ bb = bbabb\).
@@ -28,9 +28,15 @@ Many problems can be reduced to languages: logical formulas, identifiers fro com
 - *\(L \cup L'\):* Union.
 - *\(L \cap L'\):* Intersection.
 - *\(L - L'\):* Difference.
-- *\(\mathrm{Rev}(L)\):* = \(\cbr{s^R : s \in L}\)
-- *concatenation:* \(LL' \text{ or } L \circ L' = \cbr{rt : r \in L, r \in L'}\). Special cases \(L\cbr{\varepsilon} = L = \cbr{\varepsilon}L, \text{ and } L\cbr{} = \cbr{} = \cbr{}L\).
-- *exponentiation:* \(L^k\) is concatenation of \(L\), \(k\) times. Special case, \(L^0 = \cbr{\varepsilon}\), including \(L = \cbr{}\).
+- *\(\mathrm{Rev}(L)\):* = \(\cbr{s^R : s \in L}\).
+- *concatenation:* \(LL' \text{ or } L \circ L' = \cbr{rt : r \in L, r \in L'}\).
+
+  There are some special cases, \(L\cbr{\varepsilon} = L = \cbr{\varepsilon}L, \text{ and } L\cbr{} = \cbr{} = \cbr{}L\).
+
+- *exponentiation:* \(L^k\) is concatenation of \(L\), \(k\) times.
+
+  There is a special case, \(L^0 = \cbr{\varepsilon}\), including \(L = \cbr{}\).
+
 - *Kleene star:* \(L^* = L^0 \cup L^1 \cup L^2 \cup \dots\)
 
 * Another way to define languages

@@ -3,7 +3,7 @@
 #+author: Hisbaan Noorani
 #+setupfile: setup.org
 
-* \(L = \cbr{x \in \cbr{0, 1}^{*} | x \text{ begins and ends with a different bit}}\)
+* \(L = \cbr{x \in \cbr{0, 1}^{*} : x \text{ begins and ends with a different bit}}\)
 
 The language \(L'((0 \br{0 + 1}^{*} 1) \cup (1 \br{1 + 0}^{*} 0))\) should be the same language as the one listed above.
 
@@ -87,14 +87,14 @@ If an integer is divided by 3, it falls into one of three groups. Remainder 0, r
 
 The idea motivating this is to be able to describe the complicated systems above without drawing out messy and time consuming diagrams.
 
-Quintuple: \(\br{Q, \Sigma, q_0, F,\delta}\)
+A quintiple is a set comprised of five components: \(\br{Q, \Sigma, q_0, F,\delta}\)
 
-\(Q\) is a set of states, \(\Sigma\) is finite, non-empty alphabet, \(q_0\) is the start state, \(F\) is the set of accepting states, and \(\delta: Q \times \Sigma \mapsto Q\) is a transition function.
+\(Q\) is a set of states, \(\Sigma\) is a finite and non-empty alphabet, \(q_0\) is the start state, \(F\) is the set of accepting states, and \(\delta: Q \times \Sigma \mapsto Q\) is a transition function.
 
 We can extend \(\delta: Q \times \Sigma \mapsto Q\) to a transition function that tells us what state a string \(s\) takes the automaton to:
 \[
-  \delta^{*} : Q \times \Sigma^{*} \mapsto Q \qquad \delta^{*}(q, s) = \begin{cases} q & \text{ if } s = \varepsilon \\ \delta(\delta^{*}(q, s'), a) & \text{ if } s' \in \Sigma^{*}, a \in \Sigma, s = s'a \end{cases}
+  \delta^{*} : Q \times \Sigma^{*} \mapsto Q \text{ such that } \delta^{*}(q, s) = \begin{cases} q & \text{ if } s = \varepsilon \\ \delta(\delta^{*}(q, s'), a) & \text{ if } s' \in \Sigma^{*}, a \in \Sigma, s = s'a \end{cases}
 \]
-String \(s\) is accepted if and only if \(\delta^*(q, s) \in F\), and it is rejected otherwise.
+Any sqquad tring \(s\) is accepted if and only if \(\delta^*(q, s) \in F\), and it is rejected otherwise.
 
-\(\delta^*\) and \(\delta\) are not in fact the same thing. \(\delta\) takes a single valid character \(\in \Sigma\), whereas \(\delta^*\) takes any valid string of characters \(\in \Sigma^*\). This is why \(\delta: Q \times \Sigma \mapsto Q\) and \(\delta^*: Q \times \Sigma^* \mapsto Q\).
+\(\delta^*\) and \(\delta\) are not in fact the same thing. \(\delta\) takes a single valid character \(\in \Sigma\), whereas \(\delta^*\) takes any valid strings of characters \(\in \Sigma^*\). This is why \(\delta: Q \times \Sigma \mapsto Q\) and \(\delta^*: Q \times \Sigma^* \mapsto Q\).

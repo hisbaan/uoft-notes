@@ -6,7 +6,6 @@
 * Complete Induction
 
 - Every natural number greater than 1 has a prime factorization
-  #+begin_latex
   \begin{align*}
     2 &= 2 \\
     3 &= 3 \\
@@ -17,8 +16,7 @@
     8 &= 2 \times 2 \times 2 \\
     9 &= 3 \times 3 \\
     10 &= 2 \times 5
-\end{align*}
-  #+end_latex
+  \end{align*}
 - How does the factorization of 8 help with the factorization of 9?
 
   The fact that 8 can be expressed as a product of primes has nothing to do with 9 being a product of primes.
@@ -49,7 +47,6 @@ This is the same outline as simple induction but we modify the inductive hypothe
 \[f(n) = \begin{cases} 1 & n \leq 1 \\ \sbr{f(\floor{\sqrt{n}})}^2 + 2 f(\floor{\sqrt{n}}) & n > 1 \end{cases}\]
 
 Check a few cases, and make a conjecture:
-#+begin_latex
 \begin{align*}
     f(0) &= 1 \\
     f(1) &= 1 \\
@@ -59,11 +56,9 @@ Check a few cases, and make a conjecture:
     f(5 \dots 15) &= 15 \\
     f(16) &= 255
 \end{align*}
-#+end_latex
-
 All of these things are divisible by 3. The square of something that is divisible by 3 is still divisible by 3 and the double of something that is divisible by 3 is still divisible by 3.
 
-* For all natural numbers \(n > 1, f(n)\) is a multiple of 3?
+** For all natural numbers \(n > 1, f(n)\) is a multiple of 3?
 
 /Proof:/ \(\forall n \in \N\), define the predicate \(P(n)\) as \(f(n)\) is a multiple of 3.
 
@@ -87,6 +82,7 @@ I will prove, using complete induction, that \(\forall n > 1, P(n)\).
         \(P(2)\) claims that \(f(2) = 3\)  is a multiple of 3, which is true.
 
         \(P(3)\) claims that \(f(3) = 3\) is a multiple of 3, which is true. % we have do to this because the floor of the square root of three is not 2, it is 1
+        We have to prove \(P(3)\) in the base case because the floor of the square root of three is not 2, but 1.
 
 \end{itemize}
 
@@ -99,8 +95,6 @@ And thus \(\forall n \in \N \st n \geq 2, P(n)\). \orgqed
 #+latex_header: \newcommand{\z}[1]{zpfbs\br{#1}}
 
 Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no pairs of adjacent zeros. What is \(\z{n}\) for the first few natural numbers \(n\)?
-
-#+begin_latex
 \begin{align*}
     \z{0} &= 1 \\
     \z{1} &= 2 \\
@@ -111,7 +105,6 @@ Deonte by \(\z{n}\) the number of binary strings of length \(n\) That contain no
     &\cdots \\
     \z{n} &= \z{n - 1} + \z{n - 2}
 \end{align*}
-#+end_latex
 \[f(n) = \begin{cases} 1, & n = 0 \\ 2, & n = 1 \\ f(n - 1) + f(n + 2), & n > 1 \\  \end{cases}\]
 \(\forall n \in \N\), defined predicate \(P(n)\) as: \(f(n) = \z{n}\)
 

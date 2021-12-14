@@ -38,17 +38,15 @@ What are Fibonacci numbers multiples of? Which Fibonacci numbers are multiples o
         So \(P(n + 1)\) follows from \(P(n)\)
 \end{itemize}
 
-So \(\forall \n \in \N, P(n)\)
+So \(\forall \n \in \N, P(n)\). \orgqed
 
 ** Closed form for \(F(n)\)?
-
-No rabbit, no hat
 
 The course notes present a proof by induction that
 \[
 F(n) = \frac{\phi^{n} - \br{\hat{\phi}}^{n}}{\sqrt{5}}, \phi = \frac{1 + \sqrt{5}}{2}, \hat{\phi} = \frac{1 - \sqrt{5}}{2}
 \]
-You can, and should, be able to ...
+You can, and should, be able to work through the proof. The question remains, *how* did somebody ever think of \(\phi\) and \(\hat{\phi}\)?
 
 * Binary search
 
@@ -83,7 +81,7 @@ Suppose (thoughtful wishing...) that \(n = 2^k\) for some natural number \(k\).
          &= 1 + 1 + 1 + T(2^{k - 3}) \\
          & \qquad \cdots \\
          &= k + T(1) \\
-         &= \log_2{n} + c && \text{\(T(1) = C\) and \(2^k = n\) so, \(\log_2{n} = k\))}
+         &= \log_2{n} + c && \text{(\(T(1) = C\) and \(2^k = n\) so, \(\log_2{n} = k\))}
 \end{align*}
 
 This is a guess! Even for powers of \(2\), there's an induction (on \(k\) maybe?) here.
@@ -109,7 +107,7 @@ This is a guess! Even for powers of \(2\), there's an induction (on \(k\) maybe?
 \item Case \(n = 1\):
 \(T(1) = c' \geq 1 \cdot \log_{2}(1) = 0 = c \cdot 0 = c \log_{2}(1)\)
 \end{itemize}
-So the lower bound of \(T(n)\) is \(c \log_{2}(n)\) \orgqed
+So the lower bound of \(T(n)\) is \(c \log_{2}(n)\). \orgqed
 
 ** Prove upper bound on \(T(n)\)
 
@@ -131,7 +129,7 @@ It suffices to show that \(T(n) \leq c \log_{2}(n)\)
         \[
             T(n) \leq c \log_{2}(n - 1) \leq c \log_{2}(n)
         \]
-        This strengthens the IH, and it should work. Howerver, will it generalize to other recursive algorithms that use the ``divide and conquer'' approach? \orgqed
+        This strengthens the IH, and it should work. Howerver, will it generalize to other recursive algorithms that use the ``divide and conquer'' approach?
 \end{itemize}
 
 There are other strategies that will work to prove this.
