@@ -1,0 +1,192 @@
+#+TITLE: CSC236 Week 12: Correct, Before & After
+#+date: December 2 -- December 8, 2021
+#+author: Hisbaan Noorani
+#+setupfile: setup.org
+
+\usepackage{fancyverb}
+
+* Recursive Binary Search
+
+We define correctness of a program in terms of it running, terminating, and fullfilling what it sought out to do. Purpose: find position where either \(x\) is, or should be inserted.
+
+\(A\): list, non-decreasing, comparable.
+
+\(x\): value to search for, must be comparable.
+
+\(b\): beginning index of search.
+
+\(e\): ending index of our search.
+
+#+begin_src python
+def recBinSearch(x, A, b, e):
+    if b == e:             #
+        if x <= A[b]:      #                1. $b \leq p \leq e + 1$
+            return b       # $p$ return       2. $b < p \implies A[p - 1] < x$
+        else:              #                3. $p < e + 1 \implies A[p] \geq x$
+            return e + 1   #
+    else:
+        m = (b + e) // 2 # midpoint  # $\floor{\frac{b + e}{2}}$
+        if x <= A[m]:
+            return recBinSearch(x, A, b, m)      #
+        else:                                    # ..
+            return recBinSearch(x, A, m + 1, e)  #
+#+end_src
+
+\begin{center}
+    \begin{Verbatim}
+                            < x                    >= x
+                    |---------------------|--------------------|
+                    b                     p                    e
+    \end{Verbatim}
+\end{center}
+
+* Conditions, pre- and post-
+- \(x\) and elements of \(A\) are comparable.
+- \(e\) and \(b\) are valid indices, \(0 \leq b \leq e < \abs{A}\).
+- \(A[b..e]\) is sorted non-decreasing.
+
+~RecBinSearch(x, A, b, e)~ terminates and also returns index \(p\).
+- \(b \leq p \leq e + 1\)
+- \(b < p \implies A[p - 1] < x\)
+- \(p \leq e \implies x \leq A[p]\)
+(except for boundaries, returns \(p\) so that \(A[p - 1] < x \leq A[p]\))
+
+Prove that postcondition(s) follow from preconditions by induction on \(n = e -  b + 1\) (which is the size of the list).
+
+* Precondition \(\implies\) termination and postcondition
+
+/Proof:/
+\begin{itemize}
+    \item
+        Base Case, \(n = 1\):
+        Terminates because ther eare no loops or futher calls, returns \(p = b = e \iff x \leq A[b = p]\) or \(p = b + 1 = e + 1 \iff x > A[b = p - 1]\), so the postcondition is satisfied. Notice that the choice forces if-and-only-if.
+    \item
+        Induction step:
+        Assume \(n > 1\) and that the postcondition is satisfied for inputs of size \(1 \leq k < n\) that satisfiy the precondition, and the \texttt{RecBinSearch(A, x, b e)} when \(n = e - b + 1 > 1\). Since \(b < e\) in this case, the check on line 2 fails, and line 8 executes.
+    \item
+        Exercise: \(b \leq m < e\) in this case. there are two cases, according to whether \(x \leq A[m]\) or \(x > A[m]\).
+
+        \begin{itemize}
+            \item
+                Case 1: \(x \leq A[m]\).
+                \begin{itemize}
+                    \item Show that IH applies to \texttt{RecurtiveBinarySearch(x, A, b, m)}.
+                        \[
+                            n = e - b + 1 > m - b + 1 \geq 1
+                        \]
+                    \item Translate the postcondition to \texttt{RecurtiveBinarySearch(x, A, b, m)}
+                        These are now are IH:
+                        \begin{enumerate}
+                            \item \(b \leq p \leq m + 1\)
+                            \item \(b < p \implies A[p - 1] < x\)
+                            \item \(p \leq m \implies A[p] \geq x\)
+                        \end{enumerate}
+                    \item Show that \texttt{RecurtiveBinarySearch(x, A, b, e)} satisfies postcondition
+                        \begin{enumerate}
+                            \item The first precondition:
+                                \begin{align*}
+                                    b &\leq m + 1 && \text{(by the IH)} \\
+                                      &\leq e + 1
+                                \end{align*}
+                            \item The second precondition:
+                                \begin{align*}
+                                    b > p \implies A[p - 1] < x && \text{(by the IH)}
+                                \end{align*}
+                            \item The third precondition:
+                                \[
+                                    p \leq e \implies p \leq m
+                                \]
+                                Since \(p = m + 1 \implies A[p - 1] = A[m] \implies A[m] < x\), which is a contradiction, so \(p \neq m + 1\), so we must have \(p \leq m\).
+                        \end{enumerate}
+                \end{itemize}
+            \item Case 2: \(x > A[m]\)
+                \begin{itemize}
+                    \item
+                        Show that IH applies to \texttt{RecBinarySearch(A, x , m + 1, e)}. We must show that
+                        \begin{align*}
+                            n &= e + b + 1 \\
+                              &> e - (m + 1) + 1  \\
+                              &\quad \dots \\
+                              &\geq 1
+                        \end{align*}
+                    \item
+                        Translate postcondition to \texttt{RecBinarySearch(x, A, m + 1, e)}. These are now our IH:
+                        \begin{enumerate}
+                            \item \(m + 1 \leq p \leq e + 1\)
+                            \item \(m + 1 < p \implies A[p - 1] < x\)
+                            \item \(p \leq e \implies A[p] \geq x\)
+                        \end{enumerate}
+                    \item Show that \texttt{RecBinarySearch(x, A, b, e)}
+                        \begin{enumerate}
+                            \item The first precondition:
+                                \begin{align*}
+                                    p &\leq e + 1 && \text{(by the IH)} \\
+                                    b &\leq m + 1 \leq p && \text{(since \(b \leq m\) by exercise)}
+                                \end{align*}
+                            \item The second precondition:
+                                \begin{align*}
+                                    b < p \implies p = m + 1 \tor p > m + 1 && \text{(by the IH)}
+                                \end{align*}
+
+                                In the case where \(p > m + 1\), we can say that \(A[p - 1] < x\) by IH \#2.
+
+                                In the case where \(p = m + 1\), we can say that \(A[p - 1] = A[m] < x\) by the last else statement.
+                            \item The third precondition:
+                                \begin{align*}
+                                    p \leq e \implies A[p] \geq x
+                                \end{align*}
+                        \end{enumerate}
+                \end{itemize}
+\end{itemize}
+
+* Correctbess by design
+
+Draw bictures of before, during, and after
+
+- Precondition: \(A\) sorted, comparable with \(x\).
+- Postcondition: \(0 \leq b \leq n\) and \(A[0:b] < x \leq A[p:b - 1]\)
+
+** "Derive" conditions from pictures
+
+We need some notation for mutation.
+
+- \(e_i\) will be \(e\) at the end of the \(i^\text{th}\) loop iteration.
+- \(b_i\) will be \(b\) at the end of the \(i^\text{th}\) loop iteration.
+- \(m_i\) will be \(m\) at the end of the \(i^\text{th}\) loop iteration.
+
+Precondition: \(A\) is a sorted list comparable to \(x\)  elements, \(n = \abs{A} > 0\). \(0 = b \leq e = n - 1\)
+
+Postcondition: \(0 \leq b \leq n \tand \text{all}([j < x for j in A[0:b]]) \tand \text{all}([k \geq x for k in A[b:n]])\)
+
+For all natural numbers \(i\), define \(P(i)\): At the end of hte loop iteration \(i\) (if it occurs), \(0 \leq b_i \leq e_i + 1 \leq n \tand b_i, e_i \n \N\). And, \(all([j < x for j in A[0:b_i]]) \tand all([k \geq x for k in A[e_i + 1 : n]])\)
+
+Prove for all \(i \in \N,~P(i)\) using simple induction:
+
+* Prove termination
+
+Associate a decreasing seqence in \(\N\) with loop iterations. It helps to add claims to the loop invariant.
+
+We are tempted to "prove" that "eventaully" \(b_i > e_i\). DO NOT EVER DO THIS. A more successful approach is to divise an expression linked to loop iteration \(i\) that is (1) a natural number, and (2) strictly decreases with each loop iteration. A decreasing sequence of natiral numbers must, by definition, be finite by the property of well ordering.
+
+A good candidate for such a sequence is the "distance" of \(A\) being searched, i.e. \(e_i - b_i + 1\). We want to prove that this expression is a natural number and is strictly decreasing. The expression beinga natrual number follows directly from \(P(i)\). The expression being strictly decreasing has two cases.
+
+- Case \(A[m] < x\):
+  So, \(e_{i + 1} = e_i\) and \(b_{i + 1} = m_{i + 1} + 1\).
+  Then:
+  \begin{align*}
+    e_{i + 1} + 1 - b_{i + 1} &= e_i + 1 - m_{i + 1} - 1 \\
+    &= e_i + m_{i + 1} \\
+    &< e_i + 1 - m_{i + 1} \\
+    &\leq e_i + 1 - b_i
+  \end{align*}
+
+- Case \(A[m] \geq x\): So, \(e_{i + 1} = m_{i + 1} - 1\) and \(b_{i + 1} = b_i\)
+
+  \begin{align*}
+    e_{i + 1} + 1 - b_{i + 1} &= m_{i + 1} - 1 + 1 - b_i \\
+    &= m_{i + 1} - b_{i} \\
+    &< m_{i + 1} + 1 - b_i \\
+    &\leq e_i + 1 + b_i
+  \end{align*}
+
+In both cases, we have a decreasing sequence of natural numbers corresponding to the loop iteration. \orgqed
